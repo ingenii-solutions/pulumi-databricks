@@ -54,6 +54,20 @@ tfgen:: install_plugins
 provider:: tfgen install_plugins # build the provider binary
 	(cd provider && go build -a -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
 
+build_provider_darwin:: tfgen install_plugins 
+	(cd provider && GOOS=darwin GOARCH=amd64 go build -a -o $(WORKING_DIR)/bin/darwin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+	(cd bin/darwin && tar -czvf pulumi-resource-databricks-v${VERSION}-darwin-amd64.tar.gz ./pulumi-resource-databricks)
+
+build_provider_linux:: tfgen install_plugins 
+	(cd provider && GOOS=linux GOARCH=amd64 go build -a -o $(WORKING_DIR)/bin/linux/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+	(cd bin/linux && tar -czvf pulumi-resource-databricks-v${VERSION}-linux-amd64.tar.gz ./pulumi-resource-databricks)
+
+build_provider_windows:: tfgen install_plugins 
+	(cd provider && GOOS=windows GOARCH=amd64 go build -a -o $(WORKING_DIR)/bin/windows/${PROVIDER}.exe -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+	(cd bin/windows && tar -czvf pulumi-resource-databricks-v${VERSION}-windows-amd64.tar.gz ./pulumi-resource-databricks.exe)
+
+build_provider:: build_provider_darwin build_provider_linux build_provider_windows
+
 #build_sdks:: install_plugins provider build_nodejs build_python build_go build_dotnet # build all the sdks
 build_sdks:: install_plugins provider  build_python   # build only Python
 
@@ -76,6 +90,10 @@ build_python:: install_plugins tfgen # build the python sdk
         rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
         sed -i.bak -e "s/\$${VERSION}/$(PYPI_VERSION)/g" -e "s/\$${PLUGIN_VERSION}/$(VERSION)/g" ./bin/setup.py && \
         rm ./bin/setup.py.bak && \
+        cd ./bin && python3 setup.py build sdist
+
+build_python2:
+	cd sdk/python/ && \
         cd ./bin && python3 setup.py build sdist
 
 build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
