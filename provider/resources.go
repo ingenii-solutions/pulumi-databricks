@@ -12,29 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package databricks
 
 import (
 	"fmt"
 	"path/filepath"
 	"unicode"
 
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/ingenii-solutions/pulumi-databricks/provider/pkg/version"
+
+	"github.com/databrickslabs/terraform-provider-databricks/provider"
+
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-xyz/xyz"
 )
 
 // all of the token components used below.
 const (
 	// packages:
-	mainPkg = "xyz"
+	mainPkg = "databricks"
 	// modules:
-	mainMod = "index" // the y module
+	mainMod = "databricks" // the y module
 )
 
 // makeMember manufactures a type token for the package and the given module and type.
@@ -91,17 +92,17 @@ var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(xyz.Provider().(*schema.Provider))
+	p := shimv2.NewProvider(provider.DatabricksProvider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:           p,
-		Name:        "xyz",
-		Description: "A Pulumi package for creating and managing xyz cloud resources.",
-		Keywords:    []string{"pulumi", "xyz"},
+		Name:        "databricks",
+		Description: "A Pulumi package for creating and managing Databricks cloud resources.",
+		Keywords:    []string{"pulumi", "dataricks"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-xyz",
+		Repository:  "https://github.com/ingenii-solutions/pulumi-databricks",
 		Config:      map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -117,20 +118,78 @@ func Provider() tfbridge.ProviderInfo {
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: makeResource(mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: makeResource(mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: makeType(mainPkg, "Tags")},
-			// 	},
-			// },
+
+			// Access
+			"databricks_secret":          {Tok: makeResource(mainMod, "Secret")},
+			"databricks_secret_scope":    {Tok: makeResource(mainMod, "SecretScope")},
+			"databricks_secret_acl":      {Tok: makeResource(mainMod, "SecretAcl")},
+			"databricks_permissions":     {Tok: makeResource(mainMod, "Permissions")},
+			"databricks_sql_permissions": {Tok: makeResource(mainMod, "SqlPermissions")},
+			"databricks_ip_access_list":  {Tok: makeResource(mainMod, "IPAccessList")},
+
+			// Compute
+			"databricks_cluster":        {Tok: makeResource(mainMod, "Cluster")},
+			"databricks_cluster_policy": {Tok: makeResource(mainMod, "ClusterPolicy")},
+			"databricks_instance_pool":  {Tok: makeResource(mainMod, "InstancePool")},
+			"databricks_job":            {Tok: makeResource(mainMod, "Job")},
+			"databricks_pipeline":       {Tok: makeResource(mainMod, "Pipeline")},
+
+			// Identity
+			"databricks_group":                  {Tok: makeResource(mainMod, "Group")},
+			"databricks_group_instance_profile": {Tok: makeResource(mainMod, "GroupInstanceProfile")},
+			"databricks_user_instance_profile":  {Tok: makeResource(mainMod, "UserInstanceProfile")},
+			"databricks_instance_profile":       {Tok: makeResource(mainMod, "InstanceProfile")},
+			"databricks_group_member":           {Tok: makeResource(mainMod, "GroupMember")},
+			"databricks_token":                  {Tok: makeResource(mainMod, "Token")},
+			"databricks_user":                   {Tok: makeResource(mainMod, "User")},
+			"databricks_service_principal":      {Tok: makeResource(mainMod, "ServicePrincipal")},
+
+			// MWS
+			"databricks_mws_customer_managed_keys":   {Tok: makeResource(mainMod, "MwsCustomerManagedKeys")},
+			"databricks_mws_credentials":             {Tok: makeResource(mainMod, "MwsCredentials")},
+			"databricks_mws_log_delivery":            {Tok: makeResource(mainMod, "MwsLogDelivery")},
+			"databricks_mws_networks":                {Tok: makeResource(mainMod, "MwsNetworks")},
+			"databricks_mws_private_access_settings": {Tok: makeResource(mainMod, "MwsPrivateAccessSettings")},
+			"databricks_mws_storage_configurations":  {Tok: makeResource(mainMod, "MwsStorageConfigurations")},
+			"databricks_mws_vpc_endpoint":            {Tok: makeResource(mainMod, "MwsVpcEndpoint")},
+			"databricks_mws_workspaces":              {Tok: makeResource(mainMod, "MwsWorkspaces")},
+
+			// Storage
+			"databricks_aws_s3_mount":          {Tok: makeResource(mainMod, "AwsS3Mount")},
+			"databricks_azure_adls_gen1_mount": {Tok: makeResource(mainMod, "AzureAdlsGen1Mount")},
+			"databricks_azure_adls_gen2_mount": {Tok: makeResource(mainMod, "AzureAdlsGen2Mount")},
+			"databricks_azure_blob_mount":      {Tok: makeResource(mainMod, "AzureBlobMount")},
+			"databricks_dbfs_file":             {Tok: makeResource(mainMod, "AzureDbfsFile")},
+
+			// SQL Analytics
+			"databricks_sql_dashboard":     {Tok: makeResource(mainMod, "SqlDashboard")},
+			"databricks_sql_endpoint":      {Tok: makeResource(mainMod, "SqlEndpoint")},
+			"databricks_sql_query":         {Tok: makeResource(mainMod, "SqlQuery")},
+			"databricks_sql_visualization": {Tok: makeResource(mainMod, "SqlVisualization")},
+			"databricks_sql_widget":        {Tok: makeResource(mainMod, "SqlWidget")},
+
+			// Workspace
+			"databricks_directory":          {Tok: makeResource(mainMod, "Directory")},
+			"databricks_global_init_script": {Tok: makeResource(mainMod, "GlobalInitScript")},
+			"databricks_notebook":           {Tok: makeResource(mainMod, "Notebook")},
+			"databricks_workspace_conf":     {Tok: makeResource(mainMod, "WorkspaceConf")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
-			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},
+			"databricks_aws_crossaccount_policy": {Tok: makeDataSource(mainMod, "getAwsCrossAccountPolicy")},
+			"databricks_aws_assume_role_policy":  {Tok: makeDataSource(mainMod, "getAwsAssumeRolePolicy")},
+			"databricks_aws_bucket_policy":       {Tok: makeDataSource(mainMod, "getAwsBucketPolicy")},
+			"databricks_current_user":            {Tok: makeDataSource(mainMod, "getCurrentUser")},
+			"databricks_dbfs_file":               {Tok: makeDataSource(mainMod, "getDbfsFile")},
+			"databricks_dbfs_file_paths":         {Tok: makeDataSource(mainMod, "getDbfsFilePaths")},
+			"databricks_group":                   {Tok: makeDataSource(mainMod, "getGroup")},
+			"databricks_node_type":               {Tok: makeDataSource(mainMod, "getNodeType")},
+			"databricks_notebook":                {Tok: makeDataSource(mainMod, "getNotebook")},
+			"databricks_notebook_paths":          {Tok: makeDataSource(mainMod, "getNotebookPaths")},
+			"databricks_spark_version":           {Tok: makeDataSource(mainMod, "getSparkVersion")},
+			"databricks_user":                    {Tok: makeDataSource(mainMod, "getUser")},
+			"databricks_zones":                   {Tok: makeDataSource(mainMod, "getZones")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
