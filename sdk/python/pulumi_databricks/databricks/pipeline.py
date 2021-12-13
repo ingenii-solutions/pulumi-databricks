@@ -151,7 +151,8 @@ class _PipelineState:
                  libraries: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLibraryArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  storage: Optional[pulumi.Input[str]] = None,
-                 target: Optional[pulumi.Input[str]] = None):
+                 target: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Pipeline resources.
         """
@@ -175,6 +176,8 @@ class _PipelineState:
             pulumi.set(__self__, "storage", storage)
         if target is not None:
             pulumi.set(__self__, "target", target)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="allowDuplicateNames")
@@ -266,6 +269,15 @@ class _PipelineState:
     def target(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "target", value)
 
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
 
 class Pipeline(pulumi.CustomResource):
     @overload
@@ -345,6 +357,7 @@ class Pipeline(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["storage"] = storage
             __props__.__dict__["target"] = target
+            __props__.__dict__["url"] = None
         super(Pipeline, __self__).__init__(
             'databricks:databricks/pipeline:Pipeline',
             resource_name,
@@ -364,7 +377,8 @@ class Pipeline(pulumi.CustomResource):
             libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLibraryArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             storage: Optional[pulumi.Input[str]] = None,
-            target: Optional[pulumi.Input[str]] = None) -> 'Pipeline':
+            target: Optional[pulumi.Input[str]] = None,
+            url: Optional[pulumi.Input[str]] = None) -> 'Pipeline':
         """
         Get an existing Pipeline resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -387,6 +401,7 @@ class Pipeline(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["storage"] = storage
         __props__.__dict__["target"] = target
+        __props__.__dict__["url"] = url
         return Pipeline(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -438,4 +453,9 @@ class Pipeline(pulumi.CustomResource):
     @pulumi.getter
     def target(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "target")
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "url")
 

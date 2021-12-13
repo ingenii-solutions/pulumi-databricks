@@ -13,31 +13,18 @@ __all__ = ['InstanceProfileArgs', 'InstanceProfile']
 @pulumi.input_type
 class InstanceProfileArgs:
     def __init__(__self__, *,
-                 instance_profile_arn: pulumi.Input[str]):
+                 instance_profile_arn: Optional[pulumi.Input[str]] = None,
+                 is_meta_instance_profile: Optional[pulumi.Input[bool]] = None,
+                 skip_validation: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a InstanceProfile resource.
         """
-        pulumi.set(__self__, "instance_profile_arn", instance_profile_arn)
-
-    @property
-    @pulumi.getter(name="instanceProfileArn")
-    def instance_profile_arn(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "instance_profile_arn")
-
-    @instance_profile_arn.setter
-    def instance_profile_arn(self, value: pulumi.Input[str]):
-        pulumi.set(self, "instance_profile_arn", value)
-
-
-@pulumi.input_type
-class _InstanceProfileState:
-    def __init__(__self__, *,
-                 instance_profile_arn: Optional[pulumi.Input[str]] = None):
-        """
-        Input properties used for looking up and filtering InstanceProfile resources.
-        """
         if instance_profile_arn is not None:
             pulumi.set(__self__, "instance_profile_arn", instance_profile_arn)
+        if is_meta_instance_profile is not None:
+            pulumi.set(__self__, "is_meta_instance_profile", is_meta_instance_profile)
+        if skip_validation is not None:
+            pulumi.set(__self__, "skip_validation", skip_validation)
 
     @property
     @pulumi.getter(name="instanceProfileArn")
@@ -48,6 +35,68 @@ class _InstanceProfileState:
     def instance_profile_arn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_profile_arn", value)
 
+    @property
+    @pulumi.getter(name="isMetaInstanceProfile")
+    def is_meta_instance_profile(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "is_meta_instance_profile")
+
+    @is_meta_instance_profile.setter
+    def is_meta_instance_profile(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_meta_instance_profile", value)
+
+    @property
+    @pulumi.getter(name="skipValidation")
+    def skip_validation(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "skip_validation")
+
+    @skip_validation.setter
+    def skip_validation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_validation", value)
+
+
+@pulumi.input_type
+class _InstanceProfileState:
+    def __init__(__self__, *,
+                 instance_profile_arn: Optional[pulumi.Input[str]] = None,
+                 is_meta_instance_profile: Optional[pulumi.Input[bool]] = None,
+                 skip_validation: Optional[pulumi.Input[bool]] = None):
+        """
+        Input properties used for looking up and filtering InstanceProfile resources.
+        """
+        if instance_profile_arn is not None:
+            pulumi.set(__self__, "instance_profile_arn", instance_profile_arn)
+        if is_meta_instance_profile is not None:
+            pulumi.set(__self__, "is_meta_instance_profile", is_meta_instance_profile)
+        if skip_validation is not None:
+            pulumi.set(__self__, "skip_validation", skip_validation)
+
+    @property
+    @pulumi.getter(name="instanceProfileArn")
+    def instance_profile_arn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "instance_profile_arn")
+
+    @instance_profile_arn.setter
+    def instance_profile_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_profile_arn", value)
+
+    @property
+    @pulumi.getter(name="isMetaInstanceProfile")
+    def is_meta_instance_profile(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "is_meta_instance_profile")
+
+    @is_meta_instance_profile.setter
+    def is_meta_instance_profile(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_meta_instance_profile", value)
+
+    @property
+    @pulumi.getter(name="skipValidation")
+    def skip_validation(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "skip_validation")
+
+    @skip_validation.setter
+    def skip_validation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_validation", value)
+
 
 class InstanceProfile(pulumi.CustomResource):
     @overload
@@ -55,6 +104,8 @@ class InstanceProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
+                 is_meta_instance_profile: Optional[pulumi.Input[bool]] = None,
+                 skip_validation: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Create a InstanceProfile resource with the given unique name, props, and options.
@@ -65,7 +116,7 @@ class InstanceProfile(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: InstanceProfileArgs,
+                 args: Optional[InstanceProfileArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a InstanceProfile resource with the given unique name, props, and options.
@@ -85,6 +136,8 @@ class InstanceProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
+                 is_meta_instance_profile: Optional[pulumi.Input[bool]] = None,
+                 skip_validation: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -97,9 +150,9 @@ class InstanceProfile(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InstanceProfileArgs.__new__(InstanceProfileArgs)
 
-            if instance_profile_arn is None and not opts.urn:
-                raise TypeError("Missing required property 'instance_profile_arn'")
             __props__.__dict__["instance_profile_arn"] = instance_profile_arn
+            __props__.__dict__["is_meta_instance_profile"] = is_meta_instance_profile
+            __props__.__dict__["skip_validation"] = skip_validation
         super(InstanceProfile, __self__).__init__(
             'databricks:databricks/instanceProfile:InstanceProfile',
             resource_name,
@@ -110,7 +163,9 @@ class InstanceProfile(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            instance_profile_arn: Optional[pulumi.Input[str]] = None) -> 'InstanceProfile':
+            instance_profile_arn: Optional[pulumi.Input[str]] = None,
+            is_meta_instance_profile: Optional[pulumi.Input[bool]] = None,
+            skip_validation: Optional[pulumi.Input[bool]] = None) -> 'InstanceProfile':
         """
         Get an existing InstanceProfile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -124,10 +179,22 @@ class InstanceProfile(pulumi.CustomResource):
         __props__ = _InstanceProfileState.__new__(_InstanceProfileState)
 
         __props__.__dict__["instance_profile_arn"] = instance_profile_arn
+        __props__.__dict__["is_meta_instance_profile"] = is_meta_instance_profile
+        __props__.__dict__["skip_validation"] = skip_validation
         return InstanceProfile(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="instanceProfileArn")
-    def instance_profile_arn(self) -> pulumi.Output[str]:
+    def instance_profile_arn(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "instance_profile_arn")
+
+    @property
+    @pulumi.getter(name="isMetaInstanceProfile")
+    def is_meta_instance_profile(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "is_meta_instance_profile")
+
+    @property
+    @pulumi.getter(name="skipValidation")
+    def skip_validation(self) -> pulumi.Output[bool]:
+        return pulumi.get(self, "skip_validation")
 

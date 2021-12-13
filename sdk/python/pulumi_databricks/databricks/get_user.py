@@ -19,19 +19,25 @@ class GetUserResult:
     """
     A collection of values returned by getUser.
     """
-    def __init__(__self__, alphanumeric=None, display_name=None, home=None, id=None, user_id=None, user_name=None):
+    def __init__(__self__, alphanumeric=None, display_name=None, external_id=None, home=None, id=None, repos=None, user_id=None, user_name=None):
         if alphanumeric and not isinstance(alphanumeric, str):
             raise TypeError("Expected argument 'alphanumeric' to be a str")
         pulumi.set(__self__, "alphanumeric", alphanumeric)
         if display_name and not isinstance(display_name, str):
             raise TypeError("Expected argument 'display_name' to be a str")
         pulumi.set(__self__, "display_name", display_name)
+        if external_id and not isinstance(external_id, str):
+            raise TypeError("Expected argument 'external_id' to be a str")
+        pulumi.set(__self__, "external_id", external_id)
         if home and not isinstance(home, str):
             raise TypeError("Expected argument 'home' to be a str")
         pulumi.set(__self__, "home", home)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if repos and not isinstance(repos, str):
+            raise TypeError("Expected argument 'repos' to be a str")
+        pulumi.set(__self__, "repos", repos)
         if user_id and not isinstance(user_id, str):
             raise TypeError("Expected argument 'user_id' to be a str")
         pulumi.set(__self__, "user_id", user_id)
@@ -50,6 +56,11 @@ class GetUserResult:
         return pulumi.get(self, "display_name")
 
     @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> str:
+        return pulumi.get(self, "external_id")
+
+    @property
     @pulumi.getter
     def home(self) -> str:
         return pulumi.get(self, "home")
@@ -61,6 +72,11 @@ class GetUserResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def repos(self) -> str:
+        return pulumi.get(self, "repos")
 
     @property
     @pulumi.getter(name="userId")
@@ -81,8 +97,10 @@ class AwaitableGetUserResult(GetUserResult):
         return GetUserResult(
             alphanumeric=self.alphanumeric,
             display_name=self.display_name,
+            external_id=self.external_id,
             home=self.home,
             id=self.id,
+            repos=self.repos,
             user_id=self.user_id,
             user_name=self.user_name)
 
@@ -105,7 +123,9 @@ def get_user(user_id: Optional[str] = None,
     return AwaitableGetUserResult(
         alphanumeric=__ret__.alphanumeric,
         display_name=__ret__.display_name,
+        external_id=__ret__.external_id,
         home=__ret__.home,
         id=__ret__.id,
+        repos=__ret__.repos,
         user_id=__ret__.user_id,
         user_name=__ret__.user_name)

@@ -19,16 +19,22 @@ class GetCurrentUserResult:
     """
     A collection of values returned by getCurrentUser.
     """
-    def __init__(__self__, alphanumeric=None, home=None, id=None, user_name=None):
+    def __init__(__self__, alphanumeric=None, external_id=None, home=None, id=None, repos=None, user_name=None):
         if alphanumeric and not isinstance(alphanumeric, str):
             raise TypeError("Expected argument 'alphanumeric' to be a str")
         pulumi.set(__self__, "alphanumeric", alphanumeric)
+        if external_id and not isinstance(external_id, str):
+            raise TypeError("Expected argument 'external_id' to be a str")
+        pulumi.set(__self__, "external_id", external_id)
         if home and not isinstance(home, str):
             raise TypeError("Expected argument 'home' to be a str")
         pulumi.set(__self__, "home", home)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if repos and not isinstance(repos, str):
+            raise TypeError("Expected argument 'repos' to be a str")
+        pulumi.set(__self__, "repos", repos)
         if user_name and not isinstance(user_name, str):
             raise TypeError("Expected argument 'user_name' to be a str")
         pulumi.set(__self__, "user_name", user_name)
@@ -37,6 +43,11 @@ class GetCurrentUserResult:
     @pulumi.getter
     def alphanumeric(self) -> str:
         return pulumi.get(self, "alphanumeric")
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> str:
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter
@@ -52,6 +63,11 @@ class GetCurrentUserResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter
+    def repos(self) -> str:
+        return pulumi.get(self, "repos")
+
+    @property
     @pulumi.getter(name="userName")
     def user_name(self) -> str:
         return pulumi.get(self, "user_name")
@@ -64,8 +80,10 @@ class AwaitableGetCurrentUserResult(GetCurrentUserResult):
             yield self
         return GetCurrentUserResult(
             alphanumeric=self.alphanumeric,
+            external_id=self.external_id,
             home=self.home,
             id=self.id,
+            repos=self.repos,
             user_name=self.user_name)
 
 
@@ -82,6 +100,8 @@ def get_current_user(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
 
     return AwaitableGetCurrentUserResult(
         alphanumeric=__ret__.alphanumeric,
+        external_id=__ret__.external_id,
         home=__ret__.home,
         id=__ret__.id,
+        repos=__ret__.repos,
         user_name=__ret__.user_name)

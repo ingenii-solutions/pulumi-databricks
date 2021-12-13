@@ -8,9 +8,8 @@ replace (
 )
 
 require (
-	github.com/databrickslabs/terraform-provider-databricks v0.3.6
-	github.com/hashicorp/terraform-plugin-sdk v1.7.0 // indirect
+	github.com/databrickslabs/terraform-provider-databricks v0.4.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.4.1-0.20210714215802-5020116ac4e6
-	github.com/pulumi/pulumi/pkg/v3 v3.7.1-0.20210714212650-083fc64ff547
+	github.com/pulumi/pulumi/pkg/v3 v3.7.1-0.20210714212650-083fc64ff547 // indirect
 	github.com/pulumi/pulumi/sdk/v3 v3.7.1-0.20210714111852-eb8e1585c3b7
 )

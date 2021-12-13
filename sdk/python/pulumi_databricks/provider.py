@@ -13,21 +13,19 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
+                 account_id: Optional[pulumi.Input[str]] = None,
                  azure_client_id: Optional[pulumi.Input[str]] = None,
                  azure_client_secret: Optional[pulumi.Input[str]] = None,
                  azure_environment: Optional[pulumi.Input[str]] = None,
-                 azure_pat_token_duration_seconds: Optional[pulumi.Input[str]] = None,
-                 azure_resource_group: Optional[pulumi.Input[str]] = None,
-                 azure_subscription_id: Optional[pulumi.Input[str]] = None,
                  azure_tenant_id: Optional[pulumi.Input[str]] = None,
-                 azure_use_pat_for_cli: Optional[pulumi.Input[bool]] = None,
-                 azure_use_pat_for_spn: Optional[pulumi.Input[bool]] = None,
-                 azure_workspace_name: Optional[pulumi.Input[str]] = None,
+                 azure_use_msi: Optional[pulumi.Input[bool]] = None,
                  azure_workspace_resource_id: Optional[pulumi.Input[str]] = None,
                  config_file: Optional[pulumi.Input[str]] = None,
                  debug_headers: Optional[pulumi.Input[bool]] = None,
                  debug_truncate_bytes: Optional[pulumi.Input[int]] = None,
+                 google_service_account: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
+                 http_timeout_seconds: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  profile: Optional[pulumi.Input[str]] = None,
                  rate_limit: Optional[pulumi.Input[int]] = None,
@@ -36,39 +34,19 @@ class ProviderArgs:
                  username: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
-        :param pulumi.Input[str] azure_pat_token_duration_seconds: Currently secret scopes are not accessible via AAD tokens so we will need to create a PAT token
-        :param pulumi.Input[bool] azure_use_pat_for_cli: Create ephemeral PAT tokens also for AZ CLI authenticated requests
-        :param pulumi.Input[bool] azure_use_pat_for_spn: Create ephemeral PAT tokens instead of AAD tokens for SPN
-        :param pulumi.Input[str] config_file: Location of the Databricks CLI credentials file, that is created by `databricks configure --token` command. By default,
-               it is located in ~/.databrickscfg. Check https://docs.databricks.com/dev-tools/cli/index.html#set-up-authentication for
-               docs. Config file credentials will only be used when host/token are not provided.
-        :param pulumi.Input[bool] debug_headers: Debug HTTP headers of requests made by the provider. Default is false. Visible only when TF_LOG=DEBUG is set
-        :param pulumi.Input[int] debug_truncate_bytes: Truncate JSON fields in JSON above this limit. Default is 96. Visible only when TF_LOG=DEBUG is set
-        :param pulumi.Input[str] profile: Connection profile specified within ~/.databrickscfg. Please check
-               https://docs.databricks.com/dev-tools/cli/index.html#connection-profiles for documentation.
-        :param pulumi.Input[int] rate_limit: Maximum number of requests per second made to Databricks REST API by Terraform.
-        :param pulumi.Input[bool] skip_verify: Skip SSL certificate verification for HTTP calls. Use at your own risk.
         """
+        if account_id is not None:
+            pulumi.set(__self__, "account_id", account_id)
         if azure_client_id is not None:
             pulumi.set(__self__, "azure_client_id", azure_client_id)
         if azure_client_secret is not None:
             pulumi.set(__self__, "azure_client_secret", azure_client_secret)
         if azure_environment is not None:
             pulumi.set(__self__, "azure_environment", azure_environment)
-        if azure_pat_token_duration_seconds is not None:
-            pulumi.set(__self__, "azure_pat_token_duration_seconds", azure_pat_token_duration_seconds)
-        if azure_resource_group is not None:
-            pulumi.set(__self__, "azure_resource_group", azure_resource_group)
-        if azure_subscription_id is not None:
-            pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
         if azure_tenant_id is not None:
             pulumi.set(__self__, "azure_tenant_id", azure_tenant_id)
-        if azure_use_pat_for_cli is not None:
-            pulumi.set(__self__, "azure_use_pat_for_cli", azure_use_pat_for_cli)
-        if azure_use_pat_for_spn is not None:
-            pulumi.set(__self__, "azure_use_pat_for_spn", azure_use_pat_for_spn)
-        if azure_workspace_name is not None:
-            pulumi.set(__self__, "azure_workspace_name", azure_workspace_name)
+        if azure_use_msi is not None:
+            pulumi.set(__self__, "azure_use_msi", azure_use_msi)
         if azure_workspace_resource_id is not None:
             pulumi.set(__self__, "azure_workspace_resource_id", azure_workspace_resource_id)
         if config_file is not None:
@@ -77,8 +55,12 @@ class ProviderArgs:
             pulumi.set(__self__, "debug_headers", debug_headers)
         if debug_truncate_bytes is not None:
             pulumi.set(__self__, "debug_truncate_bytes", debug_truncate_bytes)
+        if google_service_account is not None:
+            pulumi.set(__self__, "google_service_account", google_service_account)
         if host is not None:
             pulumi.set(__self__, "host", host)
+        if http_timeout_seconds is not None:
+            pulumi.set(__self__, "http_timeout_seconds", http_timeout_seconds)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if profile is not None:
@@ -91,6 +73,15 @@ class ProviderArgs:
             pulumi.set(__self__, "token", token)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "account_id")
+
+    @account_id.setter
+    def account_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_id", value)
 
     @property
     @pulumi.getter(name="azureClientId")
@@ -120,36 +111,6 @@ class ProviderArgs:
         pulumi.set(self, "azure_environment", value)
 
     @property
-    @pulumi.getter(name="azurePatTokenDurationSeconds")
-    def azure_pat_token_duration_seconds(self) -> Optional[pulumi.Input[str]]:
-        """
-        Currently secret scopes are not accessible via AAD tokens so we will need to create a PAT token
-        """
-        return pulumi.get(self, "azure_pat_token_duration_seconds")
-
-    @azure_pat_token_duration_seconds.setter
-    def azure_pat_token_duration_seconds(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "azure_pat_token_duration_seconds", value)
-
-    @property
-    @pulumi.getter(name="azureResourceGroup")
-    def azure_resource_group(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "azure_resource_group")
-
-    @azure_resource_group.setter
-    def azure_resource_group(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "azure_resource_group", value)
-
-    @property
-    @pulumi.getter(name="azureSubscriptionId")
-    def azure_subscription_id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "azure_subscription_id")
-
-    @azure_subscription_id.setter
-    def azure_subscription_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "azure_subscription_id", value)
-
-    @property
     @pulumi.getter(name="azureTenantId")
     def azure_tenant_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "azure_tenant_id")
@@ -159,37 +120,13 @@ class ProviderArgs:
         pulumi.set(self, "azure_tenant_id", value)
 
     @property
-    @pulumi.getter(name="azureUsePatForCli")
-    def azure_use_pat_for_cli(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Create ephemeral PAT tokens also for AZ CLI authenticated requests
-        """
-        return pulumi.get(self, "azure_use_pat_for_cli")
+    @pulumi.getter(name="azureUseMsi")
+    def azure_use_msi(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "azure_use_msi")
 
-    @azure_use_pat_for_cli.setter
-    def azure_use_pat_for_cli(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "azure_use_pat_for_cli", value)
-
-    @property
-    @pulumi.getter(name="azureUsePatForSpn")
-    def azure_use_pat_for_spn(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Create ephemeral PAT tokens instead of AAD tokens for SPN
-        """
-        return pulumi.get(self, "azure_use_pat_for_spn")
-
-    @azure_use_pat_for_spn.setter
-    def azure_use_pat_for_spn(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "azure_use_pat_for_spn", value)
-
-    @property
-    @pulumi.getter(name="azureWorkspaceName")
-    def azure_workspace_name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "azure_workspace_name")
-
-    @azure_workspace_name.setter
-    def azure_workspace_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "azure_workspace_name", value)
+    @azure_use_msi.setter
+    def azure_use_msi(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "azure_use_msi", value)
 
     @property
     @pulumi.getter(name="azureWorkspaceResourceId")
@@ -203,11 +140,6 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="configFile")
     def config_file(self) -> Optional[pulumi.Input[str]]:
-        """
-        Location of the Databricks CLI credentials file, that is created by `databricks configure --token` command. By default,
-        it is located in ~/.databrickscfg. Check https://docs.databricks.com/dev-tools/cli/index.html#set-up-authentication for
-        docs. Config file credentials will only be used when host/token are not provided.
-        """
         return pulumi.get(self, "config_file")
 
     @config_file.setter
@@ -217,9 +149,6 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="debugHeaders")
     def debug_headers(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Debug HTTP headers of requests made by the provider. Default is false. Visible only when TF_LOG=DEBUG is set
-        """
         return pulumi.get(self, "debug_headers")
 
     @debug_headers.setter
@@ -229,14 +158,20 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="debugTruncateBytes")
     def debug_truncate_bytes(self) -> Optional[pulumi.Input[int]]:
-        """
-        Truncate JSON fields in JSON above this limit. Default is 96. Visible only when TF_LOG=DEBUG is set
-        """
         return pulumi.get(self, "debug_truncate_bytes")
 
     @debug_truncate_bytes.setter
     def debug_truncate_bytes(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "debug_truncate_bytes", value)
+
+    @property
+    @pulumi.getter(name="googleServiceAccount")
+    def google_service_account(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "google_service_account")
+
+    @google_service_account.setter
+    def google_service_account(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "google_service_account", value)
 
     @property
     @pulumi.getter
@@ -246,6 +181,15 @@ class ProviderArgs:
     @host.setter
     def host(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter(name="httpTimeoutSeconds")
+    def http_timeout_seconds(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "http_timeout_seconds")
+
+    @http_timeout_seconds.setter
+    def http_timeout_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_timeout_seconds", value)
 
     @property
     @pulumi.getter
@@ -259,10 +203,6 @@ class ProviderArgs:
     @property
     @pulumi.getter
     def profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        Connection profile specified within ~/.databrickscfg. Please check
-        https://docs.databricks.com/dev-tools/cli/index.html#connection-profiles for documentation.
-        """
         return pulumi.get(self, "profile")
 
     @profile.setter
@@ -272,9 +212,6 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="rateLimit")
     def rate_limit(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum number of requests per second made to Databricks REST API by Terraform.
-        """
         return pulumi.get(self, "rate_limit")
 
     @rate_limit.setter
@@ -284,9 +221,6 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="skipVerify")
     def skip_verify(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Skip SSL certificate verification for HTTP calls. Use at your own risk.
-        """
         return pulumi.get(self, "skip_verify")
 
     @skip_verify.setter
@@ -317,21 +251,19 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_id: Optional[pulumi.Input[str]] = None,
                  azure_client_id: Optional[pulumi.Input[str]] = None,
                  azure_client_secret: Optional[pulumi.Input[str]] = None,
                  azure_environment: Optional[pulumi.Input[str]] = None,
-                 azure_pat_token_duration_seconds: Optional[pulumi.Input[str]] = None,
-                 azure_resource_group: Optional[pulumi.Input[str]] = None,
-                 azure_subscription_id: Optional[pulumi.Input[str]] = None,
                  azure_tenant_id: Optional[pulumi.Input[str]] = None,
-                 azure_use_pat_for_cli: Optional[pulumi.Input[bool]] = None,
-                 azure_use_pat_for_spn: Optional[pulumi.Input[bool]] = None,
-                 azure_workspace_name: Optional[pulumi.Input[str]] = None,
+                 azure_use_msi: Optional[pulumi.Input[bool]] = None,
                  azure_workspace_resource_id: Optional[pulumi.Input[str]] = None,
                  config_file: Optional[pulumi.Input[str]] = None,
                  debug_headers: Optional[pulumi.Input[bool]] = None,
                  debug_truncate_bytes: Optional[pulumi.Input[int]] = None,
+                 google_service_account: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
+                 http_timeout_seconds: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  profile: Optional[pulumi.Input[str]] = None,
                  rate_limit: Optional[pulumi.Input[int]] = None,
@@ -347,18 +279,6 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] azure_pat_token_duration_seconds: Currently secret scopes are not accessible via AAD tokens so we will need to create a PAT token
-        :param pulumi.Input[bool] azure_use_pat_for_cli: Create ephemeral PAT tokens also for AZ CLI authenticated requests
-        :param pulumi.Input[bool] azure_use_pat_for_spn: Create ephemeral PAT tokens instead of AAD tokens for SPN
-        :param pulumi.Input[str] config_file: Location of the Databricks CLI credentials file, that is created by `databricks configure --token` command. By default,
-               it is located in ~/.databrickscfg. Check https://docs.databricks.com/dev-tools/cli/index.html#set-up-authentication for
-               docs. Config file credentials will only be used when host/token are not provided.
-        :param pulumi.Input[bool] debug_headers: Debug HTTP headers of requests made by the provider. Default is false. Visible only when TF_LOG=DEBUG is set
-        :param pulumi.Input[int] debug_truncate_bytes: Truncate JSON fields in JSON above this limit. Default is 96. Visible only when TF_LOG=DEBUG is set
-        :param pulumi.Input[str] profile: Connection profile specified within ~/.databrickscfg. Please check
-               https://docs.databricks.com/dev-tools/cli/index.html#connection-profiles for documentation.
-        :param pulumi.Input[int] rate_limit: Maximum number of requests per second made to Databricks REST API by Terraform.
-        :param pulumi.Input[bool] skip_verify: Skip SSL certificate verification for HTTP calls. Use at your own risk.
         """
         ...
     @overload
@@ -387,21 +307,19 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_id: Optional[pulumi.Input[str]] = None,
                  azure_client_id: Optional[pulumi.Input[str]] = None,
                  azure_client_secret: Optional[pulumi.Input[str]] = None,
                  azure_environment: Optional[pulumi.Input[str]] = None,
-                 azure_pat_token_duration_seconds: Optional[pulumi.Input[str]] = None,
-                 azure_resource_group: Optional[pulumi.Input[str]] = None,
-                 azure_subscription_id: Optional[pulumi.Input[str]] = None,
                  azure_tenant_id: Optional[pulumi.Input[str]] = None,
-                 azure_use_pat_for_cli: Optional[pulumi.Input[bool]] = None,
-                 azure_use_pat_for_spn: Optional[pulumi.Input[bool]] = None,
-                 azure_workspace_name: Optional[pulumi.Input[str]] = None,
+                 azure_use_msi: Optional[pulumi.Input[bool]] = None,
                  azure_workspace_resource_id: Optional[pulumi.Input[str]] = None,
                  config_file: Optional[pulumi.Input[str]] = None,
                  debug_headers: Optional[pulumi.Input[bool]] = None,
                  debug_truncate_bytes: Optional[pulumi.Input[int]] = None,
+                 google_service_account: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
+                 http_timeout_seconds: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  profile: Optional[pulumi.Input[str]] = None,
                  rate_limit: Optional[pulumi.Input[int]] = None,
@@ -420,21 +338,19 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            __props__.__dict__["account_id"] = account_id
             __props__.__dict__["azure_client_id"] = azure_client_id
             __props__.__dict__["azure_client_secret"] = azure_client_secret
             __props__.__dict__["azure_environment"] = azure_environment
-            __props__.__dict__["azure_pat_token_duration_seconds"] = azure_pat_token_duration_seconds
-            __props__.__dict__["azure_resource_group"] = azure_resource_group
-            __props__.__dict__["azure_subscription_id"] = azure_subscription_id
             __props__.__dict__["azure_tenant_id"] = azure_tenant_id
-            __props__.__dict__["azure_use_pat_for_cli"] = pulumi.Output.from_input(azure_use_pat_for_cli).apply(pulumi.runtime.to_json) if azure_use_pat_for_cli is not None else None
-            __props__.__dict__["azure_use_pat_for_spn"] = pulumi.Output.from_input(azure_use_pat_for_spn).apply(pulumi.runtime.to_json) if azure_use_pat_for_spn is not None else None
-            __props__.__dict__["azure_workspace_name"] = azure_workspace_name
+            __props__.__dict__["azure_use_msi"] = pulumi.Output.from_input(azure_use_msi).apply(pulumi.runtime.to_json) if azure_use_msi is not None else None
             __props__.__dict__["azure_workspace_resource_id"] = azure_workspace_resource_id
             __props__.__dict__["config_file"] = config_file
             __props__.__dict__["debug_headers"] = pulumi.Output.from_input(debug_headers).apply(pulumi.runtime.to_json) if debug_headers is not None else None
             __props__.__dict__["debug_truncate_bytes"] = pulumi.Output.from_input(debug_truncate_bytes).apply(pulumi.runtime.to_json) if debug_truncate_bytes is not None else None
+            __props__.__dict__["google_service_account"] = google_service_account
             __props__.__dict__["host"] = host
+            __props__.__dict__["http_timeout_seconds"] = pulumi.Output.from_input(http_timeout_seconds).apply(pulumi.runtime.to_json) if http_timeout_seconds is not None else None
             __props__.__dict__["password"] = password
             __props__.__dict__["profile"] = profile
             __props__.__dict__["rate_limit"] = pulumi.Output.from_input(rate_limit).apply(pulumi.runtime.to_json) if rate_limit is not None else None
@@ -446,6 +362,11 @@ class Provider(pulumi.ProviderResource):
             resource_name,
             __props__,
             opts)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter(name="azureClientId")
@@ -463,32 +384,9 @@ class Provider(pulumi.ProviderResource):
         return pulumi.get(self, "azure_environment")
 
     @property
-    @pulumi.getter(name="azurePatTokenDurationSeconds")
-    def azure_pat_token_duration_seconds(self) -> pulumi.Output[Optional[str]]:
-        """
-        Currently secret scopes are not accessible via AAD tokens so we will need to create a PAT token
-        """
-        return pulumi.get(self, "azure_pat_token_duration_seconds")
-
-    @property
-    @pulumi.getter(name="azureResourceGroup")
-    def azure_resource_group(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "azure_resource_group")
-
-    @property
-    @pulumi.getter(name="azureSubscriptionId")
-    def azure_subscription_id(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "azure_subscription_id")
-
-    @property
     @pulumi.getter(name="azureTenantId")
     def azure_tenant_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "azure_tenant_id")
-
-    @property
-    @pulumi.getter(name="azureWorkspaceName")
-    def azure_workspace_name(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "azure_workspace_name")
 
     @property
     @pulumi.getter(name="azureWorkspaceResourceId")
@@ -498,12 +396,12 @@ class Provider(pulumi.ProviderResource):
     @property
     @pulumi.getter(name="configFile")
     def config_file(self) -> pulumi.Output[Optional[str]]:
-        """
-        Location of the Databricks CLI credentials file, that is created by `databricks configure --token` command. By default,
-        it is located in ~/.databrickscfg. Check https://docs.databricks.com/dev-tools/cli/index.html#set-up-authentication for
-        docs. Config file credentials will only be used when host/token are not provided.
-        """
         return pulumi.get(self, "config_file")
+
+    @property
+    @pulumi.getter(name="googleServiceAccount")
+    def google_service_account(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "google_service_account")
 
     @property
     @pulumi.getter
@@ -518,10 +416,6 @@ class Provider(pulumi.ProviderResource):
     @property
     @pulumi.getter
     def profile(self) -> pulumi.Output[Optional[str]]:
-        """
-        Connection profile specified within ~/.databrickscfg. Please check
-        https://docs.databricks.com/dev-tools/cli/index.html#connection-profiles for documentation.
-        """
         return pulumi.get(self, "profile")
 
     @property

@@ -19,7 +19,7 @@ class GetSparkVersionResult:
     """
     A collection of values returned by getSparkVersion.
     """
-    def __init__(__self__, beta=None, genomics=None, gpu=None, id=None, latest=None, long_term_support=None, ml=None, scala=None, spark_version=None):
+    def __init__(__self__, beta=None, genomics=None, gpu=None, id=None, latest=None, long_term_support=None, ml=None, photon=None, scala=None, spark_version=None):
         if beta and not isinstance(beta, bool):
             raise TypeError("Expected argument 'beta' to be a bool")
         pulumi.set(__self__, "beta", beta)
@@ -41,6 +41,9 @@ class GetSparkVersionResult:
         if ml and not isinstance(ml, bool):
             raise TypeError("Expected argument 'ml' to be a bool")
         pulumi.set(__self__, "ml", ml)
+        if photon and not isinstance(photon, bool):
+            raise TypeError("Expected argument 'photon' to be a bool")
+        pulumi.set(__self__, "photon", photon)
         if scala and not isinstance(scala, str):
             raise TypeError("Expected argument 'scala' to be a str")
         pulumi.set(__self__, "scala", scala)
@@ -88,6 +91,11 @@ class GetSparkVersionResult:
 
     @property
     @pulumi.getter
+    def photon(self) -> Optional[bool]:
+        return pulumi.get(self, "photon")
+
+    @property
+    @pulumi.getter
     def scala(self) -> Optional[str]:
         return pulumi.get(self, "scala")
 
@@ -110,6 +118,7 @@ class AwaitableGetSparkVersionResult(GetSparkVersionResult):
             latest=self.latest,
             long_term_support=self.long_term_support,
             ml=self.ml,
+            photon=self.photon,
             scala=self.scala,
             spark_version=self.spark_version)
 
@@ -120,6 +129,7 @@ def get_spark_version(beta: Optional[bool] = None,
                       latest: Optional[bool] = None,
                       long_term_support: Optional[bool] = None,
                       ml: Optional[bool] = None,
+                      photon: Optional[bool] = None,
                       scala: Optional[str] = None,
                       spark_version: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSparkVersionResult:
@@ -133,6 +143,7 @@ def get_spark_version(beta: Optional[bool] = None,
     __args__['latest'] = latest
     __args__['longTermSupport'] = long_term_support
     __args__['ml'] = ml
+    __args__['photon'] = photon
     __args__['scala'] = scala
     __args__['sparkVersion'] = spark_version
     if opts is None:
@@ -149,5 +160,6 @@ def get_spark_version(beta: Optional[bool] = None,
         latest=__ret__.latest,
         long_term_support=__ret__.long_term_support,
         ml=__ret__.ml,
+        photon=__ret__.photon,
         scala=__ret__.scala,
         spark_version=__ret__.spark_version)

@@ -16,6 +16,8 @@ class MwsPrivateAccessSettingsArgs:
                  private_access_settings_name: pulumi.Input[str],
                  region: pulumi.Input[str],
                  account_id: Optional[pulumi.Input[str]] = None,
+                 allowed_vpc_endpoint_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 private_access_level: Optional[pulumi.Input[str]] = None,
                  private_access_settings_id: Optional[pulumi.Input[str]] = None,
                  public_access_enabled: Optional[pulumi.Input[bool]] = None,
                  status: Optional[pulumi.Input[str]] = None):
@@ -26,6 +28,10 @@ class MwsPrivateAccessSettingsArgs:
         pulumi.set(__self__, "region", region)
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
+        if allowed_vpc_endpoint_ids is not None:
+            pulumi.set(__self__, "allowed_vpc_endpoint_ids", allowed_vpc_endpoint_ids)
+        if private_access_level is not None:
+            pulumi.set(__self__, "private_access_level", private_access_level)
         if private_access_settings_id is not None:
             pulumi.set(__self__, "private_access_settings_id", private_access_settings_id)
         if public_access_enabled is not None:
@@ -61,6 +67,24 @@ class MwsPrivateAccessSettingsArgs:
         pulumi.set(self, "account_id", value)
 
     @property
+    @pulumi.getter(name="allowedVpcEndpointIds")
+    def allowed_vpc_endpoint_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "allowed_vpc_endpoint_ids")
+
+    @allowed_vpc_endpoint_ids.setter
+    def allowed_vpc_endpoint_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_vpc_endpoint_ids", value)
+
+    @property
+    @pulumi.getter(name="privateAccessLevel")
+    def private_access_level(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "private_access_level")
+
+    @private_access_level.setter
+    def private_access_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_access_level", value)
+
+    @property
     @pulumi.getter(name="privateAccessSettingsId")
     def private_access_settings_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "private_access_settings_id")
@@ -92,6 +116,8 @@ class MwsPrivateAccessSettingsArgs:
 class _MwsPrivateAccessSettingsState:
     def __init__(__self__, *,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 allowed_vpc_endpoint_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 private_access_level: Optional[pulumi.Input[str]] = None,
                  private_access_settings_id: Optional[pulumi.Input[str]] = None,
                  private_access_settings_name: Optional[pulumi.Input[str]] = None,
                  public_access_enabled: Optional[pulumi.Input[bool]] = None,
@@ -102,6 +128,10 @@ class _MwsPrivateAccessSettingsState:
         """
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
+        if allowed_vpc_endpoint_ids is not None:
+            pulumi.set(__self__, "allowed_vpc_endpoint_ids", allowed_vpc_endpoint_ids)
+        if private_access_level is not None:
+            pulumi.set(__self__, "private_access_level", private_access_level)
         if private_access_settings_id is not None:
             pulumi.set(__self__, "private_access_settings_id", private_access_settings_id)
         if private_access_settings_name is not None:
@@ -121,6 +151,24 @@ class _MwsPrivateAccessSettingsState:
     @account_id.setter
     def account_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_id", value)
+
+    @property
+    @pulumi.getter(name="allowedVpcEndpointIds")
+    def allowed_vpc_endpoint_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "allowed_vpc_endpoint_ids")
+
+    @allowed_vpc_endpoint_ids.setter
+    def allowed_vpc_endpoint_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_vpc_endpoint_ids", value)
+
+    @property
+    @pulumi.getter(name="privateAccessLevel")
+    def private_access_level(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "private_access_level")
+
+    @private_access_level.setter
+    def private_access_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_access_level", value)
 
     @property
     @pulumi.getter(name="privateAccessSettingsId")
@@ -174,6 +222,8 @@ class MwsPrivateAccessSettings(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 allowed_vpc_endpoint_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 private_access_level: Optional[pulumi.Input[str]] = None,
                  private_access_settings_id: Optional[pulumi.Input[str]] = None,
                  private_access_settings_name: Optional[pulumi.Input[str]] = None,
                  public_access_enabled: Optional[pulumi.Input[bool]] = None,
@@ -209,6 +259,8 @@ class MwsPrivateAccessSettings(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 allowed_vpc_endpoint_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 private_access_level: Optional[pulumi.Input[str]] = None,
                  private_access_settings_id: Optional[pulumi.Input[str]] = None,
                  private_access_settings_name: Optional[pulumi.Input[str]] = None,
                  public_access_enabled: Optional[pulumi.Input[bool]] = None,
@@ -227,6 +279,8 @@ class MwsPrivateAccessSettings(pulumi.CustomResource):
             __props__ = MwsPrivateAccessSettingsArgs.__new__(MwsPrivateAccessSettingsArgs)
 
             __props__.__dict__["account_id"] = account_id
+            __props__.__dict__["allowed_vpc_endpoint_ids"] = allowed_vpc_endpoint_ids
+            __props__.__dict__["private_access_level"] = private_access_level
             __props__.__dict__["private_access_settings_id"] = private_access_settings_id
             if private_access_settings_name is None and not opts.urn:
                 raise TypeError("Missing required property 'private_access_settings_name'")
@@ -247,6 +301,8 @@ class MwsPrivateAccessSettings(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             account_id: Optional[pulumi.Input[str]] = None,
+            allowed_vpc_endpoint_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            private_access_level: Optional[pulumi.Input[str]] = None,
             private_access_settings_id: Optional[pulumi.Input[str]] = None,
             private_access_settings_name: Optional[pulumi.Input[str]] = None,
             public_access_enabled: Optional[pulumi.Input[bool]] = None,
@@ -265,6 +321,8 @@ class MwsPrivateAccessSettings(pulumi.CustomResource):
         __props__ = _MwsPrivateAccessSettingsState.__new__(_MwsPrivateAccessSettingsState)
 
         __props__.__dict__["account_id"] = account_id
+        __props__.__dict__["allowed_vpc_endpoint_ids"] = allowed_vpc_endpoint_ids
+        __props__.__dict__["private_access_level"] = private_access_level
         __props__.__dict__["private_access_settings_id"] = private_access_settings_id
         __props__.__dict__["private_access_settings_name"] = private_access_settings_name
         __props__.__dict__["public_access_enabled"] = public_access_enabled
@@ -276,6 +334,16 @@ class MwsPrivateAccessSettings(pulumi.CustomResource):
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="allowedVpcEndpointIds")
+    def allowed_vpc_endpoint_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        return pulumi.get(self, "allowed_vpc_endpoint_ids")
+
+    @property
+    @pulumi.getter(name="privateAccessLevel")
+    def private_access_level(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "private_access_level")
 
     @property
     @pulumi.getter(name="privateAccessSettingsId")

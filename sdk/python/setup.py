@@ -43,7 +43,7 @@ setup(name='pulumi_databricks',
           'install': InstallPluginCommand,
       },
       keywords='pulumi dataricks',
-      url='https://pulumi.io',
+      url='https://ingenii.dev',
       project_urls={
           'Repository': 'https://github.com/ingenii-solutions/pulumi-databricks'
       },

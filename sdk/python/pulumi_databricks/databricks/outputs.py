@@ -27,6 +27,11 @@ __all__ = [
     'ClusterLibraryCran',
     'ClusterLibraryMaven',
     'ClusterLibraryPypi',
+    'DatabricksMountAbfs',
+    'DatabricksMountAdl',
+    'DatabricksMountGs',
+    'DatabricksMountS3',
+    'DatabricksMountWasb',
     'InstancePoolAwsAttributes',
     'InstancePoolAzureAttributes',
     'InstancePoolDiskSpec',
@@ -53,14 +58,51 @@ __all__ = [
     'JobNewClusterInitScriptFile',
     'JobNewClusterInitScriptS3',
     'JobNotebookTask',
+    'JobPipelineTask',
+    'JobPythonWheelTask',
     'JobSchedule',
     'JobSparkJarTask',
     'JobSparkPythonTask',
     'JobSparkSubmitTask',
+    'JobTask',
+    'JobTaskDependsOn',
+    'JobTaskEmailNotifications',
+    'JobTaskLibrary',
+    'JobTaskLibraryCran',
+    'JobTaskLibraryMaven',
+    'JobTaskLibraryPypi',
+    'JobTaskNewCluster',
+    'JobTaskNewClusterAutoscale',
+    'JobTaskNewClusterAwsAttributes',
+    'JobTaskNewClusterAzureAttributes',
+    'JobTaskNewClusterClusterLogConf',
+    'JobTaskNewClusterClusterLogConfDbfs',
+    'JobTaskNewClusterClusterLogConfS3',
+    'JobTaskNewClusterDockerImage',
+    'JobTaskNewClusterDockerImageBasicAuth',
+    'JobTaskNewClusterGcpAttributes',
+    'JobTaskNewClusterInitScript',
+    'JobTaskNewClusterInitScriptDbfs',
+    'JobTaskNewClusterInitScriptFile',
+    'JobTaskNewClusterInitScriptS3',
+    'JobTaskNotebookTask',
+    'JobTaskPipelineTask',
+    'JobTaskPythonWheelTask',
+    'JobTaskSparkJarTask',
+    'JobTaskSparkPythonTask',
+    'JobTaskSparkSubmitTask',
+    'MLFlowModelTag',
+    'MetastoreDataAccessAwsIamRole',
+    'MetastoreDataAccessAzureServicePrincipal',
     'MwsCustomerManagedKeysAwsKeyInfo',
     'MwsNetworksErrorMessage',
     'MwsNetworksVpcEndpoints',
+    'MwsWorkspacesCloudResourceBucket',
+    'MwsWorkspacesCloudResourceBucketGcp',
     'MwsWorkspacesExternalCustomerInfo',
+    'MwsWorkspacesNetwork',
+    'MwsWorkspacesNetworkGcpCommonNetworkConfig',
+    'MwsWorkspacesNetworkGcpManagedNetworkConfig',
     'PermissionsAccessControl',
     'PipelineCluster',
     'PipelineClusterAutoscale',
@@ -758,6 +800,338 @@ class ClusterLibraryPypi(dict):
     @pulumi.getter
     def repo(self) -> Optional[str]:
         return pulumi.get(self, "repo")
+
+
+@pulumi.output_type
+class DatabricksMountAbfs(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientId":
+            suggest = "client_id"
+        elif key == "clientSecretKey":
+            suggest = "client_secret_key"
+        elif key == "clientSecretScope":
+            suggest = "client_secret_scope"
+        elif key == "initializeFileSystem":
+            suggest = "initialize_file_system"
+        elif key == "containerName":
+            suggest = "container_name"
+        elif key == "storageAccountName":
+            suggest = "storage_account_name"
+        elif key == "tenantId":
+            suggest = "tenant_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabricksMountAbfs. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabricksMountAbfs.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabricksMountAbfs.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_id: str,
+                 client_secret_key: str,
+                 client_secret_scope: str,
+                 initialize_file_system: bool,
+                 container_name: Optional[str] = None,
+                 directory: Optional[str] = None,
+                 storage_account_name: Optional[str] = None,
+                 tenant_id: Optional[str] = None):
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret_key", client_secret_key)
+        pulumi.set(__self__, "client_secret_scope", client_secret_scope)
+        pulumi.set(__self__, "initialize_file_system", initialize_file_system)
+        if container_name is not None:
+            pulumi.set(__self__, "container_name", container_name)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if storage_account_name is not None:
+            pulumi.set(__self__, "storage_account_name", storage_account_name)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecretKey")
+    def client_secret_key(self) -> str:
+        return pulumi.get(self, "client_secret_key")
+
+    @property
+    @pulumi.getter(name="clientSecretScope")
+    def client_secret_scope(self) -> str:
+        return pulumi.get(self, "client_secret_scope")
+
+    @property
+    @pulumi.getter(name="initializeFileSystem")
+    def initialize_file_system(self) -> bool:
+        return pulumi.get(self, "initialize_file_system")
+
+    @property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> Optional[str]:
+        return pulumi.get(self, "container_name")
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[str]:
+        return pulumi.get(self, "directory")
+
+    @property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> Optional[str]:
+        return pulumi.get(self, "storage_account_name")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[str]:
+        return pulumi.get(self, "tenant_id")
+
+
+@pulumi.output_type
+class DatabricksMountAdl(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientId":
+            suggest = "client_id"
+        elif key == "clientSecretKey":
+            suggest = "client_secret_key"
+        elif key == "clientSecretScope":
+            suggest = "client_secret_scope"
+        elif key == "sparkConfPrefix":
+            suggest = "spark_conf_prefix"
+        elif key == "storageResourceName":
+            suggest = "storage_resource_name"
+        elif key == "tenantId":
+            suggest = "tenant_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabricksMountAdl. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabricksMountAdl.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabricksMountAdl.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_id: str,
+                 client_secret_key: str,
+                 client_secret_scope: str,
+                 directory: Optional[str] = None,
+                 spark_conf_prefix: Optional[str] = None,
+                 storage_resource_name: Optional[str] = None,
+                 tenant_id: Optional[str] = None):
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret_key", client_secret_key)
+        pulumi.set(__self__, "client_secret_scope", client_secret_scope)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if spark_conf_prefix is not None:
+            pulumi.set(__self__, "spark_conf_prefix", spark_conf_prefix)
+        if storage_resource_name is not None:
+            pulumi.set(__self__, "storage_resource_name", storage_resource_name)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecretKey")
+    def client_secret_key(self) -> str:
+        return pulumi.get(self, "client_secret_key")
+
+    @property
+    @pulumi.getter(name="clientSecretScope")
+    def client_secret_scope(self) -> str:
+        return pulumi.get(self, "client_secret_scope")
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[str]:
+        return pulumi.get(self, "directory")
+
+    @property
+    @pulumi.getter(name="sparkConfPrefix")
+    def spark_conf_prefix(self) -> Optional[str]:
+        return pulumi.get(self, "spark_conf_prefix")
+
+    @property
+    @pulumi.getter(name="storageResourceName")
+    def storage_resource_name(self) -> Optional[str]:
+        return pulumi.get(self, "storage_resource_name")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[str]:
+        return pulumi.get(self, "tenant_id")
+
+
+@pulumi.output_type
+class DatabricksMountGs(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "serviceAccount":
+            suggest = "service_account"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabricksMountGs. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabricksMountGs.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabricksMountGs.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 service_account: Optional[str] = None):
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        if service_account is not None:
+            pulumi.set(__self__, "service_account", service_account)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="serviceAccount")
+    def service_account(self) -> Optional[str]:
+        return pulumi.get(self, "service_account")
+
+
+@pulumi.output_type
+class DatabricksMountS3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "instanceProfile":
+            suggest = "instance_profile"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabricksMountS3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabricksMountS3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabricksMountS3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 instance_profile: Optional[str] = None):
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        if instance_profile is not None:
+            pulumi.set(__self__, "instance_profile", instance_profile)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="instanceProfile")
+    def instance_profile(self) -> Optional[str]:
+        return pulumi.get(self, "instance_profile")
+
+
+@pulumi.output_type
+class DatabricksMountWasb(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authType":
+            suggest = "auth_type"
+        elif key == "tokenSecretKey":
+            suggest = "token_secret_key"
+        elif key == "tokenSecretScope":
+            suggest = "token_secret_scope"
+        elif key == "containerName":
+            suggest = "container_name"
+        elif key == "storageAccountName":
+            suggest = "storage_account_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabricksMountWasb. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabricksMountWasb.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabricksMountWasb.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auth_type: str,
+                 token_secret_key: str,
+                 token_secret_scope: str,
+                 container_name: Optional[str] = None,
+                 directory: Optional[str] = None,
+                 storage_account_name: Optional[str] = None):
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "token_secret_key", token_secret_key)
+        pulumi.set(__self__, "token_secret_scope", token_secret_scope)
+        if container_name is not None:
+            pulumi.set(__self__, "container_name", container_name)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if storage_account_name is not None:
+            pulumi.set(__self__, "storage_account_name", storage_account_name)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> str:
+        return pulumi.get(self, "auth_type")
+
+    @property
+    @pulumi.getter(name="tokenSecretKey")
+    def token_secret_key(self) -> str:
+        return pulumi.get(self, "token_secret_key")
+
+    @property
+    @pulumi.getter(name="tokenSecretScope")
+    def token_secret_scope(self) -> str:
+        return pulumi.get(self, "token_secret_scope")
+
+    @property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> Optional[str]:
+        return pulumi.get(self, "container_name")
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[str]:
+        return pulumi.get(self, "directory")
+
+    @property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> Optional[str]:
+        return pulumi.get(self, "storage_account_name")
 
 
 @pulumi.output_type
@@ -2015,6 +2389,93 @@ class JobNotebookTask(dict):
 
 
 @pulumi.output_type
+class JobPipelineTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pipelineId":
+            suggest = "pipeline_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobPipelineTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobPipelineTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobPipelineTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 pipeline_id: str):
+        pulumi.set(__self__, "pipeline_id", pipeline_id)
+
+    @property
+    @pulumi.getter(name="pipelineId")
+    def pipeline_id(self) -> str:
+        return pulumi.get(self, "pipeline_id")
+
+
+@pulumi.output_type
+class JobPythonWheelTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "entryPoint":
+            suggest = "entry_point"
+        elif key == "namedParameters":
+            suggest = "named_parameters"
+        elif key == "packageName":
+            suggest = "package_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobPythonWheelTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobPythonWheelTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobPythonWheelTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 entry_point: Optional[str] = None,
+                 named_parameters: Optional[Mapping[str, Any]] = None,
+                 package_name: Optional[str] = None,
+                 parameters: Optional[Sequence[str]] = None):
+        if entry_point is not None:
+            pulumi.set(__self__, "entry_point", entry_point)
+        if named_parameters is not None:
+            pulumi.set(__self__, "named_parameters", named_parameters)
+        if package_name is not None:
+            pulumi.set(__self__, "package_name", package_name)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="entryPoint")
+    def entry_point(self) -> Optional[str]:
+        return pulumi.get(self, "entry_point")
+
+    @property
+    @pulumi.getter(name="namedParameters")
+    def named_parameters(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "named_parameters")
+
+    @property
+    @pulumi.getter(name="packageName")
+    def package_name(self) -> Optional[str]:
+        return pulumi.get(self, "package_name")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
 class JobSchedule(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2161,6 +2622,1524 @@ class JobSparkSubmitTask(dict):
 
 
 @pulumi.output_type
+class JobTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dependsOns":
+            suggest = "depends_ons"
+        elif key == "emailNotifications":
+            suggest = "email_notifications"
+        elif key == "existingClusterId":
+            suggest = "existing_cluster_id"
+        elif key == "maxRetries":
+            suggest = "max_retries"
+        elif key == "minRetryIntervalMillis":
+            suggest = "min_retry_interval_millis"
+        elif key == "newCluster":
+            suggest = "new_cluster"
+        elif key == "notebookTask":
+            suggest = "notebook_task"
+        elif key == "pipelineTask":
+            suggest = "pipeline_task"
+        elif key == "pythonWheelTask":
+            suggest = "python_wheel_task"
+        elif key == "retryOnTimeout":
+            suggest = "retry_on_timeout"
+        elif key == "sparkJarTask":
+            suggest = "spark_jar_task"
+        elif key == "sparkPythonTask":
+            suggest = "spark_python_task"
+        elif key == "sparkSubmitTask":
+            suggest = "spark_submit_task"
+        elif key == "taskKey":
+            suggest = "task_key"
+        elif key == "timeoutSeconds":
+            suggest = "timeout_seconds"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 depends_ons: Optional[Sequence['outputs.JobTaskDependsOn']] = None,
+                 description: Optional[str] = None,
+                 email_notifications: Optional['outputs.JobTaskEmailNotifications'] = None,
+                 existing_cluster_id: Optional[str] = None,
+                 libraries: Optional[Sequence['outputs.JobTaskLibrary']] = None,
+                 max_retries: Optional[int] = None,
+                 min_retry_interval_millis: Optional[int] = None,
+                 new_cluster: Optional['outputs.JobTaskNewCluster'] = None,
+                 notebook_task: Optional['outputs.JobTaskNotebookTask'] = None,
+                 pipeline_task: Optional['outputs.JobTaskPipelineTask'] = None,
+                 python_wheel_task: Optional['outputs.JobTaskPythonWheelTask'] = None,
+                 retry_on_timeout: Optional[bool] = None,
+                 spark_jar_task: Optional['outputs.JobTaskSparkJarTask'] = None,
+                 spark_python_task: Optional['outputs.JobTaskSparkPythonTask'] = None,
+                 spark_submit_task: Optional['outputs.JobTaskSparkSubmitTask'] = None,
+                 task_key: Optional[str] = None,
+                 timeout_seconds: Optional[int] = None):
+        if depends_ons is not None:
+            pulumi.set(__self__, "depends_ons", depends_ons)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if email_notifications is not None:
+            pulumi.set(__self__, "email_notifications", email_notifications)
+        if existing_cluster_id is not None:
+            pulumi.set(__self__, "existing_cluster_id", existing_cluster_id)
+        if libraries is not None:
+            pulumi.set(__self__, "libraries", libraries)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
+        if min_retry_interval_millis is not None:
+            pulumi.set(__self__, "min_retry_interval_millis", min_retry_interval_millis)
+        if new_cluster is not None:
+            pulumi.set(__self__, "new_cluster", new_cluster)
+        if notebook_task is not None:
+            pulumi.set(__self__, "notebook_task", notebook_task)
+        if pipeline_task is not None:
+            pulumi.set(__self__, "pipeline_task", pipeline_task)
+        if python_wheel_task is not None:
+            pulumi.set(__self__, "python_wheel_task", python_wheel_task)
+        if retry_on_timeout is not None:
+            pulumi.set(__self__, "retry_on_timeout", retry_on_timeout)
+        if spark_jar_task is not None:
+            pulumi.set(__self__, "spark_jar_task", spark_jar_task)
+        if spark_python_task is not None:
+            pulumi.set(__self__, "spark_python_task", spark_python_task)
+        if spark_submit_task is not None:
+            pulumi.set(__self__, "spark_submit_task", spark_submit_task)
+        if task_key is not None:
+            pulumi.set(__self__, "task_key", task_key)
+        if timeout_seconds is not None:
+            pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+
+    @property
+    @pulumi.getter(name="dependsOns")
+    def depends_ons(self) -> Optional[Sequence['outputs.JobTaskDependsOn']]:
+        return pulumi.get(self, "depends_ons")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="emailNotifications")
+    def email_notifications(self) -> Optional['outputs.JobTaskEmailNotifications']:
+        return pulumi.get(self, "email_notifications")
+
+    @property
+    @pulumi.getter(name="existingClusterId")
+    def existing_cluster_id(self) -> Optional[str]:
+        return pulumi.get(self, "existing_cluster_id")
+
+    @property
+    @pulumi.getter
+    def libraries(self) -> Optional[Sequence['outputs.JobTaskLibrary']]:
+        return pulumi.get(self, "libraries")
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[int]:
+        return pulumi.get(self, "max_retries")
+
+    @property
+    @pulumi.getter(name="minRetryIntervalMillis")
+    def min_retry_interval_millis(self) -> Optional[int]:
+        return pulumi.get(self, "min_retry_interval_millis")
+
+    @property
+    @pulumi.getter(name="newCluster")
+    def new_cluster(self) -> Optional['outputs.JobTaskNewCluster']:
+        return pulumi.get(self, "new_cluster")
+
+    @property
+    @pulumi.getter(name="notebookTask")
+    def notebook_task(self) -> Optional['outputs.JobTaskNotebookTask']:
+        return pulumi.get(self, "notebook_task")
+
+    @property
+    @pulumi.getter(name="pipelineTask")
+    def pipeline_task(self) -> Optional['outputs.JobTaskPipelineTask']:
+        return pulumi.get(self, "pipeline_task")
+
+    @property
+    @pulumi.getter(name="pythonWheelTask")
+    def python_wheel_task(self) -> Optional['outputs.JobTaskPythonWheelTask']:
+        return pulumi.get(self, "python_wheel_task")
+
+    @property
+    @pulumi.getter(name="retryOnTimeout")
+    def retry_on_timeout(self) -> Optional[bool]:
+        return pulumi.get(self, "retry_on_timeout")
+
+    @property
+    @pulumi.getter(name="sparkJarTask")
+    def spark_jar_task(self) -> Optional['outputs.JobTaskSparkJarTask']:
+        return pulumi.get(self, "spark_jar_task")
+
+    @property
+    @pulumi.getter(name="sparkPythonTask")
+    def spark_python_task(self) -> Optional['outputs.JobTaskSparkPythonTask']:
+        return pulumi.get(self, "spark_python_task")
+
+    @property
+    @pulumi.getter(name="sparkSubmitTask")
+    def spark_submit_task(self) -> Optional['outputs.JobTaskSparkSubmitTask']:
+        return pulumi.get(self, "spark_submit_task")
+
+    @property
+    @pulumi.getter(name="taskKey")
+    def task_key(self) -> Optional[str]:
+        return pulumi.get(self, "task_key")
+
+    @property
+    @pulumi.getter(name="timeoutSeconds")
+    def timeout_seconds(self) -> Optional[int]:
+        return pulumi.get(self, "timeout_seconds")
+
+
+@pulumi.output_type
+class JobTaskDependsOn(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "taskKey":
+            suggest = "task_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskDependsOn. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskDependsOn.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskDependsOn.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 task_key: Optional[str] = None):
+        if task_key is not None:
+            pulumi.set(__self__, "task_key", task_key)
+
+    @property
+    @pulumi.getter(name="taskKey")
+    def task_key(self) -> Optional[str]:
+        return pulumi.get(self, "task_key")
+
+
+@pulumi.output_type
+class JobTaskEmailNotifications(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "noAlertForSkippedRuns":
+            suggest = "no_alert_for_skipped_runs"
+        elif key == "onFailures":
+            suggest = "on_failures"
+        elif key == "onStarts":
+            suggest = "on_starts"
+        elif key == "onSuccesses":
+            suggest = "on_successes"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskEmailNotifications. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskEmailNotifications.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskEmailNotifications.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 no_alert_for_skipped_runs: Optional[bool] = None,
+                 on_failures: Optional[Sequence[str]] = None,
+                 on_starts: Optional[Sequence[str]] = None,
+                 on_successes: Optional[Sequence[str]] = None):
+        if no_alert_for_skipped_runs is not None:
+            pulumi.set(__self__, "no_alert_for_skipped_runs", no_alert_for_skipped_runs)
+        if on_failures is not None:
+            pulumi.set(__self__, "on_failures", on_failures)
+        if on_starts is not None:
+            pulumi.set(__self__, "on_starts", on_starts)
+        if on_successes is not None:
+            pulumi.set(__self__, "on_successes", on_successes)
+
+    @property
+    @pulumi.getter(name="noAlertForSkippedRuns")
+    def no_alert_for_skipped_runs(self) -> Optional[bool]:
+        return pulumi.get(self, "no_alert_for_skipped_runs")
+
+    @property
+    @pulumi.getter(name="onFailures")
+    def on_failures(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "on_failures")
+
+    @property
+    @pulumi.getter(name="onStarts")
+    def on_starts(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "on_starts")
+
+    @property
+    @pulumi.getter(name="onSuccesses")
+    def on_successes(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "on_successes")
+
+
+@pulumi.output_type
+class JobTaskLibrary(dict):
+    def __init__(__self__, *,
+                 cran: Optional['outputs.JobTaskLibraryCran'] = None,
+                 egg: Optional[str] = None,
+                 jar: Optional[str] = None,
+                 maven: Optional['outputs.JobTaskLibraryMaven'] = None,
+                 pypi: Optional['outputs.JobTaskLibraryPypi'] = None,
+                 whl: Optional[str] = None):
+        if cran is not None:
+            pulumi.set(__self__, "cran", cran)
+        if egg is not None:
+            pulumi.set(__self__, "egg", egg)
+        if jar is not None:
+            pulumi.set(__self__, "jar", jar)
+        if maven is not None:
+            pulumi.set(__self__, "maven", maven)
+        if pypi is not None:
+            pulumi.set(__self__, "pypi", pypi)
+        if whl is not None:
+            pulumi.set(__self__, "whl", whl)
+
+    @property
+    @pulumi.getter
+    def cran(self) -> Optional['outputs.JobTaskLibraryCran']:
+        return pulumi.get(self, "cran")
+
+    @property
+    @pulumi.getter
+    def egg(self) -> Optional[str]:
+        return pulumi.get(self, "egg")
+
+    @property
+    @pulumi.getter
+    def jar(self) -> Optional[str]:
+        return pulumi.get(self, "jar")
+
+    @property
+    @pulumi.getter
+    def maven(self) -> Optional['outputs.JobTaskLibraryMaven']:
+        return pulumi.get(self, "maven")
+
+    @property
+    @pulumi.getter
+    def pypi(self) -> Optional['outputs.JobTaskLibraryPypi']:
+        return pulumi.get(self, "pypi")
+
+    @property
+    @pulumi.getter
+    def whl(self) -> Optional[str]:
+        return pulumi.get(self, "whl")
+
+
+@pulumi.output_type
+class JobTaskLibraryCran(dict):
+    def __init__(__self__, *,
+                 package: str,
+                 repo: Optional[str] = None):
+        pulumi.set(__self__, "package", package)
+        if repo is not None:
+            pulumi.set(__self__, "repo", repo)
+
+    @property
+    @pulumi.getter
+    def package(self) -> str:
+        return pulumi.get(self, "package")
+
+    @property
+    @pulumi.getter
+    def repo(self) -> Optional[str]:
+        return pulumi.get(self, "repo")
+
+
+@pulumi.output_type
+class JobTaskLibraryMaven(dict):
+    def __init__(__self__, *,
+                 coordinates: str,
+                 exclusions: Optional[Sequence[str]] = None,
+                 repo: Optional[str] = None):
+        pulumi.set(__self__, "coordinates", coordinates)
+        if exclusions is not None:
+            pulumi.set(__self__, "exclusions", exclusions)
+        if repo is not None:
+            pulumi.set(__self__, "repo", repo)
+
+    @property
+    @pulumi.getter
+    def coordinates(self) -> str:
+        return pulumi.get(self, "coordinates")
+
+    @property
+    @pulumi.getter
+    def exclusions(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "exclusions")
+
+    @property
+    @pulumi.getter
+    def repo(self) -> Optional[str]:
+        return pulumi.get(self, "repo")
+
+
+@pulumi.output_type
+class JobTaskLibraryPypi(dict):
+    def __init__(__self__, *,
+                 package: str,
+                 repo: Optional[str] = None):
+        pulumi.set(__self__, "package", package)
+        if repo is not None:
+            pulumi.set(__self__, "repo", repo)
+
+    @property
+    @pulumi.getter
+    def package(self) -> str:
+        return pulumi.get(self, "package")
+
+    @property
+    @pulumi.getter
+    def repo(self) -> Optional[str]:
+        return pulumi.get(self, "repo")
+
+
+@pulumi.output_type
+class JobTaskNewCluster(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sparkVersion":
+            suggest = "spark_version"
+        elif key == "autoterminationMinutes":
+            suggest = "autotermination_minutes"
+        elif key == "awsAttributes":
+            suggest = "aws_attributes"
+        elif key == "azureAttributes":
+            suggest = "azure_attributes"
+        elif key == "clusterId":
+            suggest = "cluster_id"
+        elif key == "clusterLogConf":
+            suggest = "cluster_log_conf"
+        elif key == "clusterName":
+            suggest = "cluster_name"
+        elif key == "customTags":
+            suggest = "custom_tags"
+        elif key == "dockerImage":
+            suggest = "docker_image"
+        elif key == "driverInstancePoolId":
+            suggest = "driver_instance_pool_id"
+        elif key == "driverNodeTypeId":
+            suggest = "driver_node_type_id"
+        elif key == "enableElasticDisk":
+            suggest = "enable_elastic_disk"
+        elif key == "enableLocalDiskEncryption":
+            suggest = "enable_local_disk_encryption"
+        elif key == "gcpAttributes":
+            suggest = "gcp_attributes"
+        elif key == "idempotencyToken":
+            suggest = "idempotency_token"
+        elif key == "initScripts":
+            suggest = "init_scripts"
+        elif key == "instancePoolId":
+            suggest = "instance_pool_id"
+        elif key == "nodeTypeId":
+            suggest = "node_type_id"
+        elif key == "numWorkers":
+            suggest = "num_workers"
+        elif key == "policyId":
+            suggest = "policy_id"
+        elif key == "singleUserName":
+            suggest = "single_user_name"
+        elif key == "sparkConf":
+            suggest = "spark_conf"
+        elif key == "sparkEnvVars":
+            suggest = "spark_env_vars"
+        elif key == "sshPublicKeys":
+            suggest = "ssh_public_keys"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskNewCluster. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskNewCluster.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskNewCluster.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 spark_version: str,
+                 autoscale: Optional['outputs.JobTaskNewClusterAutoscale'] = None,
+                 autotermination_minutes: Optional[int] = None,
+                 aws_attributes: Optional['outputs.JobTaskNewClusterAwsAttributes'] = None,
+                 azure_attributes: Optional['outputs.JobTaskNewClusterAzureAttributes'] = None,
+                 cluster_id: Optional[str] = None,
+                 cluster_log_conf: Optional['outputs.JobTaskNewClusterClusterLogConf'] = None,
+                 cluster_name: Optional[str] = None,
+                 custom_tags: Optional[Mapping[str, Any]] = None,
+                 docker_image: Optional['outputs.JobTaskNewClusterDockerImage'] = None,
+                 driver_instance_pool_id: Optional[str] = None,
+                 driver_node_type_id: Optional[str] = None,
+                 enable_elastic_disk: Optional[bool] = None,
+                 enable_local_disk_encryption: Optional[bool] = None,
+                 gcp_attributes: Optional['outputs.JobTaskNewClusterGcpAttributes'] = None,
+                 idempotency_token: Optional[str] = None,
+                 init_scripts: Optional[Sequence['outputs.JobTaskNewClusterInitScript']] = None,
+                 instance_pool_id: Optional[str] = None,
+                 node_type_id: Optional[str] = None,
+                 num_workers: Optional[int] = None,
+                 policy_id: Optional[str] = None,
+                 single_user_name: Optional[str] = None,
+                 spark_conf: Optional[Mapping[str, Any]] = None,
+                 spark_env_vars: Optional[Mapping[str, Any]] = None,
+                 ssh_public_keys: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "spark_version", spark_version)
+        if autoscale is not None:
+            pulumi.set(__self__, "autoscale", autoscale)
+        if autotermination_minutes is not None:
+            pulumi.set(__self__, "autotermination_minutes", autotermination_minutes)
+        if aws_attributes is not None:
+            pulumi.set(__self__, "aws_attributes", aws_attributes)
+        if azure_attributes is not None:
+            pulumi.set(__self__, "azure_attributes", azure_attributes)
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
+        if cluster_log_conf is not None:
+            pulumi.set(__self__, "cluster_log_conf", cluster_log_conf)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if custom_tags is not None:
+            pulumi.set(__self__, "custom_tags", custom_tags)
+        if docker_image is not None:
+            pulumi.set(__self__, "docker_image", docker_image)
+        if driver_instance_pool_id is not None:
+            pulumi.set(__self__, "driver_instance_pool_id", driver_instance_pool_id)
+        if driver_node_type_id is not None:
+            pulumi.set(__self__, "driver_node_type_id", driver_node_type_id)
+        if enable_elastic_disk is not None:
+            pulumi.set(__self__, "enable_elastic_disk", enable_elastic_disk)
+        if enable_local_disk_encryption is not None:
+            pulumi.set(__self__, "enable_local_disk_encryption", enable_local_disk_encryption)
+        if gcp_attributes is not None:
+            pulumi.set(__self__, "gcp_attributes", gcp_attributes)
+        if idempotency_token is not None:
+            pulumi.set(__self__, "idempotency_token", idempotency_token)
+        if init_scripts is not None:
+            pulumi.set(__self__, "init_scripts", init_scripts)
+        if instance_pool_id is not None:
+            pulumi.set(__self__, "instance_pool_id", instance_pool_id)
+        if node_type_id is not None:
+            pulumi.set(__self__, "node_type_id", node_type_id)
+        if num_workers is not None:
+            pulumi.set(__self__, "num_workers", num_workers)
+        if policy_id is not None:
+            pulumi.set(__self__, "policy_id", policy_id)
+        if single_user_name is not None:
+            pulumi.set(__self__, "single_user_name", single_user_name)
+        if spark_conf is not None:
+            pulumi.set(__self__, "spark_conf", spark_conf)
+        if spark_env_vars is not None:
+            pulumi.set(__self__, "spark_env_vars", spark_env_vars)
+        if ssh_public_keys is not None:
+            pulumi.set(__self__, "ssh_public_keys", ssh_public_keys)
+
+    @property
+    @pulumi.getter(name="sparkVersion")
+    def spark_version(self) -> str:
+        return pulumi.get(self, "spark_version")
+
+    @property
+    @pulumi.getter
+    def autoscale(self) -> Optional['outputs.JobTaskNewClusterAutoscale']:
+        return pulumi.get(self, "autoscale")
+
+    @property
+    @pulumi.getter(name="autoterminationMinutes")
+    def autotermination_minutes(self) -> Optional[int]:
+        return pulumi.get(self, "autotermination_minutes")
+
+    @property
+    @pulumi.getter(name="awsAttributes")
+    def aws_attributes(self) -> Optional['outputs.JobTaskNewClusterAwsAttributes']:
+        return pulumi.get(self, "aws_attributes")
+
+    @property
+    @pulumi.getter(name="azureAttributes")
+    def azure_attributes(self) -> Optional['outputs.JobTaskNewClusterAzureAttributes']:
+        return pulumi.get(self, "azure_attributes")
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[str]:
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="clusterLogConf")
+    def cluster_log_conf(self) -> Optional['outputs.JobTaskNewClusterClusterLogConf']:
+        return pulumi.get(self, "cluster_log_conf")
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[str]:
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="customTags")
+    def custom_tags(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "custom_tags")
+
+    @property
+    @pulumi.getter(name="dockerImage")
+    def docker_image(self) -> Optional['outputs.JobTaskNewClusterDockerImage']:
+        return pulumi.get(self, "docker_image")
+
+    @property
+    @pulumi.getter(name="driverInstancePoolId")
+    def driver_instance_pool_id(self) -> Optional[str]:
+        return pulumi.get(self, "driver_instance_pool_id")
+
+    @property
+    @pulumi.getter(name="driverNodeTypeId")
+    def driver_node_type_id(self) -> Optional[str]:
+        return pulumi.get(self, "driver_node_type_id")
+
+    @property
+    @pulumi.getter(name="enableElasticDisk")
+    def enable_elastic_disk(self) -> Optional[bool]:
+        return pulumi.get(self, "enable_elastic_disk")
+
+    @property
+    @pulumi.getter(name="enableLocalDiskEncryption")
+    def enable_local_disk_encryption(self) -> Optional[bool]:
+        return pulumi.get(self, "enable_local_disk_encryption")
+
+    @property
+    @pulumi.getter(name="gcpAttributes")
+    def gcp_attributes(self) -> Optional['outputs.JobTaskNewClusterGcpAttributes']:
+        return pulumi.get(self, "gcp_attributes")
+
+    @property
+    @pulumi.getter(name="idempotencyToken")
+    def idempotency_token(self) -> Optional[str]:
+        return pulumi.get(self, "idempotency_token")
+
+    @property
+    @pulumi.getter(name="initScripts")
+    def init_scripts(self) -> Optional[Sequence['outputs.JobTaskNewClusterInitScript']]:
+        return pulumi.get(self, "init_scripts")
+
+    @property
+    @pulumi.getter(name="instancePoolId")
+    def instance_pool_id(self) -> Optional[str]:
+        return pulumi.get(self, "instance_pool_id")
+
+    @property
+    @pulumi.getter(name="nodeTypeId")
+    def node_type_id(self) -> Optional[str]:
+        return pulumi.get(self, "node_type_id")
+
+    @property
+    @pulumi.getter(name="numWorkers")
+    def num_workers(self) -> Optional[int]:
+        return pulumi.get(self, "num_workers")
+
+    @property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> Optional[str]:
+        return pulumi.get(self, "policy_id")
+
+    @property
+    @pulumi.getter(name="singleUserName")
+    def single_user_name(self) -> Optional[str]:
+        return pulumi.get(self, "single_user_name")
+
+    @property
+    @pulumi.getter(name="sparkConf")
+    def spark_conf(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "spark_conf")
+
+    @property
+    @pulumi.getter(name="sparkEnvVars")
+    def spark_env_vars(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "spark_env_vars")
+
+    @property
+    @pulumi.getter(name="sshPublicKeys")
+    def ssh_public_keys(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "ssh_public_keys")
+
+
+@pulumi.output_type
+class JobTaskNewClusterAutoscale(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxWorkers":
+            suggest = "max_workers"
+        elif key == "minWorkers":
+            suggest = "min_workers"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskNewClusterAutoscale. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskNewClusterAutoscale.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskNewClusterAutoscale.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_workers: Optional[int] = None,
+                 min_workers: Optional[int] = None):
+        if max_workers is not None:
+            pulumi.set(__self__, "max_workers", max_workers)
+        if min_workers is not None:
+            pulumi.set(__self__, "min_workers", min_workers)
+
+    @property
+    @pulumi.getter(name="maxWorkers")
+    def max_workers(self) -> Optional[int]:
+        return pulumi.get(self, "max_workers")
+
+    @property
+    @pulumi.getter(name="minWorkers")
+    def min_workers(self) -> Optional[int]:
+        return pulumi.get(self, "min_workers")
+
+
+@pulumi.output_type
+class JobTaskNewClusterAwsAttributes(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ebsVolumeCount":
+            suggest = "ebs_volume_count"
+        elif key == "ebsVolumeSize":
+            suggest = "ebs_volume_size"
+        elif key == "ebsVolumeType":
+            suggest = "ebs_volume_type"
+        elif key == "firstOnDemand":
+            suggest = "first_on_demand"
+        elif key == "instanceProfileArn":
+            suggest = "instance_profile_arn"
+        elif key == "spotBidPricePercent":
+            suggest = "spot_bid_price_percent"
+        elif key == "zoneId":
+            suggest = "zone_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskNewClusterAwsAttributes. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskNewClusterAwsAttributes.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskNewClusterAwsAttributes.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 availability: Optional[str] = None,
+                 ebs_volume_count: Optional[int] = None,
+                 ebs_volume_size: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 first_on_demand: Optional[int] = None,
+                 instance_profile_arn: Optional[str] = None,
+                 spot_bid_price_percent: Optional[int] = None,
+                 zone_id: Optional[str] = None):
+        if availability is not None:
+            pulumi.set(__self__, "availability", availability)
+        if ebs_volume_count is not None:
+            pulumi.set(__self__, "ebs_volume_count", ebs_volume_count)
+        if ebs_volume_size is not None:
+            pulumi.set(__self__, "ebs_volume_size", ebs_volume_size)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if first_on_demand is not None:
+            pulumi.set(__self__, "first_on_demand", first_on_demand)
+        if instance_profile_arn is not None:
+            pulumi.set(__self__, "instance_profile_arn", instance_profile_arn)
+        if spot_bid_price_percent is not None:
+            pulumi.set(__self__, "spot_bid_price_percent", spot_bid_price_percent)
+        if zone_id is not None:
+            pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter
+    def availability(self) -> Optional[str]:
+        return pulumi.get(self, "availability")
+
+    @property
+    @pulumi.getter(name="ebsVolumeCount")
+    def ebs_volume_count(self) -> Optional[int]:
+        return pulumi.get(self, "ebs_volume_count")
+
+    @property
+    @pulumi.getter(name="ebsVolumeSize")
+    def ebs_volume_size(self) -> Optional[int]:
+        return pulumi.get(self, "ebs_volume_size")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="firstOnDemand")
+    def first_on_demand(self) -> Optional[int]:
+        return pulumi.get(self, "first_on_demand")
+
+    @property
+    @pulumi.getter(name="instanceProfileArn")
+    def instance_profile_arn(self) -> Optional[str]:
+        return pulumi.get(self, "instance_profile_arn")
+
+    @property
+    @pulumi.getter(name="spotBidPricePercent")
+    def spot_bid_price_percent(self) -> Optional[int]:
+        return pulumi.get(self, "spot_bid_price_percent")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> Optional[str]:
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class JobTaskNewClusterAzureAttributes(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "firstOnDemand":
+            suggest = "first_on_demand"
+        elif key == "spotBidMaxPrice":
+            suggest = "spot_bid_max_price"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskNewClusterAzureAttributes. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskNewClusterAzureAttributes.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskNewClusterAzureAttributes.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 availability: Optional[str] = None,
+                 first_on_demand: Optional[int] = None,
+                 spot_bid_max_price: Optional[float] = None):
+        if availability is not None:
+            pulumi.set(__self__, "availability", availability)
+        if first_on_demand is not None:
+            pulumi.set(__self__, "first_on_demand", first_on_demand)
+        if spot_bid_max_price is not None:
+            pulumi.set(__self__, "spot_bid_max_price", spot_bid_max_price)
+
+    @property
+    @pulumi.getter
+    def availability(self) -> Optional[str]:
+        return pulumi.get(self, "availability")
+
+    @property
+    @pulumi.getter(name="firstOnDemand")
+    def first_on_demand(self) -> Optional[int]:
+        return pulumi.get(self, "first_on_demand")
+
+    @property
+    @pulumi.getter(name="spotBidMaxPrice")
+    def spot_bid_max_price(self) -> Optional[float]:
+        return pulumi.get(self, "spot_bid_max_price")
+
+
+@pulumi.output_type
+class JobTaskNewClusterClusterLogConf(dict):
+    def __init__(__self__, *,
+                 dbfs: Optional['outputs.JobTaskNewClusterClusterLogConfDbfs'] = None,
+                 s3: Optional['outputs.JobTaskNewClusterClusterLogConfS3'] = None):
+        if dbfs is not None:
+            pulumi.set(__self__, "dbfs", dbfs)
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+
+    @property
+    @pulumi.getter
+    def dbfs(self) -> Optional['outputs.JobTaskNewClusterClusterLogConfDbfs']:
+        return pulumi.get(self, "dbfs")
+
+    @property
+    @pulumi.getter
+    def s3(self) -> Optional['outputs.JobTaskNewClusterClusterLogConfS3']:
+        return pulumi.get(self, "s3")
+
+
+@pulumi.output_type
+class JobTaskNewClusterClusterLogConfDbfs(dict):
+    def __init__(__self__, *,
+                 destination: str):
+        pulumi.set(__self__, "destination", destination)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> str:
+        return pulumi.get(self, "destination")
+
+
+@pulumi.output_type
+class JobTaskNewClusterClusterLogConfS3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cannedAcl":
+            suggest = "canned_acl"
+        elif key == "enableEncryption":
+            suggest = "enable_encryption"
+        elif key == "encryptionType":
+            suggest = "encryption_type"
+        elif key == "kmsKey":
+            suggest = "kms_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskNewClusterClusterLogConfS3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskNewClusterClusterLogConfS3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskNewClusterClusterLogConfS3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 destination: str,
+                 canned_acl: Optional[str] = None,
+                 enable_encryption: Optional[bool] = None,
+                 encryption_type: Optional[str] = None,
+                 endpoint: Optional[str] = None,
+                 kms_key: Optional[str] = None,
+                 region: Optional[str] = None):
+        pulumi.set(__self__, "destination", destination)
+        if canned_acl is not None:
+            pulumi.set(__self__, "canned_acl", canned_acl)
+        if enable_encryption is not None:
+            pulumi.set(__self__, "enable_encryption", enable_encryption)
+        if encryption_type is not None:
+            pulumi.set(__self__, "encryption_type", encryption_type)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if kms_key is not None:
+            pulumi.set(__self__, "kms_key", kms_key)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> str:
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter(name="cannedAcl")
+    def canned_acl(self) -> Optional[str]:
+        return pulumi.get(self, "canned_acl")
+
+    @property
+    @pulumi.getter(name="enableEncryption")
+    def enable_encryption(self) -> Optional[bool]:
+        return pulumi.get(self, "enable_encryption")
+
+    @property
+    @pulumi.getter(name="encryptionType")
+    def encryption_type(self) -> Optional[str]:
+        return pulumi.get(self, "encryption_type")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[str]:
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter(name="kmsKey")
+    def kms_key(self) -> Optional[str]:
+        return pulumi.get(self, "kms_key")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class JobTaskNewClusterDockerImage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "basicAuth":
+            suggest = "basic_auth"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskNewClusterDockerImage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskNewClusterDockerImage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskNewClusterDockerImage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 url: str,
+                 basic_auth: Optional['outputs.JobTaskNewClusterDockerImageBasicAuth'] = None):
+        pulumi.set(__self__, "url", url)
+        if basic_auth is not None:
+            pulumi.set(__self__, "basic_auth", basic_auth)
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="basicAuth")
+    def basic_auth(self) -> Optional['outputs.JobTaskNewClusterDockerImageBasicAuth']:
+        return pulumi.get(self, "basic_auth")
+
+
+@pulumi.output_type
+class JobTaskNewClusterDockerImageBasicAuth(dict):
+    def __init__(__self__, *,
+                 password: str,
+                 username: str):
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class JobTaskNewClusterGcpAttributes(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "googleServiceAccount":
+            suggest = "google_service_account"
+        elif key == "usePreemptibleExecutors":
+            suggest = "use_preemptible_executors"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskNewClusterGcpAttributes. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskNewClusterGcpAttributes.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskNewClusterGcpAttributes.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 google_service_account: Optional[str] = None,
+                 use_preemptible_executors: Optional[bool] = None):
+        if google_service_account is not None:
+            pulumi.set(__self__, "google_service_account", google_service_account)
+        if use_preemptible_executors is not None:
+            pulumi.set(__self__, "use_preemptible_executors", use_preemptible_executors)
+
+    @property
+    @pulumi.getter(name="googleServiceAccount")
+    def google_service_account(self) -> Optional[str]:
+        return pulumi.get(self, "google_service_account")
+
+    @property
+    @pulumi.getter(name="usePreemptibleExecutors")
+    def use_preemptible_executors(self) -> Optional[bool]:
+        return pulumi.get(self, "use_preemptible_executors")
+
+
+@pulumi.output_type
+class JobTaskNewClusterInitScript(dict):
+    def __init__(__self__, *,
+                 dbfs: Optional['outputs.JobTaskNewClusterInitScriptDbfs'] = None,
+                 file: Optional['outputs.JobTaskNewClusterInitScriptFile'] = None,
+                 s3: Optional['outputs.JobTaskNewClusterInitScriptS3'] = None):
+        if dbfs is not None:
+            pulumi.set(__self__, "dbfs", dbfs)
+        if file is not None:
+            pulumi.set(__self__, "file", file)
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+
+    @property
+    @pulumi.getter
+    def dbfs(self) -> Optional['outputs.JobTaskNewClusterInitScriptDbfs']:
+        return pulumi.get(self, "dbfs")
+
+    @property
+    @pulumi.getter
+    def file(self) -> Optional['outputs.JobTaskNewClusterInitScriptFile']:
+        return pulumi.get(self, "file")
+
+    @property
+    @pulumi.getter
+    def s3(self) -> Optional['outputs.JobTaskNewClusterInitScriptS3']:
+        return pulumi.get(self, "s3")
+
+
+@pulumi.output_type
+class JobTaskNewClusterInitScriptDbfs(dict):
+    def __init__(__self__, *,
+                 destination: str):
+        pulumi.set(__self__, "destination", destination)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> str:
+        return pulumi.get(self, "destination")
+
+
+@pulumi.output_type
+class JobTaskNewClusterInitScriptFile(dict):
+    def __init__(__self__, *,
+                 destination: Optional[str] = None):
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional[str]:
+        return pulumi.get(self, "destination")
+
+
+@pulumi.output_type
+class JobTaskNewClusterInitScriptS3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cannedAcl":
+            suggest = "canned_acl"
+        elif key == "enableEncryption":
+            suggest = "enable_encryption"
+        elif key == "encryptionType":
+            suggest = "encryption_type"
+        elif key == "kmsKey":
+            suggest = "kms_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskNewClusterInitScriptS3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskNewClusterInitScriptS3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskNewClusterInitScriptS3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 destination: str,
+                 canned_acl: Optional[str] = None,
+                 enable_encryption: Optional[bool] = None,
+                 encryption_type: Optional[str] = None,
+                 endpoint: Optional[str] = None,
+                 kms_key: Optional[str] = None,
+                 region: Optional[str] = None):
+        pulumi.set(__self__, "destination", destination)
+        if canned_acl is not None:
+            pulumi.set(__self__, "canned_acl", canned_acl)
+        if enable_encryption is not None:
+            pulumi.set(__self__, "enable_encryption", enable_encryption)
+        if encryption_type is not None:
+            pulumi.set(__self__, "encryption_type", encryption_type)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if kms_key is not None:
+            pulumi.set(__self__, "kms_key", kms_key)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> str:
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter(name="cannedAcl")
+    def canned_acl(self) -> Optional[str]:
+        return pulumi.get(self, "canned_acl")
+
+    @property
+    @pulumi.getter(name="enableEncryption")
+    def enable_encryption(self) -> Optional[bool]:
+        return pulumi.get(self, "enable_encryption")
+
+    @property
+    @pulumi.getter(name="encryptionType")
+    def encryption_type(self) -> Optional[str]:
+        return pulumi.get(self, "encryption_type")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[str]:
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter(name="kmsKey")
+    def kms_key(self) -> Optional[str]:
+        return pulumi.get(self, "kms_key")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class JobTaskNotebookTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "notebookPath":
+            suggest = "notebook_path"
+        elif key == "baseParameters":
+            suggest = "base_parameters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskNotebookTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskNotebookTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskNotebookTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 notebook_path: str,
+                 base_parameters: Optional[Mapping[str, Any]] = None):
+        pulumi.set(__self__, "notebook_path", notebook_path)
+        if base_parameters is not None:
+            pulumi.set(__self__, "base_parameters", base_parameters)
+
+    @property
+    @pulumi.getter(name="notebookPath")
+    def notebook_path(self) -> str:
+        return pulumi.get(self, "notebook_path")
+
+    @property
+    @pulumi.getter(name="baseParameters")
+    def base_parameters(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "base_parameters")
+
+
+@pulumi.output_type
+class JobTaskPipelineTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pipelineId":
+            suggest = "pipeline_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskPipelineTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskPipelineTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskPipelineTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 pipeline_id: str):
+        pulumi.set(__self__, "pipeline_id", pipeline_id)
+
+    @property
+    @pulumi.getter(name="pipelineId")
+    def pipeline_id(self) -> str:
+        return pulumi.get(self, "pipeline_id")
+
+
+@pulumi.output_type
+class JobTaskPythonWheelTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "entryPoint":
+            suggest = "entry_point"
+        elif key == "namedParameters":
+            suggest = "named_parameters"
+        elif key == "packageName":
+            suggest = "package_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskPythonWheelTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskPythonWheelTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskPythonWheelTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 entry_point: Optional[str] = None,
+                 named_parameters: Optional[Mapping[str, Any]] = None,
+                 package_name: Optional[str] = None,
+                 parameters: Optional[Sequence[str]] = None):
+        if entry_point is not None:
+            pulumi.set(__self__, "entry_point", entry_point)
+        if named_parameters is not None:
+            pulumi.set(__self__, "named_parameters", named_parameters)
+        if package_name is not None:
+            pulumi.set(__self__, "package_name", package_name)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="entryPoint")
+    def entry_point(self) -> Optional[str]:
+        return pulumi.get(self, "entry_point")
+
+    @property
+    @pulumi.getter(name="namedParameters")
+    def named_parameters(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "named_parameters")
+
+    @property
+    @pulumi.getter(name="packageName")
+    def package_name(self) -> Optional[str]:
+        return pulumi.get(self, "package_name")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
+class JobTaskSparkJarTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jarUri":
+            suggest = "jar_uri"
+        elif key == "mainClassName":
+            suggest = "main_class_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskSparkJarTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskSparkJarTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskSparkJarTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 jar_uri: Optional[str] = None,
+                 main_class_name: Optional[str] = None,
+                 parameters: Optional[Sequence[str]] = None):
+        if jar_uri is not None:
+            pulumi.set(__self__, "jar_uri", jar_uri)
+        if main_class_name is not None:
+            pulumi.set(__self__, "main_class_name", main_class_name)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="jarUri")
+    def jar_uri(self) -> Optional[str]:
+        return pulumi.get(self, "jar_uri")
+
+    @property
+    @pulumi.getter(name="mainClassName")
+    def main_class_name(self) -> Optional[str]:
+        return pulumi.get(self, "main_class_name")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
+class JobTaskSparkPythonTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pythonFile":
+            suggest = "python_file"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskSparkPythonTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskSparkPythonTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskSparkPythonTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 python_file: str,
+                 parameters: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "python_file", python_file)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="pythonFile")
+    def python_file(self) -> str:
+        return pulumi.get(self, "python_file")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
+class JobTaskSparkSubmitTask(dict):
+    def __init__(__self__, *,
+                 parameters: Optional[Sequence[str]] = None):
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
+class MLFlowModelTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class MetastoreDataAccessAwsIamRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "roleArn":
+            suggest = "role_arn"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MetastoreDataAccessAwsIamRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MetastoreDataAccessAwsIamRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MetastoreDataAccessAwsIamRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 role_arn: str):
+        pulumi.set(__self__, "role_arn", role_arn)
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        return pulumi.get(self, "role_arn")
+
+
+@pulumi.output_type
+class MetastoreDataAccessAzureServicePrincipal(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "applicationId":
+            suggest = "application_id"
+        elif key == "clientSecret":
+            suggest = "client_secret"
+        elif key == "directoryId":
+            suggest = "directory_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MetastoreDataAccessAzureServicePrincipal. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MetastoreDataAccessAzureServicePrincipal.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MetastoreDataAccessAzureServicePrincipal.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 application_id: str,
+                 client_secret: str,
+                 directory_id: str):
+        pulumi.set(__self__, "application_id", application_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "directory_id", directory_id)
+
+    @property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> str:
+        return pulumi.get(self, "application_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> str:
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter(name="directoryId")
+    def directory_id(self) -> str:
+        return pulumi.get(self, "directory_id")
+
+
+@pulumi.output_type
 class MwsCustomerManagedKeysAwsKeyInfo(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2287,6 +4266,47 @@ class MwsNetworksVpcEndpoints(dict):
 
 
 @pulumi.output_type
+class MwsWorkspacesCloudResourceBucket(dict):
+    def __init__(__self__, *,
+                 gcp: 'outputs.MwsWorkspacesCloudResourceBucketGcp'):
+        pulumi.set(__self__, "gcp", gcp)
+
+    @property
+    @pulumi.getter
+    def gcp(self) -> 'outputs.MwsWorkspacesCloudResourceBucketGcp':
+        return pulumi.get(self, "gcp")
+
+
+@pulumi.output_type
+class MwsWorkspacesCloudResourceBucketGcp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MwsWorkspacesCloudResourceBucketGcp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MwsWorkspacesCloudResourceBucketGcp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MwsWorkspacesCloudResourceBucketGcp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 project_id: str):
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
 class MwsWorkspacesExternalCustomerInfo(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2331,6 +4351,129 @@ class MwsWorkspacesExternalCustomerInfo(dict):
     @pulumi.getter(name="customerName")
     def customer_name(self) -> str:
         return pulumi.get(self, "customer_name")
+
+
+@pulumi.output_type
+class MwsWorkspacesNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gcpCommonNetworkConfig":
+            suggest = "gcp_common_network_config"
+        elif key == "gcpManagedNetworkConfig":
+            suggest = "gcp_managed_network_config"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MwsWorkspacesNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MwsWorkspacesNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MwsWorkspacesNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 gcp_common_network_config: 'outputs.MwsWorkspacesNetworkGcpCommonNetworkConfig',
+                 gcp_managed_network_config: 'outputs.MwsWorkspacesNetworkGcpManagedNetworkConfig'):
+        pulumi.set(__self__, "gcp_common_network_config", gcp_common_network_config)
+        pulumi.set(__self__, "gcp_managed_network_config", gcp_managed_network_config)
+
+    @property
+    @pulumi.getter(name="gcpCommonNetworkConfig")
+    def gcp_common_network_config(self) -> 'outputs.MwsWorkspacesNetworkGcpCommonNetworkConfig':
+        return pulumi.get(self, "gcp_common_network_config")
+
+    @property
+    @pulumi.getter(name="gcpManagedNetworkConfig")
+    def gcp_managed_network_config(self) -> 'outputs.MwsWorkspacesNetworkGcpManagedNetworkConfig':
+        return pulumi.get(self, "gcp_managed_network_config")
+
+
+@pulumi.output_type
+class MwsWorkspacesNetworkGcpCommonNetworkConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gkeClusterMasterIpRange":
+            suggest = "gke_cluster_master_ip_range"
+        elif key == "gkeConnectivityType":
+            suggest = "gke_connectivity_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MwsWorkspacesNetworkGcpCommonNetworkConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MwsWorkspacesNetworkGcpCommonNetworkConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MwsWorkspacesNetworkGcpCommonNetworkConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 gke_cluster_master_ip_range: str,
+                 gke_connectivity_type: str):
+        pulumi.set(__self__, "gke_cluster_master_ip_range", gke_cluster_master_ip_range)
+        pulumi.set(__self__, "gke_connectivity_type", gke_connectivity_type)
+
+    @property
+    @pulumi.getter(name="gkeClusterMasterIpRange")
+    def gke_cluster_master_ip_range(self) -> str:
+        return pulumi.get(self, "gke_cluster_master_ip_range")
+
+    @property
+    @pulumi.getter(name="gkeConnectivityType")
+    def gke_connectivity_type(self) -> str:
+        return pulumi.get(self, "gke_connectivity_type")
+
+
+@pulumi.output_type
+class MwsWorkspacesNetworkGcpManagedNetworkConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gkeClusterPodIpRange":
+            suggest = "gke_cluster_pod_ip_range"
+        elif key == "gkeClusterServiceIpRange":
+            suggest = "gke_cluster_service_ip_range"
+        elif key == "subnetCidr":
+            suggest = "subnet_cidr"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MwsWorkspacesNetworkGcpManagedNetworkConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MwsWorkspacesNetworkGcpManagedNetworkConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MwsWorkspacesNetworkGcpManagedNetworkConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 gke_cluster_pod_ip_range: str,
+                 gke_cluster_service_ip_range: str,
+                 subnet_cidr: str):
+        pulumi.set(__self__, "gke_cluster_pod_ip_range", gke_cluster_pod_ip_range)
+        pulumi.set(__self__, "gke_cluster_service_ip_range", gke_cluster_service_ip_range)
+        pulumi.set(__self__, "subnet_cidr", subnet_cidr)
+
+    @property
+    @pulumi.getter(name="gkeClusterPodIpRange")
+    def gke_cluster_pod_ip_range(self) -> str:
+        return pulumi.get(self, "gke_cluster_pod_ip_range")
+
+    @property
+    @pulumi.getter(name="gkeClusterServiceIpRange")
+    def gke_cluster_service_ip_range(self) -> str:
+        return pulumi.get(self, "gke_cluster_service_ip_range")
+
+    @property
+    @pulumi.getter(name="subnetCidr")
+    def subnet_cidr(self) -> str:
+        return pulumi.get(self, "subnet_cidr")
 
 
 @pulumi.output_type
@@ -3010,19 +5153,18 @@ class SecretScopeKeyvaultMetadata(dict):
 @pulumi.output_type
 class SqlEndpointOdbcParams(dict):
     def __init__(__self__, *,
-                 host: str,
                  path: str,
                  port: int,
-                 protocol: str):
-        pulumi.set(__self__, "host", host)
+                 protocol: str,
+                 host: Optional[str] = None,
+                 hostname: Optional[str] = None):
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "protocol", protocol)
-
-    @property
-    @pulumi.getter
-    def host(self) -> str:
-        return pulumi.get(self, "host")
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
 
     @property
     @pulumi.getter
@@ -3038,6 +5180,16 @@ class SqlEndpointOdbcParams(dict):
     @pulumi.getter
     def protocol(self) -> str:
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[str]:
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[str]:
+        return pulumi.get(self, "hostname")
 
 
 @pulumi.output_type
