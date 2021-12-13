@@ -26,6 +26,11 @@ __all__ = [
     'ClusterLibraryCranArgs',
     'ClusterLibraryMavenArgs',
     'ClusterLibraryPypiArgs',
+    'DatabricksMountAbfsArgs',
+    'DatabricksMountAdlArgs',
+    'DatabricksMountGsArgs',
+    'DatabricksMountS3Args',
+    'DatabricksMountWasbArgs',
     'InstancePoolAwsAttributesArgs',
     'InstancePoolAzureAttributesArgs',
     'InstancePoolDiskSpecArgs',
@@ -52,14 +57,51 @@ __all__ = [
     'JobNewClusterInitScriptFileArgs',
     'JobNewClusterInitScriptS3Args',
     'JobNotebookTaskArgs',
+    'JobPipelineTaskArgs',
+    'JobPythonWheelTaskArgs',
     'JobScheduleArgs',
     'JobSparkJarTaskArgs',
     'JobSparkPythonTaskArgs',
     'JobSparkSubmitTaskArgs',
+    'JobTaskArgs',
+    'JobTaskDependsOnArgs',
+    'JobTaskEmailNotificationsArgs',
+    'JobTaskLibraryArgs',
+    'JobTaskLibraryCranArgs',
+    'JobTaskLibraryMavenArgs',
+    'JobTaskLibraryPypiArgs',
+    'JobTaskNewClusterArgs',
+    'JobTaskNewClusterAutoscaleArgs',
+    'JobTaskNewClusterAwsAttributesArgs',
+    'JobTaskNewClusterAzureAttributesArgs',
+    'JobTaskNewClusterClusterLogConfArgs',
+    'JobTaskNewClusterClusterLogConfDbfsArgs',
+    'JobTaskNewClusterClusterLogConfS3Args',
+    'JobTaskNewClusterDockerImageArgs',
+    'JobTaskNewClusterDockerImageBasicAuthArgs',
+    'JobTaskNewClusterGcpAttributesArgs',
+    'JobTaskNewClusterInitScriptArgs',
+    'JobTaskNewClusterInitScriptDbfsArgs',
+    'JobTaskNewClusterInitScriptFileArgs',
+    'JobTaskNewClusterInitScriptS3Args',
+    'JobTaskNotebookTaskArgs',
+    'JobTaskPipelineTaskArgs',
+    'JobTaskPythonWheelTaskArgs',
+    'JobTaskSparkJarTaskArgs',
+    'JobTaskSparkPythonTaskArgs',
+    'JobTaskSparkSubmitTaskArgs',
+    'MLFlowModelTagArgs',
+    'MetastoreDataAccessAwsIamRoleArgs',
+    'MetastoreDataAccessAzureServicePrincipalArgs',
     'MwsCustomerManagedKeysAwsKeyInfoArgs',
     'MwsNetworksErrorMessageArgs',
     'MwsNetworksVpcEndpointsArgs',
+    'MwsWorkspacesCloudResourceBucketArgs',
+    'MwsWorkspacesCloudResourceBucketGcpArgs',
     'MwsWorkspacesExternalCustomerInfoArgs',
+    'MwsWorkspacesNetworkArgs',
+    'MwsWorkspacesNetworkGcpCommonNetworkConfigArgs',
+    'MwsWorkspacesNetworkGcpManagedNetworkConfigArgs',
     'PermissionsAccessControlArgs',
     'PipelineClusterArgs',
     'PipelineClusterAutoscaleArgs',
@@ -822,6 +864,319 @@ class ClusterLibraryPypiArgs:
     @repo.setter
     def repo(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "repo", value)
+
+
+@pulumi.input_type
+class DatabricksMountAbfsArgs:
+    def __init__(__self__, *,
+                 client_id: pulumi.Input[str],
+                 client_secret_key: pulumi.Input[str],
+                 client_secret_scope: pulumi.Input[str],
+                 initialize_file_system: pulumi.Input[bool],
+                 container_name: Optional[pulumi.Input[str]] = None,
+                 directory: Optional[pulumi.Input[str]] = None,
+                 storage_account_name: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret_key", client_secret_key)
+        pulumi.set(__self__, "client_secret_scope", client_secret_scope)
+        pulumi.set(__self__, "initialize_file_system", initialize_file_system)
+        if container_name is not None:
+            pulumi.set(__self__, "container_name", container_name)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if storage_account_name is not None:
+            pulumi.set(__self__, "storage_account_name", storage_account_name)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="clientSecretKey")
+    def client_secret_key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "client_secret_key")
+
+    @client_secret_key.setter
+    def client_secret_key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "client_secret_key", value)
+
+    @property
+    @pulumi.getter(name="clientSecretScope")
+    def client_secret_scope(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "client_secret_scope")
+
+    @client_secret_scope.setter
+    def client_secret_scope(self, value: pulumi.Input[str]):
+        pulumi.set(self, "client_secret_scope", value)
+
+    @property
+    @pulumi.getter(name="initializeFileSystem")
+    def initialize_file_system(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "initialize_file_system")
+
+    @initialize_file_system.setter
+    def initialize_file_system(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "initialize_file_system", value)
+
+    @property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "container_name")
+
+    @container_name.setter
+    def container_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "container_name", value)
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "directory")
+
+    @directory.setter
+    def directory(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "directory", value)
+
+    @property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage_account_name")
+
+    @storage_account_name.setter
+    def storage_account_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage_account_name", value)
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tenant_id", value)
+
+
+@pulumi.input_type
+class DatabricksMountAdlArgs:
+    def __init__(__self__, *,
+                 client_id: pulumi.Input[str],
+                 client_secret_key: pulumi.Input[str],
+                 client_secret_scope: pulumi.Input[str],
+                 directory: Optional[pulumi.Input[str]] = None,
+                 spark_conf_prefix: Optional[pulumi.Input[str]] = None,
+                 storage_resource_name: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret_key", client_secret_key)
+        pulumi.set(__self__, "client_secret_scope", client_secret_scope)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if spark_conf_prefix is not None:
+            pulumi.set(__self__, "spark_conf_prefix", spark_conf_prefix)
+        if storage_resource_name is not None:
+            pulumi.set(__self__, "storage_resource_name", storage_resource_name)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="clientSecretKey")
+    def client_secret_key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "client_secret_key")
+
+    @client_secret_key.setter
+    def client_secret_key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "client_secret_key", value)
+
+    @property
+    @pulumi.getter(name="clientSecretScope")
+    def client_secret_scope(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "client_secret_scope")
+
+    @client_secret_scope.setter
+    def client_secret_scope(self, value: pulumi.Input[str]):
+        pulumi.set(self, "client_secret_scope", value)
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "directory")
+
+    @directory.setter
+    def directory(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "directory", value)
+
+    @property
+    @pulumi.getter(name="sparkConfPrefix")
+    def spark_conf_prefix(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "spark_conf_prefix")
+
+    @spark_conf_prefix.setter
+    def spark_conf_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "spark_conf_prefix", value)
+
+    @property
+    @pulumi.getter(name="storageResourceName")
+    def storage_resource_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage_resource_name")
+
+    @storage_resource_name.setter
+    def storage_resource_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage_resource_name", value)
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tenant_id", value)
+
+
+@pulumi.input_type
+class DatabricksMountGsArgs:
+    def __init__(__self__, *,
+                 bucket_name: pulumi.Input[str],
+                 service_account: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        if service_account is not None:
+            pulumi.set(__self__, "service_account", service_account)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "bucket_name")
+
+    @bucket_name.setter
+    def bucket_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket_name", value)
+
+    @property
+    @pulumi.getter(name="serviceAccount")
+    def service_account(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "service_account")
+
+    @service_account.setter
+    def service_account(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_account", value)
+
+
+@pulumi.input_type
+class DatabricksMountS3Args:
+    def __init__(__self__, *,
+                 bucket_name: pulumi.Input[str],
+                 instance_profile: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        if instance_profile is not None:
+            pulumi.set(__self__, "instance_profile", instance_profile)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "bucket_name")
+
+    @bucket_name.setter
+    def bucket_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket_name", value)
+
+    @property
+    @pulumi.getter(name="instanceProfile")
+    def instance_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "instance_profile")
+
+    @instance_profile.setter
+    def instance_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_profile", value)
+
+
+@pulumi.input_type
+class DatabricksMountWasbArgs:
+    def __init__(__self__, *,
+                 auth_type: pulumi.Input[str],
+                 token_secret_key: pulumi.Input[str],
+                 token_secret_scope: pulumi.Input[str],
+                 container_name: Optional[pulumi.Input[str]] = None,
+                 directory: Optional[pulumi.Input[str]] = None,
+                 storage_account_name: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "token_secret_key", token_secret_key)
+        pulumi.set(__self__, "token_secret_scope", token_secret_scope)
+        if container_name is not None:
+            pulumi.set(__self__, "container_name", container_name)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if storage_account_name is not None:
+            pulumi.set(__self__, "storage_account_name", storage_account_name)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "auth_type", value)
+
+    @property
+    @pulumi.getter(name="tokenSecretKey")
+    def token_secret_key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "token_secret_key")
+
+    @token_secret_key.setter
+    def token_secret_key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "token_secret_key", value)
+
+    @property
+    @pulumi.getter(name="tokenSecretScope")
+    def token_secret_scope(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "token_secret_scope")
+
+    @token_secret_scope.setter
+    def token_secret_scope(self, value: pulumi.Input[str]):
+        pulumi.set(self, "token_secret_scope", value)
+
+    @property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "container_name")
+
+    @container_name.setter
+    def container_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "container_name", value)
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "directory")
+
+    @directory.setter
+    def directory(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "directory", value)
+
+    @property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage_account_name")
+
+    @storage_account_name.setter
+    def storage_account_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage_account_name", value)
 
 
 @pulumi.input_type
@@ -2128,6 +2483,75 @@ class JobNotebookTaskArgs:
 
 
 @pulumi.input_type
+class JobPipelineTaskArgs:
+    def __init__(__self__, *,
+                 pipeline_id: pulumi.Input[str]):
+        pulumi.set(__self__, "pipeline_id", pipeline_id)
+
+    @property
+    @pulumi.getter(name="pipelineId")
+    def pipeline_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "pipeline_id")
+
+    @pipeline_id.setter
+    def pipeline_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "pipeline_id", value)
+
+
+@pulumi.input_type
+class JobPythonWheelTaskArgs:
+    def __init__(__self__, *,
+                 entry_point: Optional[pulumi.Input[str]] = None,
+                 named_parameters: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 package_name: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        if entry_point is not None:
+            pulumi.set(__self__, "entry_point", entry_point)
+        if named_parameters is not None:
+            pulumi.set(__self__, "named_parameters", named_parameters)
+        if package_name is not None:
+            pulumi.set(__self__, "package_name", package_name)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="entryPoint")
+    def entry_point(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "entry_point")
+
+    @entry_point.setter
+    def entry_point(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "entry_point", value)
+
+    @property
+    @pulumi.getter(name="namedParameters")
+    def named_parameters(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "named_parameters")
+
+    @named_parameters.setter
+    def named_parameters(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "named_parameters", value)
+
+    @property
+    @pulumi.getter(name="packageName")
+    def package_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "package_name")
+
+    @package_name.setter
+    def package_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "package_name", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
 class JobScheduleArgs:
     def __init__(__self__, *,
                  quartz_cron_expression: pulumi.Input[str],
@@ -2253,6 +2677,1576 @@ class JobSparkSubmitTaskArgs:
 
 
 @pulumi.input_type
+class JobTaskArgs:
+    def __init__(__self__, *,
+                 depends_ons: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskDependsOnArgs']]]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 email_notifications: Optional[pulumi.Input['JobTaskEmailNotificationsArgs']] = None,
+                 existing_cluster_id: Optional[pulumi.Input[str]] = None,
+                 libraries: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskLibraryArgs']]]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None,
+                 min_retry_interval_millis: Optional[pulumi.Input[int]] = None,
+                 new_cluster: Optional[pulumi.Input['JobTaskNewClusterArgs']] = None,
+                 notebook_task: Optional[pulumi.Input['JobTaskNotebookTaskArgs']] = None,
+                 pipeline_task: Optional[pulumi.Input['JobTaskPipelineTaskArgs']] = None,
+                 python_wheel_task: Optional[pulumi.Input['JobTaskPythonWheelTaskArgs']] = None,
+                 retry_on_timeout: Optional[pulumi.Input[bool]] = None,
+                 spark_jar_task: Optional[pulumi.Input['JobTaskSparkJarTaskArgs']] = None,
+                 spark_python_task: Optional[pulumi.Input['JobTaskSparkPythonTaskArgs']] = None,
+                 spark_submit_task: Optional[pulumi.Input['JobTaskSparkSubmitTaskArgs']] = None,
+                 task_key: Optional[pulumi.Input[str]] = None,
+                 timeout_seconds: Optional[pulumi.Input[int]] = None):
+        if depends_ons is not None:
+            pulumi.set(__self__, "depends_ons", depends_ons)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if email_notifications is not None:
+            pulumi.set(__self__, "email_notifications", email_notifications)
+        if existing_cluster_id is not None:
+            pulumi.set(__self__, "existing_cluster_id", existing_cluster_id)
+        if libraries is not None:
+            pulumi.set(__self__, "libraries", libraries)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
+        if min_retry_interval_millis is not None:
+            pulumi.set(__self__, "min_retry_interval_millis", min_retry_interval_millis)
+        if new_cluster is not None:
+            pulumi.set(__self__, "new_cluster", new_cluster)
+        if notebook_task is not None:
+            pulumi.set(__self__, "notebook_task", notebook_task)
+        if pipeline_task is not None:
+            pulumi.set(__self__, "pipeline_task", pipeline_task)
+        if python_wheel_task is not None:
+            pulumi.set(__self__, "python_wheel_task", python_wheel_task)
+        if retry_on_timeout is not None:
+            pulumi.set(__self__, "retry_on_timeout", retry_on_timeout)
+        if spark_jar_task is not None:
+            pulumi.set(__self__, "spark_jar_task", spark_jar_task)
+        if spark_python_task is not None:
+            pulumi.set(__self__, "spark_python_task", spark_python_task)
+        if spark_submit_task is not None:
+            pulumi.set(__self__, "spark_submit_task", spark_submit_task)
+        if task_key is not None:
+            pulumi.set(__self__, "task_key", task_key)
+        if timeout_seconds is not None:
+            pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+
+    @property
+    @pulumi.getter(name="dependsOns")
+    def depends_ons(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskDependsOnArgs']]]]:
+        return pulumi.get(self, "depends_ons")
+
+    @depends_ons.setter
+    def depends_ons(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskDependsOnArgs']]]]):
+        pulumi.set(self, "depends_ons", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="emailNotifications")
+    def email_notifications(self) -> Optional[pulumi.Input['JobTaskEmailNotificationsArgs']]:
+        return pulumi.get(self, "email_notifications")
+
+    @email_notifications.setter
+    def email_notifications(self, value: Optional[pulumi.Input['JobTaskEmailNotificationsArgs']]):
+        pulumi.set(self, "email_notifications", value)
+
+    @property
+    @pulumi.getter(name="existingClusterId")
+    def existing_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "existing_cluster_id")
+
+    @existing_cluster_id.setter
+    def existing_cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "existing_cluster_id", value)
+
+    @property
+    @pulumi.getter
+    def libraries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskLibraryArgs']]]]:
+        return pulumi.get(self, "libraries")
+
+    @libraries.setter
+    def libraries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskLibraryArgs']]]]):
+        pulumi.set(self, "libraries", value)
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @property
+    @pulumi.getter(name="minRetryIntervalMillis")
+    def min_retry_interval_millis(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min_retry_interval_millis")
+
+    @min_retry_interval_millis.setter
+    def min_retry_interval_millis(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_retry_interval_millis", value)
+
+    @property
+    @pulumi.getter(name="newCluster")
+    def new_cluster(self) -> Optional[pulumi.Input['JobTaskNewClusterArgs']]:
+        return pulumi.get(self, "new_cluster")
+
+    @new_cluster.setter
+    def new_cluster(self, value: Optional[pulumi.Input['JobTaskNewClusterArgs']]):
+        pulumi.set(self, "new_cluster", value)
+
+    @property
+    @pulumi.getter(name="notebookTask")
+    def notebook_task(self) -> Optional[pulumi.Input['JobTaskNotebookTaskArgs']]:
+        return pulumi.get(self, "notebook_task")
+
+    @notebook_task.setter
+    def notebook_task(self, value: Optional[pulumi.Input['JobTaskNotebookTaskArgs']]):
+        pulumi.set(self, "notebook_task", value)
+
+    @property
+    @pulumi.getter(name="pipelineTask")
+    def pipeline_task(self) -> Optional[pulumi.Input['JobTaskPipelineTaskArgs']]:
+        return pulumi.get(self, "pipeline_task")
+
+    @pipeline_task.setter
+    def pipeline_task(self, value: Optional[pulumi.Input['JobTaskPipelineTaskArgs']]):
+        pulumi.set(self, "pipeline_task", value)
+
+    @property
+    @pulumi.getter(name="pythonWheelTask")
+    def python_wheel_task(self) -> Optional[pulumi.Input['JobTaskPythonWheelTaskArgs']]:
+        return pulumi.get(self, "python_wheel_task")
+
+    @python_wheel_task.setter
+    def python_wheel_task(self, value: Optional[pulumi.Input['JobTaskPythonWheelTaskArgs']]):
+        pulumi.set(self, "python_wheel_task", value)
+
+    @property
+    @pulumi.getter(name="retryOnTimeout")
+    def retry_on_timeout(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "retry_on_timeout")
+
+    @retry_on_timeout.setter
+    def retry_on_timeout(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "retry_on_timeout", value)
+
+    @property
+    @pulumi.getter(name="sparkJarTask")
+    def spark_jar_task(self) -> Optional[pulumi.Input['JobTaskSparkJarTaskArgs']]:
+        return pulumi.get(self, "spark_jar_task")
+
+    @spark_jar_task.setter
+    def spark_jar_task(self, value: Optional[pulumi.Input['JobTaskSparkJarTaskArgs']]):
+        pulumi.set(self, "spark_jar_task", value)
+
+    @property
+    @pulumi.getter(name="sparkPythonTask")
+    def spark_python_task(self) -> Optional[pulumi.Input['JobTaskSparkPythonTaskArgs']]:
+        return pulumi.get(self, "spark_python_task")
+
+    @spark_python_task.setter
+    def spark_python_task(self, value: Optional[pulumi.Input['JobTaskSparkPythonTaskArgs']]):
+        pulumi.set(self, "spark_python_task", value)
+
+    @property
+    @pulumi.getter(name="sparkSubmitTask")
+    def spark_submit_task(self) -> Optional[pulumi.Input['JobTaskSparkSubmitTaskArgs']]:
+        return pulumi.get(self, "spark_submit_task")
+
+    @spark_submit_task.setter
+    def spark_submit_task(self, value: Optional[pulumi.Input['JobTaskSparkSubmitTaskArgs']]):
+        pulumi.set(self, "spark_submit_task", value)
+
+    @property
+    @pulumi.getter(name="taskKey")
+    def task_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "task_key")
+
+    @task_key.setter
+    def task_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "task_key", value)
+
+    @property
+    @pulumi.getter(name="timeoutSeconds")
+    def timeout_seconds(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "timeout_seconds")
+
+    @timeout_seconds.setter
+    def timeout_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout_seconds", value)
+
+
+@pulumi.input_type
+class JobTaskDependsOnArgs:
+    def __init__(__self__, *,
+                 task_key: Optional[pulumi.Input[str]] = None):
+        if task_key is not None:
+            pulumi.set(__self__, "task_key", task_key)
+
+    @property
+    @pulumi.getter(name="taskKey")
+    def task_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "task_key")
+
+    @task_key.setter
+    def task_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "task_key", value)
+
+
+@pulumi.input_type
+class JobTaskEmailNotificationsArgs:
+    def __init__(__self__, *,
+                 no_alert_for_skipped_runs: Optional[pulumi.Input[bool]] = None,
+                 on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 on_starts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        if no_alert_for_skipped_runs is not None:
+            pulumi.set(__self__, "no_alert_for_skipped_runs", no_alert_for_skipped_runs)
+        if on_failures is not None:
+            pulumi.set(__self__, "on_failures", on_failures)
+        if on_starts is not None:
+            pulumi.set(__self__, "on_starts", on_starts)
+        if on_successes is not None:
+            pulumi.set(__self__, "on_successes", on_successes)
+
+    @property
+    @pulumi.getter(name="noAlertForSkippedRuns")
+    def no_alert_for_skipped_runs(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "no_alert_for_skipped_runs")
+
+    @no_alert_for_skipped_runs.setter
+    def no_alert_for_skipped_runs(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_alert_for_skipped_runs", value)
+
+    @property
+    @pulumi.getter(name="onFailures")
+    def on_failures(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "on_failures")
+
+    @on_failures.setter
+    def on_failures(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "on_failures", value)
+
+    @property
+    @pulumi.getter(name="onStarts")
+    def on_starts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "on_starts")
+
+    @on_starts.setter
+    def on_starts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "on_starts", value)
+
+    @property
+    @pulumi.getter(name="onSuccesses")
+    def on_successes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "on_successes")
+
+    @on_successes.setter
+    def on_successes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "on_successes", value)
+
+
+@pulumi.input_type
+class JobTaskLibraryArgs:
+    def __init__(__self__, *,
+                 cran: Optional[pulumi.Input['JobTaskLibraryCranArgs']] = None,
+                 egg: Optional[pulumi.Input[str]] = None,
+                 jar: Optional[pulumi.Input[str]] = None,
+                 maven: Optional[pulumi.Input['JobTaskLibraryMavenArgs']] = None,
+                 pypi: Optional[pulumi.Input['JobTaskLibraryPypiArgs']] = None,
+                 whl: Optional[pulumi.Input[str]] = None):
+        if cran is not None:
+            pulumi.set(__self__, "cran", cran)
+        if egg is not None:
+            pulumi.set(__self__, "egg", egg)
+        if jar is not None:
+            pulumi.set(__self__, "jar", jar)
+        if maven is not None:
+            pulumi.set(__self__, "maven", maven)
+        if pypi is not None:
+            pulumi.set(__self__, "pypi", pypi)
+        if whl is not None:
+            pulumi.set(__self__, "whl", whl)
+
+    @property
+    @pulumi.getter
+    def cran(self) -> Optional[pulumi.Input['JobTaskLibraryCranArgs']]:
+        return pulumi.get(self, "cran")
+
+    @cran.setter
+    def cran(self, value: Optional[pulumi.Input['JobTaskLibraryCranArgs']]):
+        pulumi.set(self, "cran", value)
+
+    @property
+    @pulumi.getter
+    def egg(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "egg")
+
+    @egg.setter
+    def egg(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "egg", value)
+
+    @property
+    @pulumi.getter
+    def jar(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "jar")
+
+    @jar.setter
+    def jar(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jar", value)
+
+    @property
+    @pulumi.getter
+    def maven(self) -> Optional[pulumi.Input['JobTaskLibraryMavenArgs']]:
+        return pulumi.get(self, "maven")
+
+    @maven.setter
+    def maven(self, value: Optional[pulumi.Input['JobTaskLibraryMavenArgs']]):
+        pulumi.set(self, "maven", value)
+
+    @property
+    @pulumi.getter
+    def pypi(self) -> Optional[pulumi.Input['JobTaskLibraryPypiArgs']]:
+        return pulumi.get(self, "pypi")
+
+    @pypi.setter
+    def pypi(self, value: Optional[pulumi.Input['JobTaskLibraryPypiArgs']]):
+        pulumi.set(self, "pypi", value)
+
+    @property
+    @pulumi.getter
+    def whl(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "whl")
+
+    @whl.setter
+    def whl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "whl", value)
+
+
+@pulumi.input_type
+class JobTaskLibraryCranArgs:
+    def __init__(__self__, *,
+                 package: pulumi.Input[str],
+                 repo: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "package", package)
+        if repo is not None:
+            pulumi.set(__self__, "repo", repo)
+
+    @property
+    @pulumi.getter
+    def package(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "package")
+
+    @package.setter
+    def package(self, value: pulumi.Input[str]):
+        pulumi.set(self, "package", value)
+
+    @property
+    @pulumi.getter
+    def repo(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "repo")
+
+    @repo.setter
+    def repo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repo", value)
+
+
+@pulumi.input_type
+class JobTaskLibraryMavenArgs:
+    def __init__(__self__, *,
+                 coordinates: pulumi.Input[str],
+                 exclusions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 repo: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "coordinates", coordinates)
+        if exclusions is not None:
+            pulumi.set(__self__, "exclusions", exclusions)
+        if repo is not None:
+            pulumi.set(__self__, "repo", repo)
+
+    @property
+    @pulumi.getter
+    def coordinates(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "coordinates")
+
+    @coordinates.setter
+    def coordinates(self, value: pulumi.Input[str]):
+        pulumi.set(self, "coordinates", value)
+
+    @property
+    @pulumi.getter
+    def exclusions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "exclusions")
+
+    @exclusions.setter
+    def exclusions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "exclusions", value)
+
+    @property
+    @pulumi.getter
+    def repo(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "repo")
+
+    @repo.setter
+    def repo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repo", value)
+
+
+@pulumi.input_type
+class JobTaskLibraryPypiArgs:
+    def __init__(__self__, *,
+                 package: pulumi.Input[str],
+                 repo: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "package", package)
+        if repo is not None:
+            pulumi.set(__self__, "repo", repo)
+
+    @property
+    @pulumi.getter
+    def package(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "package")
+
+    @package.setter
+    def package(self, value: pulumi.Input[str]):
+        pulumi.set(self, "package", value)
+
+    @property
+    @pulumi.getter
+    def repo(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "repo")
+
+    @repo.setter
+    def repo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repo", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterArgs:
+    def __init__(__self__, *,
+                 spark_version: pulumi.Input[str],
+                 autoscale: Optional[pulumi.Input['JobTaskNewClusterAutoscaleArgs']] = None,
+                 autotermination_minutes: Optional[pulumi.Input[int]] = None,
+                 aws_attributes: Optional[pulumi.Input['JobTaskNewClusterAwsAttributesArgs']] = None,
+                 azure_attributes: Optional[pulumi.Input['JobTaskNewClusterAzureAttributesArgs']] = None,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
+                 cluster_log_conf: Optional[pulumi.Input['JobTaskNewClusterClusterLogConfArgs']] = None,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 docker_image: Optional[pulumi.Input['JobTaskNewClusterDockerImageArgs']] = None,
+                 driver_instance_pool_id: Optional[pulumi.Input[str]] = None,
+                 driver_node_type_id: Optional[pulumi.Input[str]] = None,
+                 enable_elastic_disk: Optional[pulumi.Input[bool]] = None,
+                 enable_local_disk_encryption: Optional[pulumi.Input[bool]] = None,
+                 gcp_attributes: Optional[pulumi.Input['JobTaskNewClusterGcpAttributesArgs']] = None,
+                 idempotency_token: Optional[pulumi.Input[str]] = None,
+                 init_scripts: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskNewClusterInitScriptArgs']]]] = None,
+                 instance_pool_id: Optional[pulumi.Input[str]] = None,
+                 node_type_id: Optional[pulumi.Input[str]] = None,
+                 num_workers: Optional[pulumi.Input[int]] = None,
+                 policy_id: Optional[pulumi.Input[str]] = None,
+                 single_user_name: Optional[pulumi.Input[str]] = None,
+                 spark_conf: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 spark_env_vars: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 ssh_public_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        pulumi.set(__self__, "spark_version", spark_version)
+        if autoscale is not None:
+            pulumi.set(__self__, "autoscale", autoscale)
+        if autotermination_minutes is not None:
+            pulumi.set(__self__, "autotermination_minutes", autotermination_minutes)
+        if aws_attributes is not None:
+            pulumi.set(__self__, "aws_attributes", aws_attributes)
+        if azure_attributes is not None:
+            pulumi.set(__self__, "azure_attributes", azure_attributes)
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
+        if cluster_log_conf is not None:
+            pulumi.set(__self__, "cluster_log_conf", cluster_log_conf)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if custom_tags is not None:
+            pulumi.set(__self__, "custom_tags", custom_tags)
+        if docker_image is not None:
+            pulumi.set(__self__, "docker_image", docker_image)
+        if driver_instance_pool_id is not None:
+            pulumi.set(__self__, "driver_instance_pool_id", driver_instance_pool_id)
+        if driver_node_type_id is not None:
+            pulumi.set(__self__, "driver_node_type_id", driver_node_type_id)
+        if enable_elastic_disk is not None:
+            pulumi.set(__self__, "enable_elastic_disk", enable_elastic_disk)
+        if enable_local_disk_encryption is not None:
+            pulumi.set(__self__, "enable_local_disk_encryption", enable_local_disk_encryption)
+        if gcp_attributes is not None:
+            pulumi.set(__self__, "gcp_attributes", gcp_attributes)
+        if idempotency_token is not None:
+            pulumi.set(__self__, "idempotency_token", idempotency_token)
+        if init_scripts is not None:
+            pulumi.set(__self__, "init_scripts", init_scripts)
+        if instance_pool_id is not None:
+            pulumi.set(__self__, "instance_pool_id", instance_pool_id)
+        if node_type_id is not None:
+            pulumi.set(__self__, "node_type_id", node_type_id)
+        if num_workers is not None:
+            pulumi.set(__self__, "num_workers", num_workers)
+        if policy_id is not None:
+            pulumi.set(__self__, "policy_id", policy_id)
+        if single_user_name is not None:
+            pulumi.set(__self__, "single_user_name", single_user_name)
+        if spark_conf is not None:
+            pulumi.set(__self__, "spark_conf", spark_conf)
+        if spark_env_vars is not None:
+            pulumi.set(__self__, "spark_env_vars", spark_env_vars)
+        if ssh_public_keys is not None:
+            pulumi.set(__self__, "ssh_public_keys", ssh_public_keys)
+
+    @property
+    @pulumi.getter(name="sparkVersion")
+    def spark_version(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "spark_version")
+
+    @spark_version.setter
+    def spark_version(self, value: pulumi.Input[str]):
+        pulumi.set(self, "spark_version", value)
+
+    @property
+    @pulumi.getter
+    def autoscale(self) -> Optional[pulumi.Input['JobTaskNewClusterAutoscaleArgs']]:
+        return pulumi.get(self, "autoscale")
+
+    @autoscale.setter
+    def autoscale(self, value: Optional[pulumi.Input['JobTaskNewClusterAutoscaleArgs']]):
+        pulumi.set(self, "autoscale", value)
+
+    @property
+    @pulumi.getter(name="autoterminationMinutes")
+    def autotermination_minutes(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "autotermination_minutes")
+
+    @autotermination_minutes.setter
+    def autotermination_minutes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "autotermination_minutes", value)
+
+    @property
+    @pulumi.getter(name="awsAttributes")
+    def aws_attributes(self) -> Optional[pulumi.Input['JobTaskNewClusterAwsAttributesArgs']]:
+        return pulumi.get(self, "aws_attributes")
+
+    @aws_attributes.setter
+    def aws_attributes(self, value: Optional[pulumi.Input['JobTaskNewClusterAwsAttributesArgs']]):
+        pulumi.set(self, "aws_attributes", value)
+
+    @property
+    @pulumi.getter(name="azureAttributes")
+    def azure_attributes(self) -> Optional[pulumi.Input['JobTaskNewClusterAzureAttributesArgs']]:
+        return pulumi.get(self, "azure_attributes")
+
+    @azure_attributes.setter
+    def azure_attributes(self, value: Optional[pulumi.Input['JobTaskNewClusterAzureAttributesArgs']]):
+        pulumi.set(self, "azure_attributes", value)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cluster_id")
+
+    @cluster_id.setter
+    def cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_id", value)
+
+    @property
+    @pulumi.getter(name="clusterLogConf")
+    def cluster_log_conf(self) -> Optional[pulumi.Input['JobTaskNewClusterClusterLogConfArgs']]:
+        return pulumi.get(self, "cluster_log_conf")
+
+    @cluster_log_conf.setter
+    def cluster_log_conf(self, value: Optional[pulumi.Input['JobTaskNewClusterClusterLogConfArgs']]):
+        pulumi.set(self, "cluster_log_conf", value)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="customTags")
+    def custom_tags(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "custom_tags")
+
+    @custom_tags.setter
+    def custom_tags(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "custom_tags", value)
+
+    @property
+    @pulumi.getter(name="dockerImage")
+    def docker_image(self) -> Optional[pulumi.Input['JobTaskNewClusterDockerImageArgs']]:
+        return pulumi.get(self, "docker_image")
+
+    @docker_image.setter
+    def docker_image(self, value: Optional[pulumi.Input['JobTaskNewClusterDockerImageArgs']]):
+        pulumi.set(self, "docker_image", value)
+
+    @property
+    @pulumi.getter(name="driverInstancePoolId")
+    def driver_instance_pool_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "driver_instance_pool_id")
+
+    @driver_instance_pool_id.setter
+    def driver_instance_pool_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "driver_instance_pool_id", value)
+
+    @property
+    @pulumi.getter(name="driverNodeTypeId")
+    def driver_node_type_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "driver_node_type_id")
+
+    @driver_node_type_id.setter
+    def driver_node_type_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "driver_node_type_id", value)
+
+    @property
+    @pulumi.getter(name="enableElasticDisk")
+    def enable_elastic_disk(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enable_elastic_disk")
+
+    @enable_elastic_disk.setter
+    def enable_elastic_disk(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_elastic_disk", value)
+
+    @property
+    @pulumi.getter(name="enableLocalDiskEncryption")
+    def enable_local_disk_encryption(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enable_local_disk_encryption")
+
+    @enable_local_disk_encryption.setter
+    def enable_local_disk_encryption(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_local_disk_encryption", value)
+
+    @property
+    @pulumi.getter(name="gcpAttributes")
+    def gcp_attributes(self) -> Optional[pulumi.Input['JobTaskNewClusterGcpAttributesArgs']]:
+        return pulumi.get(self, "gcp_attributes")
+
+    @gcp_attributes.setter
+    def gcp_attributes(self, value: Optional[pulumi.Input['JobTaskNewClusterGcpAttributesArgs']]):
+        pulumi.set(self, "gcp_attributes", value)
+
+    @property
+    @pulumi.getter(name="idempotencyToken")
+    def idempotency_token(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "idempotency_token")
+
+    @idempotency_token.setter
+    def idempotency_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "idempotency_token", value)
+
+    @property
+    @pulumi.getter(name="initScripts")
+    def init_scripts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskNewClusterInitScriptArgs']]]]:
+        return pulumi.get(self, "init_scripts")
+
+    @init_scripts.setter
+    def init_scripts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskNewClusterInitScriptArgs']]]]):
+        pulumi.set(self, "init_scripts", value)
+
+    @property
+    @pulumi.getter(name="instancePoolId")
+    def instance_pool_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "instance_pool_id")
+
+    @instance_pool_id.setter
+    def instance_pool_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_pool_id", value)
+
+    @property
+    @pulumi.getter(name="nodeTypeId")
+    def node_type_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "node_type_id")
+
+    @node_type_id.setter
+    def node_type_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_type_id", value)
+
+    @property
+    @pulumi.getter(name="numWorkers")
+    def num_workers(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "num_workers")
+
+    @num_workers.setter
+    def num_workers(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_workers", value)
+
+    @property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "policy_id")
+
+    @policy_id.setter
+    def policy_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_id", value)
+
+    @property
+    @pulumi.getter(name="singleUserName")
+    def single_user_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "single_user_name")
+
+    @single_user_name.setter
+    def single_user_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "single_user_name", value)
+
+    @property
+    @pulumi.getter(name="sparkConf")
+    def spark_conf(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "spark_conf")
+
+    @spark_conf.setter
+    def spark_conf(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "spark_conf", value)
+
+    @property
+    @pulumi.getter(name="sparkEnvVars")
+    def spark_env_vars(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "spark_env_vars")
+
+    @spark_env_vars.setter
+    def spark_env_vars(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "spark_env_vars", value)
+
+    @property
+    @pulumi.getter(name="sshPublicKeys")
+    def ssh_public_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "ssh_public_keys")
+
+    @ssh_public_keys.setter
+    def ssh_public_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ssh_public_keys", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterAutoscaleArgs:
+    def __init__(__self__, *,
+                 max_workers: Optional[pulumi.Input[int]] = None,
+                 min_workers: Optional[pulumi.Input[int]] = None):
+        if max_workers is not None:
+            pulumi.set(__self__, "max_workers", max_workers)
+        if min_workers is not None:
+            pulumi.set(__self__, "min_workers", min_workers)
+
+    @property
+    @pulumi.getter(name="maxWorkers")
+    def max_workers(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max_workers")
+
+    @max_workers.setter
+    def max_workers(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_workers", value)
+
+    @property
+    @pulumi.getter(name="minWorkers")
+    def min_workers(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "min_workers")
+
+    @min_workers.setter
+    def min_workers(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_workers", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterAwsAttributesArgs:
+    def __init__(__self__, *,
+                 availability: Optional[pulumi.Input[str]] = None,
+                 ebs_volume_count: Optional[pulumi.Input[int]] = None,
+                 ebs_volume_size: Optional[pulumi.Input[int]] = None,
+                 ebs_volume_type: Optional[pulumi.Input[str]] = None,
+                 first_on_demand: Optional[pulumi.Input[int]] = None,
+                 instance_profile_arn: Optional[pulumi.Input[str]] = None,
+                 spot_bid_price_percent: Optional[pulumi.Input[int]] = None,
+                 zone_id: Optional[pulumi.Input[str]] = None):
+        if availability is not None:
+            pulumi.set(__self__, "availability", availability)
+        if ebs_volume_count is not None:
+            pulumi.set(__self__, "ebs_volume_count", ebs_volume_count)
+        if ebs_volume_size is not None:
+            pulumi.set(__self__, "ebs_volume_size", ebs_volume_size)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if first_on_demand is not None:
+            pulumi.set(__self__, "first_on_demand", first_on_demand)
+        if instance_profile_arn is not None:
+            pulumi.set(__self__, "instance_profile_arn", instance_profile_arn)
+        if spot_bid_price_percent is not None:
+            pulumi.set(__self__, "spot_bid_price_percent", spot_bid_price_percent)
+        if zone_id is not None:
+            pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter
+    def availability(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "availability")
+
+    @availability.setter
+    def availability(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "availability", value)
+
+    @property
+    @pulumi.getter(name="ebsVolumeCount")
+    def ebs_volume_count(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ebs_volume_count")
+
+    @ebs_volume_count.setter
+    def ebs_volume_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ebs_volume_count", value)
+
+    @property
+    @pulumi.getter(name="ebsVolumeSize")
+    def ebs_volume_size(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ebs_volume_size")
+
+    @ebs_volume_size.setter
+    def ebs_volume_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ebs_volume_size", value)
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ebs_volume_type")
+
+    @ebs_volume_type.setter
+    def ebs_volume_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ebs_volume_type", value)
+
+    @property
+    @pulumi.getter(name="firstOnDemand")
+    def first_on_demand(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "first_on_demand")
+
+    @first_on_demand.setter
+    def first_on_demand(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "first_on_demand", value)
+
+    @property
+    @pulumi.getter(name="instanceProfileArn")
+    def instance_profile_arn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "instance_profile_arn")
+
+    @instance_profile_arn.setter
+    def instance_profile_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_profile_arn", value)
+
+    @property
+    @pulumi.getter(name="spotBidPricePercent")
+    def spot_bid_price_percent(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "spot_bid_price_percent")
+
+    @spot_bid_price_percent.setter
+    def spot_bid_price_percent(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "spot_bid_price_percent", value)
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "zone_id")
+
+    @zone_id.setter
+    def zone_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "zone_id", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterAzureAttributesArgs:
+    def __init__(__self__, *,
+                 availability: Optional[pulumi.Input[str]] = None,
+                 first_on_demand: Optional[pulumi.Input[int]] = None,
+                 spot_bid_max_price: Optional[pulumi.Input[float]] = None):
+        if availability is not None:
+            pulumi.set(__self__, "availability", availability)
+        if first_on_demand is not None:
+            pulumi.set(__self__, "first_on_demand", first_on_demand)
+        if spot_bid_max_price is not None:
+            pulumi.set(__self__, "spot_bid_max_price", spot_bid_max_price)
+
+    @property
+    @pulumi.getter
+    def availability(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "availability")
+
+    @availability.setter
+    def availability(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "availability", value)
+
+    @property
+    @pulumi.getter(name="firstOnDemand")
+    def first_on_demand(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "first_on_demand")
+
+    @first_on_demand.setter
+    def first_on_demand(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "first_on_demand", value)
+
+    @property
+    @pulumi.getter(name="spotBidMaxPrice")
+    def spot_bid_max_price(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "spot_bid_max_price")
+
+    @spot_bid_max_price.setter
+    def spot_bid_max_price(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "spot_bid_max_price", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterClusterLogConfArgs:
+    def __init__(__self__, *,
+                 dbfs: Optional[pulumi.Input['JobTaskNewClusterClusterLogConfDbfsArgs']] = None,
+                 s3: Optional[pulumi.Input['JobTaskNewClusterClusterLogConfS3Args']] = None):
+        if dbfs is not None:
+            pulumi.set(__self__, "dbfs", dbfs)
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+
+    @property
+    @pulumi.getter
+    def dbfs(self) -> Optional[pulumi.Input['JobTaskNewClusterClusterLogConfDbfsArgs']]:
+        return pulumi.get(self, "dbfs")
+
+    @dbfs.setter
+    def dbfs(self, value: Optional[pulumi.Input['JobTaskNewClusterClusterLogConfDbfsArgs']]):
+        pulumi.set(self, "dbfs", value)
+
+    @property
+    @pulumi.getter
+    def s3(self) -> Optional[pulumi.Input['JobTaskNewClusterClusterLogConfS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: Optional[pulumi.Input['JobTaskNewClusterClusterLogConfS3Args']]):
+        pulumi.set(self, "s3", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterClusterLogConfDbfsArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input[str]):
+        pulumi.set(__self__, "destination", destination)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input[str]):
+        pulumi.set(self, "destination", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterClusterLogConfS3Args:
+    def __init__(__self__, *,
+                 destination: pulumi.Input[str],
+                 canned_acl: Optional[pulumi.Input[str]] = None,
+                 enable_encryption: Optional[pulumi.Input[bool]] = None,
+                 encryption_type: Optional[pulumi.Input[str]] = None,
+                 endpoint: Optional[pulumi.Input[str]] = None,
+                 kms_key: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "destination", destination)
+        if canned_acl is not None:
+            pulumi.set(__self__, "canned_acl", canned_acl)
+        if enable_encryption is not None:
+            pulumi.set(__self__, "enable_encryption", enable_encryption)
+        if encryption_type is not None:
+            pulumi.set(__self__, "encryption_type", encryption_type)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if kms_key is not None:
+            pulumi.set(__self__, "kms_key", kms_key)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input[str]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter(name="cannedAcl")
+    def canned_acl(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "canned_acl")
+
+    @canned_acl.setter
+    def canned_acl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "canned_acl", value)
+
+    @property
+    @pulumi.getter(name="enableEncryption")
+    def enable_encryption(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enable_encryption")
+
+    @enable_encryption.setter
+    def enable_encryption(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_encryption", value)
+
+    @property
+    @pulumi.getter(name="encryptionType")
+    def encryption_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "encryption_type")
+
+    @encryption_type.setter
+    def encryption_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "encryption_type", value)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint", value)
+
+    @property
+    @pulumi.getter(name="kmsKey")
+    def kms_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "kms_key")
+
+    @kms_key.setter
+    def kms_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kms_key", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterDockerImageArgs:
+    def __init__(__self__, *,
+                 url: pulumi.Input[str],
+                 basic_auth: Optional[pulumi.Input['JobTaskNewClusterDockerImageBasicAuthArgs']] = None):
+        pulumi.set(__self__, "url", url)
+        if basic_auth is not None:
+            pulumi.set(__self__, "basic_auth", basic_auth)
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter(name="basicAuth")
+    def basic_auth(self) -> Optional[pulumi.Input['JobTaskNewClusterDockerImageBasicAuthArgs']]:
+        return pulumi.get(self, "basic_auth")
+
+    @basic_auth.setter
+    def basic_auth(self, value: Optional[pulumi.Input['JobTaskNewClusterDockerImageBasicAuthArgs']]):
+        pulumi.set(self, "basic_auth", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterDockerImageBasicAuthArgs:
+    def __init__(__self__, *,
+                 password: pulumi.Input[str],
+                 username: pulumi.Input[str]):
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[str]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterGcpAttributesArgs:
+    def __init__(__self__, *,
+                 google_service_account: Optional[pulumi.Input[str]] = None,
+                 use_preemptible_executors: Optional[pulumi.Input[bool]] = None):
+        if google_service_account is not None:
+            pulumi.set(__self__, "google_service_account", google_service_account)
+        if use_preemptible_executors is not None:
+            pulumi.set(__self__, "use_preemptible_executors", use_preemptible_executors)
+
+    @property
+    @pulumi.getter(name="googleServiceAccount")
+    def google_service_account(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "google_service_account")
+
+    @google_service_account.setter
+    def google_service_account(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "google_service_account", value)
+
+    @property
+    @pulumi.getter(name="usePreemptibleExecutors")
+    def use_preemptible_executors(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_preemptible_executors")
+
+    @use_preemptible_executors.setter
+    def use_preemptible_executors(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_preemptible_executors", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterInitScriptArgs:
+    def __init__(__self__, *,
+                 dbfs: Optional[pulumi.Input['JobTaskNewClusterInitScriptDbfsArgs']] = None,
+                 file: Optional[pulumi.Input['JobTaskNewClusterInitScriptFileArgs']] = None,
+                 s3: Optional[pulumi.Input['JobTaskNewClusterInitScriptS3Args']] = None):
+        if dbfs is not None:
+            pulumi.set(__self__, "dbfs", dbfs)
+        if file is not None:
+            pulumi.set(__self__, "file", file)
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+
+    @property
+    @pulumi.getter
+    def dbfs(self) -> Optional[pulumi.Input['JobTaskNewClusterInitScriptDbfsArgs']]:
+        return pulumi.get(self, "dbfs")
+
+    @dbfs.setter
+    def dbfs(self, value: Optional[pulumi.Input['JobTaskNewClusterInitScriptDbfsArgs']]):
+        pulumi.set(self, "dbfs", value)
+
+    @property
+    @pulumi.getter
+    def file(self) -> Optional[pulumi.Input['JobTaskNewClusterInitScriptFileArgs']]:
+        return pulumi.get(self, "file")
+
+    @file.setter
+    def file(self, value: Optional[pulumi.Input['JobTaskNewClusterInitScriptFileArgs']]):
+        pulumi.set(self, "file", value)
+
+    @property
+    @pulumi.getter
+    def s3(self) -> Optional[pulumi.Input['JobTaskNewClusterInitScriptS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: Optional[pulumi.Input['JobTaskNewClusterInitScriptS3Args']]):
+        pulumi.set(self, "s3", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterInitScriptDbfsArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input[str]):
+        pulumi.set(__self__, "destination", destination)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input[str]):
+        pulumi.set(self, "destination", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterInitScriptFileArgs:
+    def __init__(__self__, *,
+                 destination: Optional[pulumi.Input[str]] = None):
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "destination", value)
+
+
+@pulumi.input_type
+class JobTaskNewClusterInitScriptS3Args:
+    def __init__(__self__, *,
+                 destination: pulumi.Input[str],
+                 canned_acl: Optional[pulumi.Input[str]] = None,
+                 enable_encryption: Optional[pulumi.Input[bool]] = None,
+                 encryption_type: Optional[pulumi.Input[str]] = None,
+                 endpoint: Optional[pulumi.Input[str]] = None,
+                 kms_key: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "destination", destination)
+        if canned_acl is not None:
+            pulumi.set(__self__, "canned_acl", canned_acl)
+        if enable_encryption is not None:
+            pulumi.set(__self__, "enable_encryption", enable_encryption)
+        if encryption_type is not None:
+            pulumi.set(__self__, "encryption_type", encryption_type)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if kms_key is not None:
+            pulumi.set(__self__, "kms_key", kms_key)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input[str]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter(name="cannedAcl")
+    def canned_acl(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "canned_acl")
+
+    @canned_acl.setter
+    def canned_acl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "canned_acl", value)
+
+    @property
+    @pulumi.getter(name="enableEncryption")
+    def enable_encryption(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enable_encryption")
+
+    @enable_encryption.setter
+    def enable_encryption(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_encryption", value)
+
+    @property
+    @pulumi.getter(name="encryptionType")
+    def encryption_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "encryption_type")
+
+    @encryption_type.setter
+    def encryption_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "encryption_type", value)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint", value)
+
+    @property
+    @pulumi.getter(name="kmsKey")
+    def kms_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "kms_key")
+
+    @kms_key.setter
+    def kms_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kms_key", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class JobTaskNotebookTaskArgs:
+    def __init__(__self__, *,
+                 notebook_path: pulumi.Input[str],
+                 base_parameters: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        pulumi.set(__self__, "notebook_path", notebook_path)
+        if base_parameters is not None:
+            pulumi.set(__self__, "base_parameters", base_parameters)
+
+    @property
+    @pulumi.getter(name="notebookPath")
+    def notebook_path(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "notebook_path")
+
+    @notebook_path.setter
+    def notebook_path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "notebook_path", value)
+
+    @property
+    @pulumi.getter(name="baseParameters")
+    def base_parameters(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "base_parameters")
+
+    @base_parameters.setter
+    def base_parameters(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "base_parameters", value)
+
+
+@pulumi.input_type
+class JobTaskPipelineTaskArgs:
+    def __init__(__self__, *,
+                 pipeline_id: pulumi.Input[str]):
+        pulumi.set(__self__, "pipeline_id", pipeline_id)
+
+    @property
+    @pulumi.getter(name="pipelineId")
+    def pipeline_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "pipeline_id")
+
+    @pipeline_id.setter
+    def pipeline_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "pipeline_id", value)
+
+
+@pulumi.input_type
+class JobTaskPythonWheelTaskArgs:
+    def __init__(__self__, *,
+                 entry_point: Optional[pulumi.Input[str]] = None,
+                 named_parameters: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 package_name: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        if entry_point is not None:
+            pulumi.set(__self__, "entry_point", entry_point)
+        if named_parameters is not None:
+            pulumi.set(__self__, "named_parameters", named_parameters)
+        if package_name is not None:
+            pulumi.set(__self__, "package_name", package_name)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="entryPoint")
+    def entry_point(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "entry_point")
+
+    @entry_point.setter
+    def entry_point(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "entry_point", value)
+
+    @property
+    @pulumi.getter(name="namedParameters")
+    def named_parameters(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "named_parameters")
+
+    @named_parameters.setter
+    def named_parameters(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "named_parameters", value)
+
+    @property
+    @pulumi.getter(name="packageName")
+    def package_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "package_name")
+
+    @package_name.setter
+    def package_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "package_name", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class JobTaskSparkJarTaskArgs:
+    def __init__(__self__, *,
+                 jar_uri: Optional[pulumi.Input[str]] = None,
+                 main_class_name: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        if jar_uri is not None:
+            pulumi.set(__self__, "jar_uri", jar_uri)
+        if main_class_name is not None:
+            pulumi.set(__self__, "main_class_name", main_class_name)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="jarUri")
+    def jar_uri(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "jar_uri")
+
+    @jar_uri.setter
+    def jar_uri(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jar_uri", value)
+
+    @property
+    @pulumi.getter(name="mainClassName")
+    def main_class_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "main_class_name")
+
+    @main_class_name.setter
+    def main_class_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "main_class_name", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class JobTaskSparkPythonTaskArgs:
+    def __init__(__self__, *,
+                 python_file: pulumi.Input[str],
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        pulumi.set(__self__, "python_file", python_file)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="pythonFile")
+    def python_file(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "python_file")
+
+    @python_file.setter
+    def python_file(self, value: pulumi.Input[str]):
+        pulumi.set(self, "python_file", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class JobTaskSparkSubmitTaskArgs:
+    def __init__(__self__, *,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class MLFlowModelTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class MetastoreDataAccessAwsIamRoleArgs:
+    def __init__(__self__, *,
+                 role_arn: pulumi.Input[str]):
+        pulumi.set(__self__, "role_arn", role_arn)
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role_arn")
+
+    @role_arn.setter
+    def role_arn(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role_arn", value)
+
+
+@pulumi.input_type
+class MetastoreDataAccessAzureServicePrincipalArgs:
+    def __init__(__self__, *,
+                 application_id: pulumi.Input[str],
+                 client_secret: pulumi.Input[str],
+                 directory_id: pulumi.Input[str]):
+        pulumi.set(__self__, "application_id", application_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "directory_id", directory_id)
+
+    @property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "application_id")
+
+    @application_id.setter
+    def application_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "application_id", value)
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: pulumi.Input[str]):
+        pulumi.set(self, "client_secret", value)
+
+    @property
+    @pulumi.getter(name="directoryId")
+    def directory_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "directory_id")
+
+    @directory_id.setter
+    def directory_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "directory_id", value)
+
+
+@pulumi.input_type
 class MwsCustomerManagedKeysAwsKeyInfoArgs:
     def __init__(__self__, *,
                  key_alias: pulumi.Input[str],
@@ -2348,6 +4342,38 @@ class MwsNetworksVpcEndpointsArgs:
 
 
 @pulumi.input_type
+class MwsWorkspacesCloudResourceBucketArgs:
+    def __init__(__self__, *,
+                 gcp: pulumi.Input['MwsWorkspacesCloudResourceBucketGcpArgs']):
+        pulumi.set(__self__, "gcp", gcp)
+
+    @property
+    @pulumi.getter
+    def gcp(self) -> pulumi.Input['MwsWorkspacesCloudResourceBucketGcpArgs']:
+        return pulumi.get(self, "gcp")
+
+    @gcp.setter
+    def gcp(self, value: pulumi.Input['MwsWorkspacesCloudResourceBucketGcpArgs']):
+        pulumi.set(self, "gcp", value)
+
+
+@pulumi.input_type
+class MwsWorkspacesCloudResourceBucketGcpArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[str]):
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+
+@pulumi.input_type
 class MwsWorkspacesExternalCustomerInfoArgs:
     def __init__(__self__, *,
                  authoritative_user_email: pulumi.Input[str],
@@ -2383,6 +4409,98 @@ class MwsWorkspacesExternalCustomerInfoArgs:
     @customer_name.setter
     def customer_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "customer_name", value)
+
+
+@pulumi.input_type
+class MwsWorkspacesNetworkArgs:
+    def __init__(__self__, *,
+                 gcp_common_network_config: pulumi.Input['MwsWorkspacesNetworkGcpCommonNetworkConfigArgs'],
+                 gcp_managed_network_config: pulumi.Input['MwsWorkspacesNetworkGcpManagedNetworkConfigArgs']):
+        pulumi.set(__self__, "gcp_common_network_config", gcp_common_network_config)
+        pulumi.set(__self__, "gcp_managed_network_config", gcp_managed_network_config)
+
+    @property
+    @pulumi.getter(name="gcpCommonNetworkConfig")
+    def gcp_common_network_config(self) -> pulumi.Input['MwsWorkspacesNetworkGcpCommonNetworkConfigArgs']:
+        return pulumi.get(self, "gcp_common_network_config")
+
+    @gcp_common_network_config.setter
+    def gcp_common_network_config(self, value: pulumi.Input['MwsWorkspacesNetworkGcpCommonNetworkConfigArgs']):
+        pulumi.set(self, "gcp_common_network_config", value)
+
+    @property
+    @pulumi.getter(name="gcpManagedNetworkConfig")
+    def gcp_managed_network_config(self) -> pulumi.Input['MwsWorkspacesNetworkGcpManagedNetworkConfigArgs']:
+        return pulumi.get(self, "gcp_managed_network_config")
+
+    @gcp_managed_network_config.setter
+    def gcp_managed_network_config(self, value: pulumi.Input['MwsWorkspacesNetworkGcpManagedNetworkConfigArgs']):
+        pulumi.set(self, "gcp_managed_network_config", value)
+
+
+@pulumi.input_type
+class MwsWorkspacesNetworkGcpCommonNetworkConfigArgs:
+    def __init__(__self__, *,
+                 gke_cluster_master_ip_range: pulumi.Input[str],
+                 gke_connectivity_type: pulumi.Input[str]):
+        pulumi.set(__self__, "gke_cluster_master_ip_range", gke_cluster_master_ip_range)
+        pulumi.set(__self__, "gke_connectivity_type", gke_connectivity_type)
+
+    @property
+    @pulumi.getter(name="gkeClusterMasterIpRange")
+    def gke_cluster_master_ip_range(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "gke_cluster_master_ip_range")
+
+    @gke_cluster_master_ip_range.setter
+    def gke_cluster_master_ip_range(self, value: pulumi.Input[str]):
+        pulumi.set(self, "gke_cluster_master_ip_range", value)
+
+    @property
+    @pulumi.getter(name="gkeConnectivityType")
+    def gke_connectivity_type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "gke_connectivity_type")
+
+    @gke_connectivity_type.setter
+    def gke_connectivity_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "gke_connectivity_type", value)
+
+
+@pulumi.input_type
+class MwsWorkspacesNetworkGcpManagedNetworkConfigArgs:
+    def __init__(__self__, *,
+                 gke_cluster_pod_ip_range: pulumi.Input[str],
+                 gke_cluster_service_ip_range: pulumi.Input[str],
+                 subnet_cidr: pulumi.Input[str]):
+        pulumi.set(__self__, "gke_cluster_pod_ip_range", gke_cluster_pod_ip_range)
+        pulumi.set(__self__, "gke_cluster_service_ip_range", gke_cluster_service_ip_range)
+        pulumi.set(__self__, "subnet_cidr", subnet_cidr)
+
+    @property
+    @pulumi.getter(name="gkeClusterPodIpRange")
+    def gke_cluster_pod_ip_range(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "gke_cluster_pod_ip_range")
+
+    @gke_cluster_pod_ip_range.setter
+    def gke_cluster_pod_ip_range(self, value: pulumi.Input[str]):
+        pulumi.set(self, "gke_cluster_pod_ip_range", value)
+
+    @property
+    @pulumi.getter(name="gkeClusterServiceIpRange")
+    def gke_cluster_service_ip_range(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "gke_cluster_service_ip_range")
+
+    @gke_cluster_service_ip_range.setter
+    def gke_cluster_service_ip_range(self, value: pulumi.Input[str]):
+        pulumi.set(self, "gke_cluster_service_ip_range", value)
+
+    @property
+    @pulumi.getter(name="subnetCidr")
+    def subnet_cidr(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "subnet_cidr")
+
+    @subnet_cidr.setter
+    def subnet_cidr(self, value: pulumi.Input[str]):
+        pulumi.set(self, "subnet_cidr", value)
 
 
 @pulumi.input_type
@@ -3119,23 +5237,18 @@ class SecretScopeKeyvaultMetadataArgs:
 @pulumi.input_type
 class SqlEndpointOdbcParamsArgs:
     def __init__(__self__, *,
-                 host: pulumi.Input[str],
                  path: pulumi.Input[str],
                  port: pulumi.Input[int],
-                 protocol: pulumi.Input[str]):
-        pulumi.set(__self__, "host", host)
+                 protocol: pulumi.Input[str],
+                 host: Optional[pulumi.Input[str]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "protocol", protocol)
-
-    @property
-    @pulumi.getter
-    def host(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "host")
-
-    @host.setter
-    def host(self, value: pulumi.Input[str]):
-        pulumi.set(self, "host", value)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
 
     @property
     @pulumi.getter
@@ -3163,6 +5276,24 @@ class SqlEndpointOdbcParamsArgs:
     @protocol.setter
     def protocol(self, value: pulumi.Input[str]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
 
 
 @pulumi.input_type

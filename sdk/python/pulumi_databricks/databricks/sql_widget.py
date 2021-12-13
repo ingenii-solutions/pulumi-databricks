@@ -16,21 +16,27 @@ __all__ = ['SqlWidgetArgs', 'SqlWidget']
 class SqlWidgetArgs:
     def __init__(__self__, *,
                  dashboard_id: pulumi.Input[str],
+                 description: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['SqlWidgetParameterArgs']]]] = None,
                  position: Optional[pulumi.Input['SqlWidgetPositionArgs']] = None,
                  text: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
                  visualization_id: Optional[pulumi.Input[str]] = None,
                  widget_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SqlWidget resource.
         """
         pulumi.set(__self__, "dashboard_id", dashboard_id)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if parameters is not None:
             pulumi.set(__self__, "parameters", parameters)
         if position is not None:
             pulumi.set(__self__, "position", position)
         if text is not None:
             pulumi.set(__self__, "text", text)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if visualization_id is not None:
             pulumi.set(__self__, "visualization_id", visualization_id)
         if widget_id is not None:
@@ -44,6 +50,15 @@ class SqlWidgetArgs:
     @dashboard_id.setter
     def dashboard_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "dashboard_id", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -71,6 +86,15 @@ class SqlWidgetArgs:
     @text.setter
     def text(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "text", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
 
     @property
     @pulumi.getter(name="visualizationId")
@@ -95,9 +119,11 @@ class SqlWidgetArgs:
 class _SqlWidgetState:
     def __init__(__self__, *,
                  dashboard_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['SqlWidgetParameterArgs']]]] = None,
                  position: Optional[pulumi.Input['SqlWidgetPositionArgs']] = None,
                  text: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
                  visualization_id: Optional[pulumi.Input[str]] = None,
                  widget_id: Optional[pulumi.Input[str]] = None):
         """
@@ -105,12 +131,16 @@ class _SqlWidgetState:
         """
         if dashboard_id is not None:
             pulumi.set(__self__, "dashboard_id", dashboard_id)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if parameters is not None:
             pulumi.set(__self__, "parameters", parameters)
         if position is not None:
             pulumi.set(__self__, "position", position)
         if text is not None:
             pulumi.set(__self__, "text", text)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
         if visualization_id is not None:
             pulumi.set(__self__, "visualization_id", visualization_id)
         if widget_id is not None:
@@ -124,6 +154,15 @@ class _SqlWidgetState:
     @dashboard_id.setter
     def dashboard_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dashboard_id", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -151,6 +190,15 @@ class _SqlWidgetState:
     @text.setter
     def text(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "text", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
 
     @property
     @pulumi.getter(name="visualizationId")
@@ -177,9 +225,11 @@ class SqlWidget(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SqlWidgetParameterArgs']]]]] = None,
                  position: Optional[pulumi.Input[pulumi.InputType['SqlWidgetPositionArgs']]] = None,
                  text: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
                  visualization_id: Optional[pulumi.Input[str]] = None,
                  widget_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -212,9 +262,11 @@ class SqlWidget(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dashboard_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SqlWidgetParameterArgs']]]]] = None,
                  position: Optional[pulumi.Input[pulumi.InputType['SqlWidgetPositionArgs']]] = None,
                  text: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
                  visualization_id: Optional[pulumi.Input[str]] = None,
                  widget_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -232,9 +284,11 @@ class SqlWidget(pulumi.CustomResource):
             if dashboard_id is None and not opts.urn:
                 raise TypeError("Missing required property 'dashboard_id'")
             __props__.__dict__["dashboard_id"] = dashboard_id
+            __props__.__dict__["description"] = description
             __props__.__dict__["parameters"] = parameters
             __props__.__dict__["position"] = position
             __props__.__dict__["text"] = text
+            __props__.__dict__["title"] = title
             __props__.__dict__["visualization_id"] = visualization_id
             __props__.__dict__["widget_id"] = widget_id
         super(SqlWidget, __self__).__init__(
@@ -248,9 +302,11 @@ class SqlWidget(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dashboard_id: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
             parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SqlWidgetParameterArgs']]]]] = None,
             position: Optional[pulumi.Input[pulumi.InputType['SqlWidgetPositionArgs']]] = None,
             text: Optional[pulumi.Input[str]] = None,
+            title: Optional[pulumi.Input[str]] = None,
             visualization_id: Optional[pulumi.Input[str]] = None,
             widget_id: Optional[pulumi.Input[str]] = None) -> 'SqlWidget':
         """
@@ -266,9 +322,11 @@ class SqlWidget(pulumi.CustomResource):
         __props__ = _SqlWidgetState.__new__(_SqlWidgetState)
 
         __props__.__dict__["dashboard_id"] = dashboard_id
+        __props__.__dict__["description"] = description
         __props__.__dict__["parameters"] = parameters
         __props__.__dict__["position"] = position
         __props__.__dict__["text"] = text
+        __props__.__dict__["title"] = title
         __props__.__dict__["visualization_id"] = visualization_id
         __props__.__dict__["widget_id"] = widget_id
         return SqlWidget(resource_name, opts=opts, __props__=__props__)
@@ -277,6 +335,11 @@ class SqlWidget(pulumi.CustomResource):
     @pulumi.getter(name="dashboardId")
     def dashboard_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "dashboard_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -292,6 +355,11 @@ class SqlWidget(pulumi.CustomResource):
     @pulumi.getter
     def text(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "text")
+
+    @property
+    @pulumi.getter
+    def title(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "title")
 
     @property
     @pulumi.getter(name="visualizationId")

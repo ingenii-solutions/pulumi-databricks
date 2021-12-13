@@ -19,19 +19,22 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, allow_cluster_create=None, allow_instance_pool_create=None, allow_sql_analytics_access=None, display_name=None, groups=None, id=None, instance_profiles=None, members=None, recursive=None, workspace_access=None):
+    def __init__(__self__, allow_cluster_create=None, allow_instance_pool_create=None, databricks_sql_access=None, display_name=None, external_id=None, groups=None, id=None, instance_profiles=None, members=None, recursive=None, workspace_access=None):
         if allow_cluster_create and not isinstance(allow_cluster_create, bool):
             raise TypeError("Expected argument 'allow_cluster_create' to be a bool")
         pulumi.set(__self__, "allow_cluster_create", allow_cluster_create)
         if allow_instance_pool_create and not isinstance(allow_instance_pool_create, bool):
             raise TypeError("Expected argument 'allow_instance_pool_create' to be a bool")
         pulumi.set(__self__, "allow_instance_pool_create", allow_instance_pool_create)
-        if allow_sql_analytics_access and not isinstance(allow_sql_analytics_access, bool):
-            raise TypeError("Expected argument 'allow_sql_analytics_access' to be a bool")
-        pulumi.set(__self__, "allow_sql_analytics_access", allow_sql_analytics_access)
+        if databricks_sql_access and not isinstance(databricks_sql_access, bool):
+            raise TypeError("Expected argument 'databricks_sql_access' to be a bool")
+        pulumi.set(__self__, "databricks_sql_access", databricks_sql_access)
         if display_name and not isinstance(display_name, str):
             raise TypeError("Expected argument 'display_name' to be a str")
         pulumi.set(__self__, "display_name", display_name)
+        if external_id and not isinstance(external_id, str):
+            raise TypeError("Expected argument 'external_id' to be a str")
+        pulumi.set(__self__, "external_id", external_id)
         if groups and not isinstance(groups, list):
             raise TypeError("Expected argument 'groups' to be a list")
         pulumi.set(__self__, "groups", groups)
@@ -62,14 +65,19 @@ class GetGroupResult:
         return pulumi.get(self, "allow_instance_pool_create")
 
     @property
-    @pulumi.getter(name="allowSqlAnalyticsAccess")
-    def allow_sql_analytics_access(self) -> Optional[bool]:
-        return pulumi.get(self, "allow_sql_analytics_access")
+    @pulumi.getter(name="databricksSqlAccess")
+    def databricks_sql_access(self) -> Optional[bool]:
+        return pulumi.get(self, "databricks_sql_access")
 
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> str:
         return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> str:
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter
@@ -113,8 +121,9 @@ class AwaitableGetGroupResult(GetGroupResult):
         return GetGroupResult(
             allow_cluster_create=self.allow_cluster_create,
             allow_instance_pool_create=self.allow_instance_pool_create,
-            allow_sql_analytics_access=self.allow_sql_analytics_access,
+            databricks_sql_access=self.databricks_sql_access,
             display_name=self.display_name,
+            external_id=self.external_id,
             groups=self.groups,
             id=self.id,
             instance_profiles=self.instance_profiles,
@@ -125,8 +134,9 @@ class AwaitableGetGroupResult(GetGroupResult):
 
 def get_group(allow_cluster_create: Optional[bool] = None,
               allow_instance_pool_create: Optional[bool] = None,
-              allow_sql_analytics_access: Optional[bool] = None,
+              databricks_sql_access: Optional[bool] = None,
               display_name: Optional[str] = None,
+              external_id: Optional[str] = None,
               groups: Optional[Sequence[str]] = None,
               instance_profiles: Optional[Sequence[str]] = None,
               members: Optional[Sequence[str]] = None,
@@ -139,8 +149,9 @@ def get_group(allow_cluster_create: Optional[bool] = None,
     __args__ = dict()
     __args__['allowClusterCreate'] = allow_cluster_create
     __args__['allowInstancePoolCreate'] = allow_instance_pool_create
-    __args__['allowSqlAnalyticsAccess'] = allow_sql_analytics_access
+    __args__['databricksSqlAccess'] = databricks_sql_access
     __args__['displayName'] = display_name
+    __args__['externalId'] = external_id
     __args__['groups'] = groups
     __args__['instanceProfiles'] = instance_profiles
     __args__['members'] = members
@@ -155,8 +166,9 @@ def get_group(allow_cluster_create: Optional[bool] = None,
     return AwaitableGetGroupResult(
         allow_cluster_create=__ret__.allow_cluster_create,
         allow_instance_pool_create=__ret__.allow_instance_pool_create,
-        allow_sql_analytics_access=__ret__.allow_sql_analytics_access,
+        databricks_sql_access=__ret__.databricks_sql_access,
         display_name=__ret__.display_name,
+        external_id=__ret__.external_id,
         groups=__ret__.groups,
         id=__ret__.id,
         instance_profiles=__ret__.instance_profiles,

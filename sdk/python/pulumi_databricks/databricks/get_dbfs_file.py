@@ -25,20 +25,12 @@ class GetDbfsFileResult:
         pulumi.set(__self__, "content", content)
         if file_size and not isinstance(file_size, int):
             raise TypeError("Expected argument 'file_size' to be a int")
-        if file_size is not None:
-            warnings.warn("""Rename to size?...""", DeprecationWarning)
-            pulumi.log.warn("""file_size is deprecated: Rename to size?...""")
-
         pulumi.set(__self__, "file_size", file_size)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if limit_file_size and not isinstance(limit_file_size, bool):
             raise TypeError("Expected argument 'limit_file_size' to be a bool")
-        if limit_file_size is not None:
-            warnings.warn("""Would become client property""", DeprecationWarning)
-            pulumi.log.warn("""limit_file_size is deprecated: Would become client property""")
-
         pulumi.set(__self__, "limit_file_size", limit_file_size)
         if path and not isinstance(path, str):
             raise TypeError("Expected argument 'path' to be a str")

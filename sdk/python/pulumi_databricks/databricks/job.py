@@ -18,6 +18,7 @@ class JobArgs:
                  always_running: Optional[pulumi.Input[bool]] = None,
                  email_notifications: Optional[pulumi.Input['JobEmailNotificationsArgs']] = None,
                  existing_cluster_id: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
                  libraries: Optional[pulumi.Input[Sequence[pulumi.Input['JobLibraryArgs']]]] = None,
                  max_concurrent_runs: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -25,11 +26,14 @@ class JobArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  new_cluster: Optional[pulumi.Input['JobNewClusterArgs']] = None,
                  notebook_task: Optional[pulumi.Input['JobNotebookTaskArgs']] = None,
+                 pipeline_task: Optional[pulumi.Input['JobPipelineTaskArgs']] = None,
+                 python_wheel_task: Optional[pulumi.Input['JobPythonWheelTaskArgs']] = None,
                  retry_on_timeout: Optional[pulumi.Input[bool]] = None,
                  schedule: Optional[pulumi.Input['JobScheduleArgs']] = None,
                  spark_jar_task: Optional[pulumi.Input['JobSparkJarTaskArgs']] = None,
                  spark_python_task: Optional[pulumi.Input['JobSparkPythonTaskArgs']] = None,
                  spark_submit_task: Optional[pulumi.Input['JobSparkSubmitTaskArgs']] = None,
+                 tasks: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskArgs']]]] = None,
                  timeout_seconds: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a Job resource.
@@ -40,6 +44,8 @@ class JobArgs:
             pulumi.set(__self__, "email_notifications", email_notifications)
         if existing_cluster_id is not None:
             pulumi.set(__self__, "existing_cluster_id", existing_cluster_id)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
         if libraries is not None:
             pulumi.set(__self__, "libraries", libraries)
         if max_concurrent_runs is not None:
@@ -54,6 +60,10 @@ class JobArgs:
             pulumi.set(__self__, "new_cluster", new_cluster)
         if notebook_task is not None:
             pulumi.set(__self__, "notebook_task", notebook_task)
+        if pipeline_task is not None:
+            pulumi.set(__self__, "pipeline_task", pipeline_task)
+        if python_wheel_task is not None:
+            pulumi.set(__self__, "python_wheel_task", python_wheel_task)
         if retry_on_timeout is not None:
             pulumi.set(__self__, "retry_on_timeout", retry_on_timeout)
         if schedule is not None:
@@ -64,6 +74,8 @@ class JobArgs:
             pulumi.set(__self__, "spark_python_task", spark_python_task)
         if spark_submit_task is not None:
             pulumi.set(__self__, "spark_submit_task", spark_submit_task)
+        if tasks is not None:
+            pulumi.set(__self__, "tasks", tasks)
         if timeout_seconds is not None:
             pulumi.set(__self__, "timeout_seconds", timeout_seconds)
 
@@ -93,6 +105,15 @@ class JobArgs:
     @existing_cluster_id.setter
     def existing_cluster_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "existing_cluster_id", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
 
     @property
     @pulumi.getter
@@ -158,6 +179,24 @@ class JobArgs:
         pulumi.set(self, "notebook_task", value)
 
     @property
+    @pulumi.getter(name="pipelineTask")
+    def pipeline_task(self) -> Optional[pulumi.Input['JobPipelineTaskArgs']]:
+        return pulumi.get(self, "pipeline_task")
+
+    @pipeline_task.setter
+    def pipeline_task(self, value: Optional[pulumi.Input['JobPipelineTaskArgs']]):
+        pulumi.set(self, "pipeline_task", value)
+
+    @property
+    @pulumi.getter(name="pythonWheelTask")
+    def python_wheel_task(self) -> Optional[pulumi.Input['JobPythonWheelTaskArgs']]:
+        return pulumi.get(self, "python_wheel_task")
+
+    @python_wheel_task.setter
+    def python_wheel_task(self, value: Optional[pulumi.Input['JobPythonWheelTaskArgs']]):
+        pulumi.set(self, "python_wheel_task", value)
+
+    @property
     @pulumi.getter(name="retryOnTimeout")
     def retry_on_timeout(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "retry_on_timeout")
@@ -203,6 +242,15 @@ class JobArgs:
         pulumi.set(self, "spark_submit_task", value)
 
     @property
+    @pulumi.getter
+    def tasks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskArgs']]]]:
+        return pulumi.get(self, "tasks")
+
+    @tasks.setter
+    def tasks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskArgs']]]]):
+        pulumi.set(self, "tasks", value)
+
+    @property
     @pulumi.getter(name="timeoutSeconds")
     def timeout_seconds(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "timeout_seconds")
@@ -218,6 +266,7 @@ class _JobState:
                  always_running: Optional[pulumi.Input[bool]] = None,
                  email_notifications: Optional[pulumi.Input['JobEmailNotificationsArgs']] = None,
                  existing_cluster_id: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
                  libraries: Optional[pulumi.Input[Sequence[pulumi.Input['JobLibraryArgs']]]] = None,
                  max_concurrent_runs: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -225,11 +274,14 @@ class _JobState:
                  name: Optional[pulumi.Input[str]] = None,
                  new_cluster: Optional[pulumi.Input['JobNewClusterArgs']] = None,
                  notebook_task: Optional[pulumi.Input['JobNotebookTaskArgs']] = None,
+                 pipeline_task: Optional[pulumi.Input['JobPipelineTaskArgs']] = None,
+                 python_wheel_task: Optional[pulumi.Input['JobPythonWheelTaskArgs']] = None,
                  retry_on_timeout: Optional[pulumi.Input[bool]] = None,
                  schedule: Optional[pulumi.Input['JobScheduleArgs']] = None,
                  spark_jar_task: Optional[pulumi.Input['JobSparkJarTaskArgs']] = None,
                  spark_python_task: Optional[pulumi.Input['JobSparkPythonTaskArgs']] = None,
                  spark_submit_task: Optional[pulumi.Input['JobSparkSubmitTaskArgs']] = None,
+                 tasks: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskArgs']]]] = None,
                  timeout_seconds: Optional[pulumi.Input[int]] = None,
                  url: Optional[pulumi.Input[str]] = None):
         """
@@ -241,6 +293,8 @@ class _JobState:
             pulumi.set(__self__, "email_notifications", email_notifications)
         if existing_cluster_id is not None:
             pulumi.set(__self__, "existing_cluster_id", existing_cluster_id)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
         if libraries is not None:
             pulumi.set(__self__, "libraries", libraries)
         if max_concurrent_runs is not None:
@@ -255,6 +309,10 @@ class _JobState:
             pulumi.set(__self__, "new_cluster", new_cluster)
         if notebook_task is not None:
             pulumi.set(__self__, "notebook_task", notebook_task)
+        if pipeline_task is not None:
+            pulumi.set(__self__, "pipeline_task", pipeline_task)
+        if python_wheel_task is not None:
+            pulumi.set(__self__, "python_wheel_task", python_wheel_task)
         if retry_on_timeout is not None:
             pulumi.set(__self__, "retry_on_timeout", retry_on_timeout)
         if schedule is not None:
@@ -265,6 +323,8 @@ class _JobState:
             pulumi.set(__self__, "spark_python_task", spark_python_task)
         if spark_submit_task is not None:
             pulumi.set(__self__, "spark_submit_task", spark_submit_task)
+        if tasks is not None:
+            pulumi.set(__self__, "tasks", tasks)
         if timeout_seconds is not None:
             pulumi.set(__self__, "timeout_seconds", timeout_seconds)
         if url is not None:
@@ -299,6 +359,15 @@ class _JobState:
 
     @property
     @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter
     def libraries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobLibraryArgs']]]]:
         return pulumi.get(self, "libraries")
 
@@ -361,6 +430,24 @@ class _JobState:
         pulumi.set(self, "notebook_task", value)
 
     @property
+    @pulumi.getter(name="pipelineTask")
+    def pipeline_task(self) -> Optional[pulumi.Input['JobPipelineTaskArgs']]:
+        return pulumi.get(self, "pipeline_task")
+
+    @pipeline_task.setter
+    def pipeline_task(self, value: Optional[pulumi.Input['JobPipelineTaskArgs']]):
+        pulumi.set(self, "pipeline_task", value)
+
+    @property
+    @pulumi.getter(name="pythonWheelTask")
+    def python_wheel_task(self) -> Optional[pulumi.Input['JobPythonWheelTaskArgs']]:
+        return pulumi.get(self, "python_wheel_task")
+
+    @python_wheel_task.setter
+    def python_wheel_task(self, value: Optional[pulumi.Input['JobPythonWheelTaskArgs']]):
+        pulumi.set(self, "python_wheel_task", value)
+
+    @property
     @pulumi.getter(name="retryOnTimeout")
     def retry_on_timeout(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "retry_on_timeout")
@@ -406,6 +493,15 @@ class _JobState:
         pulumi.set(self, "spark_submit_task", value)
 
     @property
+    @pulumi.getter
+    def tasks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskArgs']]]]:
+        return pulumi.get(self, "tasks")
+
+    @tasks.setter
+    def tasks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskArgs']]]]):
+        pulumi.set(self, "tasks", value)
+
+    @property
     @pulumi.getter(name="timeoutSeconds")
     def timeout_seconds(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "timeout_seconds")
@@ -432,6 +528,7 @@ class Job(pulumi.CustomResource):
                  always_running: Optional[pulumi.Input[bool]] = None,
                  email_notifications: Optional[pulumi.Input[pulumi.InputType['JobEmailNotificationsArgs']]] = None,
                  existing_cluster_id: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
                  libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobLibraryArgs']]]]] = None,
                  max_concurrent_runs: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -439,11 +536,14 @@ class Job(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  new_cluster: Optional[pulumi.Input[pulumi.InputType['JobNewClusterArgs']]] = None,
                  notebook_task: Optional[pulumi.Input[pulumi.InputType['JobNotebookTaskArgs']]] = None,
+                 pipeline_task: Optional[pulumi.Input[pulumi.InputType['JobPipelineTaskArgs']]] = None,
+                 python_wheel_task: Optional[pulumi.Input[pulumi.InputType['JobPythonWheelTaskArgs']]] = None,
                  retry_on_timeout: Optional[pulumi.Input[bool]] = None,
                  schedule: Optional[pulumi.Input[pulumi.InputType['JobScheduleArgs']]] = None,
                  spark_jar_task: Optional[pulumi.Input[pulumi.InputType['JobSparkJarTaskArgs']]] = None,
                  spark_python_task: Optional[pulumi.Input[pulumi.InputType['JobSparkPythonTaskArgs']]] = None,
                  spark_submit_task: Optional[pulumi.Input[pulumi.InputType['JobSparkSubmitTaskArgs']]] = None,
+                 tasks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobTaskArgs']]]]] = None,
                  timeout_seconds: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -477,6 +577,7 @@ class Job(pulumi.CustomResource):
                  always_running: Optional[pulumi.Input[bool]] = None,
                  email_notifications: Optional[pulumi.Input[pulumi.InputType['JobEmailNotificationsArgs']]] = None,
                  existing_cluster_id: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
                  libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobLibraryArgs']]]]] = None,
                  max_concurrent_runs: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -484,11 +585,14 @@ class Job(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  new_cluster: Optional[pulumi.Input[pulumi.InputType['JobNewClusterArgs']]] = None,
                  notebook_task: Optional[pulumi.Input[pulumi.InputType['JobNotebookTaskArgs']]] = None,
+                 pipeline_task: Optional[pulumi.Input[pulumi.InputType['JobPipelineTaskArgs']]] = None,
+                 python_wheel_task: Optional[pulumi.Input[pulumi.InputType['JobPythonWheelTaskArgs']]] = None,
                  retry_on_timeout: Optional[pulumi.Input[bool]] = None,
                  schedule: Optional[pulumi.Input[pulumi.InputType['JobScheduleArgs']]] = None,
                  spark_jar_task: Optional[pulumi.Input[pulumi.InputType['JobSparkJarTaskArgs']]] = None,
                  spark_python_task: Optional[pulumi.Input[pulumi.InputType['JobSparkPythonTaskArgs']]] = None,
                  spark_submit_task: Optional[pulumi.Input[pulumi.InputType['JobSparkSubmitTaskArgs']]] = None,
+                 tasks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobTaskArgs']]]]] = None,
                  timeout_seconds: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         if opts is None:
@@ -505,6 +609,7 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["always_running"] = always_running
             __props__.__dict__["email_notifications"] = email_notifications
             __props__.__dict__["existing_cluster_id"] = existing_cluster_id
+            __props__.__dict__["format"] = format
             __props__.__dict__["libraries"] = libraries
             __props__.__dict__["max_concurrent_runs"] = max_concurrent_runs
             __props__.__dict__["max_retries"] = max_retries
@@ -512,11 +617,14 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["new_cluster"] = new_cluster
             __props__.__dict__["notebook_task"] = notebook_task
+            __props__.__dict__["pipeline_task"] = pipeline_task
+            __props__.__dict__["python_wheel_task"] = python_wheel_task
             __props__.__dict__["retry_on_timeout"] = retry_on_timeout
             __props__.__dict__["schedule"] = schedule
             __props__.__dict__["spark_jar_task"] = spark_jar_task
             __props__.__dict__["spark_python_task"] = spark_python_task
             __props__.__dict__["spark_submit_task"] = spark_submit_task
+            __props__.__dict__["tasks"] = tasks
             __props__.__dict__["timeout_seconds"] = timeout_seconds
             __props__.__dict__["url"] = None
         super(Job, __self__).__init__(
@@ -532,6 +640,7 @@ class Job(pulumi.CustomResource):
             always_running: Optional[pulumi.Input[bool]] = None,
             email_notifications: Optional[pulumi.Input[pulumi.InputType['JobEmailNotificationsArgs']]] = None,
             existing_cluster_id: Optional[pulumi.Input[str]] = None,
+            format: Optional[pulumi.Input[str]] = None,
             libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobLibraryArgs']]]]] = None,
             max_concurrent_runs: Optional[pulumi.Input[int]] = None,
             max_retries: Optional[pulumi.Input[int]] = None,
@@ -539,11 +648,14 @@ class Job(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             new_cluster: Optional[pulumi.Input[pulumi.InputType['JobNewClusterArgs']]] = None,
             notebook_task: Optional[pulumi.Input[pulumi.InputType['JobNotebookTaskArgs']]] = None,
+            pipeline_task: Optional[pulumi.Input[pulumi.InputType['JobPipelineTaskArgs']]] = None,
+            python_wheel_task: Optional[pulumi.Input[pulumi.InputType['JobPythonWheelTaskArgs']]] = None,
             retry_on_timeout: Optional[pulumi.Input[bool]] = None,
             schedule: Optional[pulumi.Input[pulumi.InputType['JobScheduleArgs']]] = None,
             spark_jar_task: Optional[pulumi.Input[pulumi.InputType['JobSparkJarTaskArgs']]] = None,
             spark_python_task: Optional[pulumi.Input[pulumi.InputType['JobSparkPythonTaskArgs']]] = None,
             spark_submit_task: Optional[pulumi.Input[pulumi.InputType['JobSparkSubmitTaskArgs']]] = None,
+            tasks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobTaskArgs']]]]] = None,
             timeout_seconds: Optional[pulumi.Input[int]] = None,
             url: Optional[pulumi.Input[str]] = None) -> 'Job':
         """
@@ -561,6 +673,7 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["always_running"] = always_running
         __props__.__dict__["email_notifications"] = email_notifications
         __props__.__dict__["existing_cluster_id"] = existing_cluster_id
+        __props__.__dict__["format"] = format
         __props__.__dict__["libraries"] = libraries
         __props__.__dict__["max_concurrent_runs"] = max_concurrent_runs
         __props__.__dict__["max_retries"] = max_retries
@@ -568,11 +681,14 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["new_cluster"] = new_cluster
         __props__.__dict__["notebook_task"] = notebook_task
+        __props__.__dict__["pipeline_task"] = pipeline_task
+        __props__.__dict__["python_wheel_task"] = python_wheel_task
         __props__.__dict__["retry_on_timeout"] = retry_on_timeout
         __props__.__dict__["schedule"] = schedule
         __props__.__dict__["spark_jar_task"] = spark_jar_task
         __props__.__dict__["spark_python_task"] = spark_python_task
         __props__.__dict__["spark_submit_task"] = spark_submit_task
+        __props__.__dict__["tasks"] = tasks
         __props__.__dict__["timeout_seconds"] = timeout_seconds
         __props__.__dict__["url"] = url
         return Job(resource_name, opts=opts, __props__=__props__)
@@ -591,6 +707,11 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="existingClusterId")
     def existing_cluster_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "existing_cluster_id")
+
+    @property
+    @pulumi.getter
+    def format(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "format")
 
     @property
     @pulumi.getter
@@ -628,6 +749,16 @@ class Job(pulumi.CustomResource):
         return pulumi.get(self, "notebook_task")
 
     @property
+    @pulumi.getter(name="pipelineTask")
+    def pipeline_task(self) -> pulumi.Output[Optional['outputs.JobPipelineTask']]:
+        return pulumi.get(self, "pipeline_task")
+
+    @property
+    @pulumi.getter(name="pythonWheelTask")
+    def python_wheel_task(self) -> pulumi.Output[Optional['outputs.JobPythonWheelTask']]:
+        return pulumi.get(self, "python_wheel_task")
+
+    @property
     @pulumi.getter(name="retryOnTimeout")
     def retry_on_timeout(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "retry_on_timeout")
@@ -651,6 +782,11 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="sparkSubmitTask")
     def spark_submit_task(self) -> pulumi.Output[Optional['outputs.JobSparkSubmitTask']]:
         return pulumi.get(self, "spark_submit_task")
+
+    @property
+    @pulumi.getter
+    def tasks(self) -> pulumi.Output[Optional[Sequence['outputs.JobTask']]]:
+        return pulumi.get(self, "tasks")
 
     @property
     @pulumi.getter(name="timeoutSeconds")

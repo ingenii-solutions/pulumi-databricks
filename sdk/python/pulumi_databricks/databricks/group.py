@@ -16,7 +16,8 @@ class GroupArgs:
                  display_name: pulumi.Input[str],
                  allow_cluster_create: Optional[pulumi.Input[bool]] = None,
                  allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-                 allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
+                 databricks_sql_access: Optional[pulumi.Input[bool]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Group resource.
@@ -26,8 +27,10 @@ class GroupArgs:
             pulumi.set(__self__, "allow_cluster_create", allow_cluster_create)
         if allow_instance_pool_create is not None:
             pulumi.set(__self__, "allow_instance_pool_create", allow_instance_pool_create)
-        if allow_sql_analytics_access is not None:
-            pulumi.set(__self__, "allow_sql_analytics_access", allow_sql_analytics_access)
+        if databricks_sql_access is not None:
+            pulumi.set(__self__, "databricks_sql_access", databricks_sql_access)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if workspace_access is not None:
             pulumi.set(__self__, "workspace_access", workspace_access)
 
@@ -59,13 +62,22 @@ class GroupArgs:
         pulumi.set(self, "allow_instance_pool_create", value)
 
     @property
-    @pulumi.getter(name="allowSqlAnalyticsAccess")
-    def allow_sql_analytics_access(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "allow_sql_analytics_access")
+    @pulumi.getter(name="databricksSqlAccess")
+    def databricks_sql_access(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "databricks_sql_access")
 
-    @allow_sql_analytics_access.setter
-    def allow_sql_analytics_access(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "allow_sql_analytics_access", value)
+    @databricks_sql_access.setter
+    def databricks_sql_access(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "databricks_sql_access", value)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
 
     @property
     @pulumi.getter(name="workspaceAccess")
@@ -82,8 +94,9 @@ class _GroupState:
     def __init__(__self__, *,
                  allow_cluster_create: Optional[pulumi.Input[bool]] = None,
                  allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-                 allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
+                 databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None):
         """
@@ -93,10 +106,12 @@ class _GroupState:
             pulumi.set(__self__, "allow_cluster_create", allow_cluster_create)
         if allow_instance_pool_create is not None:
             pulumi.set(__self__, "allow_instance_pool_create", allow_instance_pool_create)
-        if allow_sql_analytics_access is not None:
-            pulumi.set(__self__, "allow_sql_analytics_access", allow_sql_analytics_access)
+        if databricks_sql_access is not None:
+            pulumi.set(__self__, "databricks_sql_access", databricks_sql_access)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if workspace_access is not None:
@@ -121,13 +136,13 @@ class _GroupState:
         pulumi.set(self, "allow_instance_pool_create", value)
 
     @property
-    @pulumi.getter(name="allowSqlAnalyticsAccess")
-    def allow_sql_analytics_access(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "allow_sql_analytics_access")
+    @pulumi.getter(name="databricksSqlAccess")
+    def databricks_sql_access(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "databricks_sql_access")
 
-    @allow_sql_analytics_access.setter
-    def allow_sql_analytics_access(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "allow_sql_analytics_access", value)
+    @databricks_sql_access.setter
+    def databricks_sql_access(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "databricks_sql_access", value)
 
     @property
     @pulumi.getter(name="displayName")
@@ -137,6 +152,15 @@ class _GroupState:
     @display_name.setter
     def display_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
 
     @property
     @pulumi.getter
@@ -164,8 +188,9 @@ class Group(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_cluster_create: Optional[pulumi.Input[bool]] = None,
                  allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-                 allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
+                 databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -198,8 +223,9 @@ class Group(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_cluster_create: Optional[pulumi.Input[bool]] = None,
                  allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-                 allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
+                 databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
@@ -215,10 +241,11 @@ class Group(pulumi.CustomResource):
 
             __props__.__dict__["allow_cluster_create"] = allow_cluster_create
             __props__.__dict__["allow_instance_pool_create"] = allow_instance_pool_create
-            __props__.__dict__["allow_sql_analytics_access"] = allow_sql_analytics_access
+            __props__.__dict__["databricks_sql_access"] = databricks_sql_access
             if display_name is None and not opts.urn:
                 raise TypeError("Missing required property 'display_name'")
             __props__.__dict__["display_name"] = display_name
+            __props__.__dict__["external_id"] = external_id
             __props__.__dict__["workspace_access"] = workspace_access
             __props__.__dict__["url"] = None
         super(Group, __self__).__init__(
@@ -233,8 +260,9 @@ class Group(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_cluster_create: Optional[pulumi.Input[bool]] = None,
             allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-            allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
+            databricks_sql_access: Optional[pulumi.Input[bool]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
+            external_id: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None,
             workspace_access: Optional[pulumi.Input[bool]] = None) -> 'Group':
         """
@@ -251,8 +279,9 @@ class Group(pulumi.CustomResource):
 
         __props__.__dict__["allow_cluster_create"] = allow_cluster_create
         __props__.__dict__["allow_instance_pool_create"] = allow_instance_pool_create
-        __props__.__dict__["allow_sql_analytics_access"] = allow_sql_analytics_access
+        __props__.__dict__["databricks_sql_access"] = databricks_sql_access
         __props__.__dict__["display_name"] = display_name
+        __props__.__dict__["external_id"] = external_id
         __props__.__dict__["url"] = url
         __props__.__dict__["workspace_access"] = workspace_access
         return Group(resource_name, opts=opts, __props__=__props__)
@@ -268,14 +297,19 @@ class Group(pulumi.CustomResource):
         return pulumi.get(self, "allow_instance_pool_create")
 
     @property
-    @pulumi.getter(name="allowSqlAnalyticsAccess")
-    def allow_sql_analytics_access(self) -> pulumi.Output[Optional[bool]]:
-        return pulumi.get(self, "allow_sql_analytics_access")
+    @pulumi.getter(name="databricksSqlAccess")
+    def databricks_sql_access(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "databricks_sql_access")
 
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter

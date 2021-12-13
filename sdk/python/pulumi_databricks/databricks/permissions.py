@@ -26,6 +26,8 @@ class PermissionsArgs:
                  notebook_id: Optional[pulumi.Input[str]] = None,
                  notebook_path: Optional[pulumi.Input[str]] = None,
                  object_type: Optional[pulumi.Input[str]] = None,
+                 repo_id: Optional[pulumi.Input[str]] = None,
+                 repo_path: Optional[pulumi.Input[str]] = None,
                  sql_alert_id: Optional[pulumi.Input[str]] = None,
                  sql_dashboard_id: Optional[pulumi.Input[str]] = None,
                  sql_endpoint_id: Optional[pulumi.Input[str]] = None,
@@ -54,6 +56,10 @@ class PermissionsArgs:
             pulumi.set(__self__, "notebook_path", notebook_path)
         if object_type is not None:
             pulumi.set(__self__, "object_type", object_type)
+        if repo_id is not None:
+            pulumi.set(__self__, "repo_id", repo_id)
+        if repo_path is not None:
+            pulumi.set(__self__, "repo_path", repo_path)
         if sql_alert_id is not None:
             pulumi.set(__self__, "sql_alert_id", sql_alert_id)
         if sql_dashboard_id is not None:
@@ -163,6 +169,24 @@ class PermissionsArgs:
         pulumi.set(self, "object_type", value)
 
     @property
+    @pulumi.getter(name="repoId")
+    def repo_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "repo_id")
+
+    @repo_id.setter
+    def repo_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repo_id", value)
+
+    @property
+    @pulumi.getter(name="repoPath")
+    def repo_path(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "repo_path")
+
+    @repo_path.setter
+    def repo_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repo_path", value)
+
+    @property
     @pulumi.getter(name="sqlAlertId")
     def sql_alert_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "sql_alert_id")
@@ -213,6 +237,8 @@ class _PermissionsState:
                  notebook_id: Optional[pulumi.Input[str]] = None,
                  notebook_path: Optional[pulumi.Input[str]] = None,
                  object_type: Optional[pulumi.Input[str]] = None,
+                 repo_id: Optional[pulumi.Input[str]] = None,
+                 repo_path: Optional[pulumi.Input[str]] = None,
                  sql_alert_id: Optional[pulumi.Input[str]] = None,
                  sql_dashboard_id: Optional[pulumi.Input[str]] = None,
                  sql_endpoint_id: Optional[pulumi.Input[str]] = None,
@@ -242,6 +268,10 @@ class _PermissionsState:
             pulumi.set(__self__, "notebook_path", notebook_path)
         if object_type is not None:
             pulumi.set(__self__, "object_type", object_type)
+        if repo_id is not None:
+            pulumi.set(__self__, "repo_id", repo_id)
+        if repo_path is not None:
+            pulumi.set(__self__, "repo_path", repo_path)
         if sql_alert_id is not None:
             pulumi.set(__self__, "sql_alert_id", sql_alert_id)
         if sql_dashboard_id is not None:
@@ -351,6 +381,24 @@ class _PermissionsState:
         pulumi.set(self, "object_type", value)
 
     @property
+    @pulumi.getter(name="repoId")
+    def repo_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "repo_id")
+
+    @repo_id.setter
+    def repo_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repo_id", value)
+
+    @property
+    @pulumi.getter(name="repoPath")
+    def repo_path(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "repo_path")
+
+    @repo_path.setter
+    def repo_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repo_path", value)
+
+    @property
     @pulumi.getter(name="sqlAlertId")
     def sql_alert_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "sql_alert_id")
@@ -403,6 +451,8 @@ class Permissions(pulumi.CustomResource):
                  notebook_id: Optional[pulumi.Input[str]] = None,
                  notebook_path: Optional[pulumi.Input[str]] = None,
                  object_type: Optional[pulumi.Input[str]] = None,
+                 repo_id: Optional[pulumi.Input[str]] = None,
+                 repo_path: Optional[pulumi.Input[str]] = None,
                  sql_alert_id: Optional[pulumi.Input[str]] = None,
                  sql_dashboard_id: Optional[pulumi.Input[str]] = None,
                  sql_endpoint_id: Optional[pulumi.Input[str]] = None,
@@ -447,6 +497,8 @@ class Permissions(pulumi.CustomResource):
                  notebook_id: Optional[pulumi.Input[str]] = None,
                  notebook_path: Optional[pulumi.Input[str]] = None,
                  object_type: Optional[pulumi.Input[str]] = None,
+                 repo_id: Optional[pulumi.Input[str]] = None,
+                 repo_path: Optional[pulumi.Input[str]] = None,
                  sql_alert_id: Optional[pulumi.Input[str]] = None,
                  sql_dashboard_id: Optional[pulumi.Input[str]] = None,
                  sql_endpoint_id: Optional[pulumi.Input[str]] = None,
@@ -476,6 +528,8 @@ class Permissions(pulumi.CustomResource):
             __props__.__dict__["notebook_id"] = notebook_id
             __props__.__dict__["notebook_path"] = notebook_path
             __props__.__dict__["object_type"] = object_type
+            __props__.__dict__["repo_id"] = repo_id
+            __props__.__dict__["repo_path"] = repo_path
             __props__.__dict__["sql_alert_id"] = sql_alert_id
             __props__.__dict__["sql_dashboard_id"] = sql_dashboard_id
             __props__.__dict__["sql_endpoint_id"] = sql_endpoint_id
@@ -501,6 +555,8 @@ class Permissions(pulumi.CustomResource):
             notebook_id: Optional[pulumi.Input[str]] = None,
             notebook_path: Optional[pulumi.Input[str]] = None,
             object_type: Optional[pulumi.Input[str]] = None,
+            repo_id: Optional[pulumi.Input[str]] = None,
+            repo_path: Optional[pulumi.Input[str]] = None,
             sql_alert_id: Optional[pulumi.Input[str]] = None,
             sql_dashboard_id: Optional[pulumi.Input[str]] = None,
             sql_endpoint_id: Optional[pulumi.Input[str]] = None,
@@ -528,6 +584,8 @@ class Permissions(pulumi.CustomResource):
         __props__.__dict__["notebook_id"] = notebook_id
         __props__.__dict__["notebook_path"] = notebook_path
         __props__.__dict__["object_type"] = object_type
+        __props__.__dict__["repo_id"] = repo_id
+        __props__.__dict__["repo_path"] = repo_path
         __props__.__dict__["sql_alert_id"] = sql_alert_id
         __props__.__dict__["sql_dashboard_id"] = sql_dashboard_id
         __props__.__dict__["sql_endpoint_id"] = sql_endpoint_id
@@ -588,6 +646,16 @@ class Permissions(pulumi.CustomResource):
     @pulumi.getter(name="objectType")
     def object_type(self) -> pulumi.Output[str]:
         return pulumi.get(self, "object_type")
+
+    @property
+    @pulumi.getter(name="repoId")
+    def repo_id(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "repo_id")
+
+    @property
+    @pulumi.getter(name="repoPath")
+    def repo_path(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "repo_path")
 
     @property
     @pulumi.getter(name="sqlAlertId")

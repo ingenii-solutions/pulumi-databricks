@@ -994,7 +994,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="enableLocalDiskEncryption")
-    def enable_local_disk_encryption(self) -> pulumi.Output[Optional[bool]]:
+    def enable_local_disk_encryption(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "enable_local_disk_encryption")
 
     @property

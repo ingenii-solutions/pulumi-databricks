@@ -16,8 +16,8 @@ class ServicePrincipalArgs:
                  active: Optional[pulumi.Input[bool]] = None,
                  allow_cluster_create: Optional[pulumi.Input[bool]] = None,
                  allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-                 allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
                  application_id: Optional[pulumi.Input[str]] = None,
+                 databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None):
         """
@@ -29,10 +29,10 @@ class ServicePrincipalArgs:
             pulumi.set(__self__, "allow_cluster_create", allow_cluster_create)
         if allow_instance_pool_create is not None:
             pulumi.set(__self__, "allow_instance_pool_create", allow_instance_pool_create)
-        if allow_sql_analytics_access is not None:
-            pulumi.set(__self__, "allow_sql_analytics_access", allow_sql_analytics_access)
         if application_id is not None:
             pulumi.set(__self__, "application_id", application_id)
+        if databricks_sql_access is not None:
+            pulumi.set(__self__, "databricks_sql_access", databricks_sql_access)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
         if workspace_access is not None:
@@ -66,15 +66,6 @@ class ServicePrincipalArgs:
         pulumi.set(self, "allow_instance_pool_create", value)
 
     @property
-    @pulumi.getter(name="allowSqlAnalyticsAccess")
-    def allow_sql_analytics_access(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "allow_sql_analytics_access")
-
-    @allow_sql_analytics_access.setter
-    def allow_sql_analytics_access(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "allow_sql_analytics_access", value)
-
-    @property
     @pulumi.getter(name="applicationId")
     def application_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "application_id")
@@ -82,6 +73,15 @@ class ServicePrincipalArgs:
     @application_id.setter
     def application_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "application_id", value)
+
+    @property
+    @pulumi.getter(name="databricksSqlAccess")
+    def databricks_sql_access(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "databricks_sql_access")
+
+    @databricks_sql_access.setter
+    def databricks_sql_access(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "databricks_sql_access", value)
 
     @property
     @pulumi.getter(name="displayName")
@@ -108,8 +108,8 @@ class _ServicePrincipalState:
                  active: Optional[pulumi.Input[bool]] = None,
                  allow_cluster_create: Optional[pulumi.Input[bool]] = None,
                  allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-                 allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
                  application_id: Optional[pulumi.Input[str]] = None,
+                 databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None):
         """
@@ -121,10 +121,10 @@ class _ServicePrincipalState:
             pulumi.set(__self__, "allow_cluster_create", allow_cluster_create)
         if allow_instance_pool_create is not None:
             pulumi.set(__self__, "allow_instance_pool_create", allow_instance_pool_create)
-        if allow_sql_analytics_access is not None:
-            pulumi.set(__self__, "allow_sql_analytics_access", allow_sql_analytics_access)
         if application_id is not None:
             pulumi.set(__self__, "application_id", application_id)
+        if databricks_sql_access is not None:
+            pulumi.set(__self__, "databricks_sql_access", databricks_sql_access)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
         if workspace_access is not None:
@@ -158,15 +158,6 @@ class _ServicePrincipalState:
         pulumi.set(self, "allow_instance_pool_create", value)
 
     @property
-    @pulumi.getter(name="allowSqlAnalyticsAccess")
-    def allow_sql_analytics_access(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "allow_sql_analytics_access")
-
-    @allow_sql_analytics_access.setter
-    def allow_sql_analytics_access(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "allow_sql_analytics_access", value)
-
-    @property
     @pulumi.getter(name="applicationId")
     def application_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "application_id")
@@ -174,6 +165,15 @@ class _ServicePrincipalState:
     @application_id.setter
     def application_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "application_id", value)
+
+    @property
+    @pulumi.getter(name="databricksSqlAccess")
+    def databricks_sql_access(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "databricks_sql_access")
+
+    @databricks_sql_access.setter
+    def databricks_sql_access(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "databricks_sql_access", value)
 
     @property
     @pulumi.getter(name="displayName")
@@ -202,8 +202,8 @@ class ServicePrincipal(pulumi.CustomResource):
                  active: Optional[pulumi.Input[bool]] = None,
                  allow_cluster_create: Optional[pulumi.Input[bool]] = None,
                  allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-                 allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
                  application_id: Optional[pulumi.Input[str]] = None,
+                 databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -238,8 +238,8 @@ class ServicePrincipal(pulumi.CustomResource):
                  active: Optional[pulumi.Input[bool]] = None,
                  allow_cluster_create: Optional[pulumi.Input[bool]] = None,
                  allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-                 allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
                  application_id: Optional[pulumi.Input[str]] = None,
+                 databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -257,8 +257,8 @@ class ServicePrincipal(pulumi.CustomResource):
             __props__.__dict__["active"] = active
             __props__.__dict__["allow_cluster_create"] = allow_cluster_create
             __props__.__dict__["allow_instance_pool_create"] = allow_instance_pool_create
-            __props__.__dict__["allow_sql_analytics_access"] = allow_sql_analytics_access
             __props__.__dict__["application_id"] = application_id
+            __props__.__dict__["databricks_sql_access"] = databricks_sql_access
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["workspace_access"] = workspace_access
         super(ServicePrincipal, __self__).__init__(
@@ -274,8 +274,8 @@ class ServicePrincipal(pulumi.CustomResource):
             active: Optional[pulumi.Input[bool]] = None,
             allow_cluster_create: Optional[pulumi.Input[bool]] = None,
             allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
-            allow_sql_analytics_access: Optional[pulumi.Input[bool]] = None,
             application_id: Optional[pulumi.Input[str]] = None,
+            databricks_sql_access: Optional[pulumi.Input[bool]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             workspace_access: Optional[pulumi.Input[bool]] = None) -> 'ServicePrincipal':
         """
@@ -293,8 +293,8 @@ class ServicePrincipal(pulumi.CustomResource):
         __props__.__dict__["active"] = active
         __props__.__dict__["allow_cluster_create"] = allow_cluster_create
         __props__.__dict__["allow_instance_pool_create"] = allow_instance_pool_create
-        __props__.__dict__["allow_sql_analytics_access"] = allow_sql_analytics_access
         __props__.__dict__["application_id"] = application_id
+        __props__.__dict__["databricks_sql_access"] = databricks_sql_access
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["workspace_access"] = workspace_access
         return ServicePrincipal(resource_name, opts=opts, __props__=__props__)
@@ -315,14 +315,14 @@ class ServicePrincipal(pulumi.CustomResource):
         return pulumi.get(self, "allow_instance_pool_create")
 
     @property
-    @pulumi.getter(name="allowSqlAnalyticsAccess")
-    def allow_sql_analytics_access(self) -> pulumi.Output[Optional[bool]]:
-        return pulumi.get(self, "allow_sql_analytics_access")
-
-    @property
     @pulumi.getter(name="applicationId")
     def application_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "application_id")
+
+    @property
+    @pulumi.getter(name="databricksSqlAccess")
+    def databricks_sql_access(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "databricks_sql_access")
 
     @property
     @pulumi.getter(name="displayName")

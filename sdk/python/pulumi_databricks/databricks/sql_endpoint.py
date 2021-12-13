@@ -19,6 +19,7 @@ class SqlEndpointArgs:
                  auto_stop_mins: Optional[pulumi.Input[int]] = None,
                  data_source_id: Optional[pulumi.Input[str]] = None,
                  enable_photon: Optional[pulumi.Input[bool]] = None,
+                 enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
                  id: Optional[pulumi.Input[str]] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
                  jdbc_url: Optional[pulumi.Input[str]] = None,
@@ -40,6 +41,8 @@ class SqlEndpointArgs:
             pulumi.set(__self__, "data_source_id", data_source_id)
         if enable_photon is not None:
             pulumi.set(__self__, "enable_photon", enable_photon)
+        if enable_serverless_compute is not None:
+            pulumi.set(__self__, "enable_serverless_compute", enable_serverless_compute)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if instance_profile_arn is not None:
@@ -98,6 +101,15 @@ class SqlEndpointArgs:
     @enable_photon.setter
     def enable_photon(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enable_photon", value)
+
+    @property
+    @pulumi.getter(name="enableServerlessCompute")
+    def enable_serverless_compute(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enable_serverless_compute")
+
+    @enable_serverless_compute.setter
+    def enable_serverless_compute(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_serverless_compute", value)
 
     @property
     @pulumi.getter
@@ -206,6 +218,7 @@ class _SqlEndpointState:
                  cluster_size: Optional[pulumi.Input[str]] = None,
                  data_source_id: Optional[pulumi.Input[str]] = None,
                  enable_photon: Optional[pulumi.Input[bool]] = None,
+                 enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
                  id: Optional[pulumi.Input[str]] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
                  jdbc_url: Optional[pulumi.Input[str]] = None,
@@ -228,6 +241,8 @@ class _SqlEndpointState:
             pulumi.set(__self__, "data_source_id", data_source_id)
         if enable_photon is not None:
             pulumi.set(__self__, "enable_photon", enable_photon)
+        if enable_serverless_compute is not None:
+            pulumi.set(__self__, "enable_serverless_compute", enable_serverless_compute)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if instance_profile_arn is not None:
@@ -286,6 +301,15 @@ class _SqlEndpointState:
     @enable_photon.setter
     def enable_photon(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enable_photon", value)
+
+    @property
+    @pulumi.getter(name="enableServerlessCompute")
+    def enable_serverless_compute(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enable_serverless_compute")
+
+    @enable_serverless_compute.setter
+    def enable_serverless_compute(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_serverless_compute", value)
 
     @property
     @pulumi.getter
@@ -396,6 +420,7 @@ class SqlEndpoint(pulumi.CustomResource):
                  cluster_size: Optional[pulumi.Input[str]] = None,
                  data_source_id: Optional[pulumi.Input[str]] = None,
                  enable_photon: Optional[pulumi.Input[bool]] = None,
+                 enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
                  id: Optional[pulumi.Input[str]] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
                  jdbc_url: Optional[pulumi.Input[str]] = None,
@@ -440,6 +465,7 @@ class SqlEndpoint(pulumi.CustomResource):
                  cluster_size: Optional[pulumi.Input[str]] = None,
                  data_source_id: Optional[pulumi.Input[str]] = None,
                  enable_photon: Optional[pulumi.Input[bool]] = None,
+                 enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
                  id: Optional[pulumi.Input[str]] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
                  jdbc_url: Optional[pulumi.Input[str]] = None,
@@ -469,6 +495,7 @@ class SqlEndpoint(pulumi.CustomResource):
             __props__.__dict__["cluster_size"] = cluster_size
             __props__.__dict__["data_source_id"] = data_source_id
             __props__.__dict__["enable_photon"] = enable_photon
+            __props__.__dict__["enable_serverless_compute"] = enable_serverless_compute
             __props__.__dict__["id"] = id
             __props__.__dict__["instance_profile_arn"] = instance_profile_arn
             __props__.__dict__["jdbc_url"] = jdbc_url
@@ -494,6 +521,7 @@ class SqlEndpoint(pulumi.CustomResource):
             cluster_size: Optional[pulumi.Input[str]] = None,
             data_source_id: Optional[pulumi.Input[str]] = None,
             enable_photon: Optional[pulumi.Input[bool]] = None,
+            enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
             id: Optional[pulumi.Input[str]] = None,
             instance_profile_arn: Optional[pulumi.Input[str]] = None,
             jdbc_url: Optional[pulumi.Input[str]] = None,
@@ -521,6 +549,7 @@ class SqlEndpoint(pulumi.CustomResource):
         __props__.__dict__["cluster_size"] = cluster_size
         __props__.__dict__["data_source_id"] = data_source_id
         __props__.__dict__["enable_photon"] = enable_photon
+        __props__.__dict__["enable_serverless_compute"] = enable_serverless_compute
         __props__.__dict__["id"] = id
         __props__.__dict__["instance_profile_arn"] = instance_profile_arn
         __props__.__dict__["jdbc_url"] = jdbc_url
@@ -553,6 +582,11 @@ class SqlEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="enablePhoton")
     def enable_photon(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "enable_photon")
+
+    @property
+    @pulumi.getter(name="enableServerlessCompute")
+    def enable_serverless_compute(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "enable_serverless_compute")
 
     @property
     @pulumi.getter

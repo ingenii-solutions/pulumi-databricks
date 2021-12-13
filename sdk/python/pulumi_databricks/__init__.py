@@ -60,6 +60,14 @@ _utilities.register(
  },
  {
   "pkg": "databricks",
+  "mod": "databricks/catalog",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/catalog:Catalog": "Catalog"
+  }
+ },
+ {
+  "pkg": "databricks",
   "mod": "databricks/cluster",
   "fqn": "pulumi_databricks.databricks",
   "classes": {
@@ -72,6 +80,14 @@ _utilities.register(
   "fqn": "pulumi_databricks.databricks",
   "classes": {
    "databricks:databricks/clusterPolicy:ClusterPolicy": "ClusterPolicy"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/databricksMount",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/databricksMount:DatabricksMount": "DatabricksMount"
   }
  },
  {
@@ -148,6 +164,46 @@ _utilities.register(
  },
  {
   "pkg": "databricks",
+  "mod": "databricks/mLFlowExperiment",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/mLFlowExperiment:MLFlowExperiment": "MLFlowExperiment"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/mLFlowModel",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/mLFlowModel:MLFlowModel": "MLFlowModel"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/metastore",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/metastore:Metastore": "Metastore"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/metastoreAssignment",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/metastoreAssignment:MetastoreAssignment": "MetastoreAssignment"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/metastoreDataAccess",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/metastoreDataAccess:MetastoreDataAccess": "MetastoreDataAccess"
+  }
+ },
+ {
+  "pkg": "databricks",
   "mod": "databricks/mwsCredentials",
   "fqn": "pulumi_databricks.databricks",
   "classes": {
@@ -220,6 +276,14 @@ _utilities.register(
  },
  {
   "pkg": "databricks",
+  "mod": "databricks/oboToken",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/oboToken:OboToken": "OboToken"
+  }
+ },
+ {
+  "pkg": "databricks",
   "mod": "databricks/permissions",
   "fqn": "pulumi_databricks.databricks",
   "classes": {
@@ -232,6 +296,22 @@ _utilities.register(
   "fqn": "pulumi_databricks.databricks",
   "classes": {
    "databricks:databricks/pipeline:Pipeline": "Pipeline"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/repo",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/repo:Repo": "Repo"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/schema",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/schema:Schema": "Schema"
   }
  },
  {
@@ -280,6 +360,14 @@ _utilities.register(
   "fqn": "pulumi_databricks.databricks",
   "classes": {
    "databricks:databricks/sqlEndpoint:SqlEndpoint": "SqlEndpoint"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/sqlGlobalConfig",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/sqlGlobalConfig:SqlGlobalConfig": "SqlGlobalConfig"
   }
  },
  {
