@@ -63,10 +63,14 @@ build_provider_darwin:: tfgen install_plugins
 build_provider_linux:: tfgen install_plugins 
 	(cd provider && GOOS=linux GOARCH=amd64 go build -a -o $(WORKING_DIR)/bin/linux/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
 	(cd bin/linux && tar -czvf pulumi-resource-databricks-v${VERSION}-linux-amd64.tar.gz ./pulumi-resource-databricks && rm ./pulumi-resource-databricks)
+	(cd provider && GOOS=linux GOARCH=arm64 go build -a -o $(WORKING_DIR)/bin/linux/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+	(cd bin/linux && tar -czvf pulumi-resource-databricks-v${VERSION}-linux-arm64.tar.gz ./pulumi-resource-databricks && rm ./pulumi-resource-databricks)
 
 build_provider_windows:: tfgen install_plugins 
 	(cd provider && GOOS=windows GOARCH=amd64 go build -a -o $(WORKING_DIR)/bin/windows/${PROVIDER}.exe -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
 	(cd bin/windows && tar -czvf pulumi-resource-databricks-v${VERSION}-windows-amd64.tar.gz ./pulumi-resource-databricks.exe && rm ./pulumi-resource-databricks)
+	(cd provider && GOOS=windows GOARCH=arm64 go build -a -o $(WORKING_DIR)/bin/windows/${PROVIDER}.exe -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+	(cd bin/windows && tar -czvf pulumi-resource-databricks-v${VERSION}-windows-arm64.tar.gz ./pulumi-resource-databricks.exe && rm ./pulumi-resource-databricks)
 
 build_provider:: build_provider_darwin build_provider_linux build_provider_windows
 
