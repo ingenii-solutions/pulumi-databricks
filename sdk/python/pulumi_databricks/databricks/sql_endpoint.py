@@ -10,27 +10,31 @@ from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['SqlEndpointArgs', 'SqlEndpoint']
+__all__ = ["SqlEndpointArgs", "SqlEndpoint"]
+
 
 @pulumi.input_type
 class SqlEndpointArgs:
-    def __init__(__self__, *,
-                 cluster_size: pulumi.Input[str],
-                 auto_stop_mins: Optional[pulumi.Input[int]] = None,
-                 data_source_id: Optional[pulumi.Input[str]] = None,
-                 enable_photon: Optional[pulumi.Input[bool]] = None,
-                 enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
-                 instance_profile_arn: Optional[pulumi.Input[str]] = None,
-                 jdbc_url: Optional[pulumi.Input[str]] = None,
-                 max_num_clusters: Optional[pulumi.Input[int]] = None,
-                 min_num_clusters: Optional[pulumi.Input[int]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 num_clusters: Optional[pulumi.Input[int]] = None,
-                 odbc_params: Optional[pulumi.Input['SqlEndpointOdbcParamsArgs']] = None,
-                 spot_instance_policy: Optional[pulumi.Input[str]] = None,
-                 state: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input['SqlEndpointTagsArgs']] = None):
+    def __init__(
+        __self__,
+        *,
+        cluster_size: pulumi.Input[str],
+        auto_stop_mins: Optional[pulumi.Input[int]] = None,
+        data_source_id: Optional[pulumi.Input[str]] = None,
+        enable_photon: Optional[pulumi.Input[bool]] = None,
+        enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
+        id: Optional[pulumi.Input[str]] = None,
+        instance_profile_arn: Optional[pulumi.Input[str]] = None,
+        jdbc_url: Optional[pulumi.Input[str]] = None,
+        max_num_clusters: Optional[pulumi.Input[int]] = None,
+        min_num_clusters: Optional[pulumi.Input[int]] = None,
+        name: Optional[pulumi.Input[str]] = None,
+        num_clusters: Optional[pulumi.Input[int]] = None,
+        odbc_params: Optional[pulumi.Input["SqlEndpointOdbcParamsArgs"]] = None,
+        spot_instance_policy: Optional[pulumi.Input[str]] = None,
+        state: Optional[pulumi.Input[str]] = None,
+        tags: Optional[pulumi.Input["SqlEndpointTagsArgs"]] = None
+    ):
         """
         The set of arguments for constructing a SqlEndpoint resource.
         """
@@ -176,11 +180,11 @@ class SqlEndpointArgs:
 
     @property
     @pulumi.getter(name="odbcParams")
-    def odbc_params(self) -> Optional[pulumi.Input['SqlEndpointOdbcParamsArgs']]:
+    def odbc_params(self) -> Optional[pulumi.Input["SqlEndpointOdbcParamsArgs"]]:
         return pulumi.get(self, "odbc_params")
 
     @odbc_params.setter
-    def odbc_params(self, value: Optional[pulumi.Input['SqlEndpointOdbcParamsArgs']]):
+    def odbc_params(self, value: Optional[pulumi.Input["SqlEndpointOdbcParamsArgs"]]):
         pulumi.set(self, "odbc_params", value)
 
     @property
@@ -203,33 +207,36 @@ class SqlEndpointArgs:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input['SqlEndpointTagsArgs']]:
+    def tags(self) -> Optional[pulumi.Input["SqlEndpointTagsArgs"]]:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input['SqlEndpointTagsArgs']]):
+    def tags(self, value: Optional[pulumi.Input["SqlEndpointTagsArgs"]]):
         pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
 class _SqlEndpointState:
-    def __init__(__self__, *,
-                 auto_stop_mins: Optional[pulumi.Input[int]] = None,
-                 cluster_size: Optional[pulumi.Input[str]] = None,
-                 data_source_id: Optional[pulumi.Input[str]] = None,
-                 enable_photon: Optional[pulumi.Input[bool]] = None,
-                 enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
-                 instance_profile_arn: Optional[pulumi.Input[str]] = None,
-                 jdbc_url: Optional[pulumi.Input[str]] = None,
-                 max_num_clusters: Optional[pulumi.Input[int]] = None,
-                 min_num_clusters: Optional[pulumi.Input[int]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 num_clusters: Optional[pulumi.Input[int]] = None,
-                 odbc_params: Optional[pulumi.Input['SqlEndpointOdbcParamsArgs']] = None,
-                 spot_instance_policy: Optional[pulumi.Input[str]] = None,
-                 state: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input['SqlEndpointTagsArgs']] = None):
+    def __init__(
+        __self__,
+        *,
+        auto_stop_mins: Optional[pulumi.Input[int]] = None,
+        cluster_size: Optional[pulumi.Input[str]] = None,
+        data_source_id: Optional[pulumi.Input[str]] = None,
+        enable_photon: Optional[pulumi.Input[bool]] = None,
+        enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
+        id: Optional[pulumi.Input[str]] = None,
+        instance_profile_arn: Optional[pulumi.Input[str]] = None,
+        jdbc_url: Optional[pulumi.Input[str]] = None,
+        max_num_clusters: Optional[pulumi.Input[int]] = None,
+        min_num_clusters: Optional[pulumi.Input[int]] = None,
+        name: Optional[pulumi.Input[str]] = None,
+        num_clusters: Optional[pulumi.Input[int]] = None,
+        odbc_params: Optional[pulumi.Input["SqlEndpointOdbcParamsArgs"]] = None,
+        spot_instance_policy: Optional[pulumi.Input[str]] = None,
+        state: Optional[pulumi.Input[str]] = None,
+        tags: Optional[pulumi.Input["SqlEndpointTagsArgs"]] = None
+    ):
         """
         Input properties used for looking up and filtering SqlEndpoint resources.
         """
@@ -376,11 +383,11 @@ class _SqlEndpointState:
 
     @property
     @pulumi.getter(name="odbcParams")
-    def odbc_params(self) -> Optional[pulumi.Input['SqlEndpointOdbcParamsArgs']]:
+    def odbc_params(self) -> Optional[pulumi.Input["SqlEndpointOdbcParamsArgs"]]:
         return pulumi.get(self, "odbc_params")
 
     @odbc_params.setter
-    def odbc_params(self, value: Optional[pulumi.Input['SqlEndpointOdbcParamsArgs']]):
+    def odbc_params(self, value: Optional[pulumi.Input["SqlEndpointOdbcParamsArgs"]]):
         pulumi.set(self, "odbc_params", value)
 
     @property
@@ -403,47 +410,54 @@ class _SqlEndpointState:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input['SqlEndpointTagsArgs']]:
+    def tags(self) -> Optional[pulumi.Input["SqlEndpointTagsArgs"]]:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input['SqlEndpointTagsArgs']]):
+    def tags(self, value: Optional[pulumi.Input["SqlEndpointTagsArgs"]]):
         pulumi.set(self, "tags", value)
 
 
 class SqlEndpoint(pulumi.CustomResource):
     @overload
-    def __init__(__self__,
-                 resource_name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_stop_mins: Optional[pulumi.Input[int]] = None,
-                 cluster_size: Optional[pulumi.Input[str]] = None,
-                 data_source_id: Optional[pulumi.Input[str]] = None,
-                 enable_photon: Optional[pulumi.Input[bool]] = None,
-                 enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
-                 instance_profile_arn: Optional[pulumi.Input[str]] = None,
-                 jdbc_url: Optional[pulumi.Input[str]] = None,
-                 max_num_clusters: Optional[pulumi.Input[int]] = None,
-                 min_num_clusters: Optional[pulumi.Input[int]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 num_clusters: Optional[pulumi.Input[int]] = None,
-                 odbc_params: Optional[pulumi.Input[pulumi.InputType['SqlEndpointOdbcParamsArgs']]] = None,
-                 spot_instance_policy: Optional[pulumi.Input[str]] = None,
-                 state: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[pulumi.InputType['SqlEndpointTagsArgs']]] = None,
-                 __props__=None):
+    def __init__(
+        __self__,
+        resource_name: str,
+        opts: Optional[pulumi.ResourceOptions] = None,
+        auto_stop_mins: Optional[pulumi.Input[int]] = None,
+        cluster_size: Optional[pulumi.Input[str]] = None,
+        data_source_id: Optional[pulumi.Input[str]] = None,
+        enable_photon: Optional[pulumi.Input[bool]] = None,
+        enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
+        id: Optional[pulumi.Input[str]] = None,
+        instance_profile_arn: Optional[pulumi.Input[str]] = None,
+        jdbc_url: Optional[pulumi.Input[str]] = None,
+        max_num_clusters: Optional[pulumi.Input[int]] = None,
+        min_num_clusters: Optional[pulumi.Input[int]] = None,
+        name: Optional[pulumi.Input[str]] = None,
+        num_clusters: Optional[pulumi.Input[int]] = None,
+        odbc_params: Optional[
+            pulumi.Input[pulumi.InputType["SqlEndpointOdbcParamsArgs"]]
+        ] = None,
+        spot_instance_policy: Optional[pulumi.Input[str]] = None,
+        state: Optional[pulumi.Input[str]] = None,
+        tags: Optional[pulumi.Input[pulumi.InputType["SqlEndpointTagsArgs"]]] = None,
+        __props__=None,
+    ):
         """
         Create a SqlEndpoint resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
+
     @overload
-    def __init__(__self__,
-                 resource_name: str,
-                 args: SqlEndpointArgs,
-                 opts: Optional[pulumi.ResourceOptions] = None):
+    def __init__(
+        __self__,
+        resource_name: str,
+        args: SqlEndpointArgs,
+        opts: Optional[pulumi.ResourceOptions] = None,
+    ):
         """
         Create a SqlEndpoint resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -451,42 +465,53 @@ class SqlEndpoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
+
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(SqlEndpointArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(
+            SqlEndpointArgs, pulumi.ResourceOptions, *args, **kwargs
+        )
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
             __self__._internal_init(resource_name, *args, **kwargs)
 
-    def _internal_init(__self__,
-                 resource_name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_stop_mins: Optional[pulumi.Input[int]] = None,
-                 cluster_size: Optional[pulumi.Input[str]] = None,
-                 data_source_id: Optional[pulumi.Input[str]] = None,
-                 enable_photon: Optional[pulumi.Input[bool]] = None,
-                 enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
-                 instance_profile_arn: Optional[pulumi.Input[str]] = None,
-                 jdbc_url: Optional[pulumi.Input[str]] = None,
-                 max_num_clusters: Optional[pulumi.Input[int]] = None,
-                 min_num_clusters: Optional[pulumi.Input[int]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 num_clusters: Optional[pulumi.Input[int]] = None,
-                 odbc_params: Optional[pulumi.Input[pulumi.InputType['SqlEndpointOdbcParamsArgs']]] = None,
-                 spot_instance_policy: Optional[pulumi.Input[str]] = None,
-                 state: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[pulumi.InputType['SqlEndpointTagsArgs']]] = None,
-                 __props__=None):
+    def _internal_init(
+        __self__,
+        resource_name: str,
+        opts: Optional[pulumi.ResourceOptions] = None,
+        auto_stop_mins: Optional[pulumi.Input[int]] = None,
+        cluster_size: Optional[pulumi.Input[str]] = None,
+        data_source_id: Optional[pulumi.Input[str]] = None,
+        enable_photon: Optional[pulumi.Input[bool]] = None,
+        enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
+        id: Optional[pulumi.Input[str]] = None,
+        instance_profile_arn: Optional[pulumi.Input[str]] = None,
+        jdbc_url: Optional[pulumi.Input[str]] = None,
+        max_num_clusters: Optional[pulumi.Input[int]] = None,
+        min_num_clusters: Optional[pulumi.Input[int]] = None,
+        name: Optional[pulumi.Input[str]] = None,
+        num_clusters: Optional[pulumi.Input[int]] = None,
+        odbc_params: Optional[
+            pulumi.Input[pulumi.InputType["SqlEndpointOdbcParamsArgs"]]
+        ] = None,
+        spot_instance_policy: Optional[pulumi.Input[str]] = None,
+        state: Optional[pulumi.Input[str]] = None,
+        tags: Optional[pulumi.Input[pulumi.InputType["SqlEndpointTagsArgs"]]] = None,
+        __props__=None,
+    ):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
-            raise TypeError('Expected resource options to be a ResourceOptions instance')
+            raise TypeError(
+                "Expected resource options to be a ResourceOptions instance"
+            )
         if opts.version is None:
             opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
-                raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
+                raise TypeError(
+                    "__props__ is only valid when passed in combination with a valid opts.id to get an existing resource"
+                )
             __props__ = SqlEndpointArgs.__new__(SqlEndpointArgs)
 
             __props__.__dict__["auto_stop_mins"] = auto_stop_mins
@@ -508,31 +533,35 @@ class SqlEndpoint(pulumi.CustomResource):
             __props__.__dict__["state"] = state
             __props__.__dict__["tags"] = tags
         super(SqlEndpoint, __self__).__init__(
-            'databricks:databricks/sqlEndpoint:SqlEndpoint',
+            "databricks:databricks/sqlEndpoint:SqlEndpoint",
             resource_name,
             __props__,
-            opts)
+            opts,
+        )
 
     @staticmethod
-    def get(resource_name: str,
-            id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None,
-            auto_stop_mins: Optional[pulumi.Input[int]] = None,
-            cluster_size: Optional[pulumi.Input[str]] = None,
-            data_source_id: Optional[pulumi.Input[str]] = None,
-            enable_photon: Optional[pulumi.Input[bool]] = None,
-            enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
-            id: Optional[pulumi.Input[str]] = None,
-            instance_profile_arn: Optional[pulumi.Input[str]] = None,
-            jdbc_url: Optional[pulumi.Input[str]] = None,
-            max_num_clusters: Optional[pulumi.Input[int]] = None,
-            min_num_clusters: Optional[pulumi.Input[int]] = None,
-            name: Optional[pulumi.Input[str]] = None,
-            num_clusters: Optional[pulumi.Input[int]] = None,
-            odbc_params: Optional[pulumi.Input[pulumi.InputType['SqlEndpointOdbcParamsArgs']]] = None,
-            spot_instance_policy: Optional[pulumi.Input[str]] = None,
-            state: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[pulumi.InputType['SqlEndpointTagsArgs']]] = None) -> 'SqlEndpoint':
+    def get(
+        resource_name: str,
+        id: pulumi.Input[str],
+        opts: Optional[pulumi.ResourceOptions] = None,
+        auto_stop_mins: Optional[pulumi.Input[int]] = None,
+        cluster_size: Optional[pulumi.Input[str]] = None,
+        data_source_id: Optional[pulumi.Input[str]] = None,
+        enable_photon: Optional[pulumi.Input[bool]] = None,
+        enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
+        instance_profile_arn: Optional[pulumi.Input[str]] = None,
+        jdbc_url: Optional[pulumi.Input[str]] = None,
+        max_num_clusters: Optional[pulumi.Input[int]] = None,
+        min_num_clusters: Optional[pulumi.Input[int]] = None,
+        name: Optional[pulumi.Input[str]] = None,
+        num_clusters: Optional[pulumi.Input[int]] = None,
+        odbc_params: Optional[
+            pulumi.Input[pulumi.InputType["SqlEndpointOdbcParamsArgs"]]
+        ] = None,
+        spot_instance_policy: Optional[pulumi.Input[str]] = None,
+        state: Optional[pulumi.Input[str]] = None,
+        tags: Optional[pulumi.Input[pulumi.InputType["SqlEndpointTagsArgs"]]] = None,
+    ) -> "SqlEndpoint":
         """
         Get an existing SqlEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -625,7 +654,7 @@ class SqlEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="odbcParams")
-    def odbc_params(self) -> pulumi.Output['outputs.SqlEndpointOdbcParams']:
+    def odbc_params(self) -> pulumi.Output["outputs.SqlEndpointOdbcParams"]:
         return pulumi.get(self, "odbc_params")
 
     @property
@@ -640,6 +669,5 @@ class SqlEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional['outputs.SqlEndpointTags']]:
+    def tags(self) -> pulumi.Output[Optional["outputs.SqlEndpointTags"]]:
         return pulumi.get(self, "tags")
-

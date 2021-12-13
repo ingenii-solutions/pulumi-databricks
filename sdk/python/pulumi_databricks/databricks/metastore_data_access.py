@@ -10,18 +10,26 @@ from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['MetastoreDataAccessArgs', 'MetastoreDataAccess']
+__all__ = ["MetastoreDataAccessArgs", "MetastoreDataAccess"]
+
 
 @pulumi.input_type
 class MetastoreDataAccessArgs:
-    def __init__(__self__, *,
-                 metastore_id: pulumi.Input[str],
-                 aws_iam_role: Optional[pulumi.Input['MetastoreDataAccessAwsIamRoleArgs']] = None,
-                 azure_service_principal: Optional[pulumi.Input['MetastoreDataAccessAzureServicePrincipalArgs']] = None,
-                 configuration_type: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
-                 is_default: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+    def __init__(
+        __self__,
+        *,
+        metastore_id: pulumi.Input[str],
+        aws_iam_role: Optional[
+            pulumi.Input["MetastoreDataAccessAwsIamRoleArgs"]
+        ] = None,
+        azure_service_principal: Optional[
+            pulumi.Input["MetastoreDataAccessAzureServicePrincipalArgs"]
+        ] = None,
+        configuration_type: Optional[pulumi.Input[str]] = None,
+        id: Optional[pulumi.Input[str]] = None,
+        is_default: Optional[pulumi.Input[bool]] = None,
+        name: Optional[pulumi.Input[str]] = None
+    ):
         """
         The set of arguments for constructing a MetastoreDataAccess resource.
         """
@@ -50,20 +58,29 @@ class MetastoreDataAccessArgs:
 
     @property
     @pulumi.getter(name="awsIamRole")
-    def aws_iam_role(self) -> Optional[pulumi.Input['MetastoreDataAccessAwsIamRoleArgs']]:
+    def aws_iam_role(
+        self,
+    ) -> Optional[pulumi.Input["MetastoreDataAccessAwsIamRoleArgs"]]:
         return pulumi.get(self, "aws_iam_role")
 
     @aws_iam_role.setter
-    def aws_iam_role(self, value: Optional[pulumi.Input['MetastoreDataAccessAwsIamRoleArgs']]):
+    def aws_iam_role(
+        self, value: Optional[pulumi.Input["MetastoreDataAccessAwsIamRoleArgs"]]
+    ):
         pulumi.set(self, "aws_iam_role", value)
 
     @property
     @pulumi.getter(name="azureServicePrincipal")
-    def azure_service_principal(self) -> Optional[pulumi.Input['MetastoreDataAccessAzureServicePrincipalArgs']]:
+    def azure_service_principal(
+        self,
+    ) -> Optional[pulumi.Input["MetastoreDataAccessAzureServicePrincipalArgs"]]:
         return pulumi.get(self, "azure_service_principal")
 
     @azure_service_principal.setter
-    def azure_service_principal(self, value: Optional[pulumi.Input['MetastoreDataAccessAzureServicePrincipalArgs']]):
+    def azure_service_principal(
+        self,
+        value: Optional[pulumi.Input["MetastoreDataAccessAzureServicePrincipalArgs"]],
+    ):
         pulumi.set(self, "azure_service_principal", value)
 
     @property
@@ -105,14 +122,21 @@ class MetastoreDataAccessArgs:
 
 @pulumi.input_type
 class _MetastoreDataAccessState:
-    def __init__(__self__, *,
-                 aws_iam_role: Optional[pulumi.Input['MetastoreDataAccessAwsIamRoleArgs']] = None,
-                 azure_service_principal: Optional[pulumi.Input['MetastoreDataAccessAzureServicePrincipalArgs']] = None,
-                 configuration_type: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
-                 is_default: Optional[pulumi.Input[bool]] = None,
-                 metastore_id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+    def __init__(
+        __self__,
+        *,
+        aws_iam_role: Optional[
+            pulumi.Input["MetastoreDataAccessAwsIamRoleArgs"]
+        ] = None,
+        azure_service_principal: Optional[
+            pulumi.Input["MetastoreDataAccessAzureServicePrincipalArgs"]
+        ] = None,
+        configuration_type: Optional[pulumi.Input[str]] = None,
+        id: Optional[pulumi.Input[str]] = None,
+        is_default: Optional[pulumi.Input[bool]] = None,
+        metastore_id: Optional[pulumi.Input[str]] = None,
+        name: Optional[pulumi.Input[str]] = None
+    ):
         """
         Input properties used for looking up and filtering MetastoreDataAccess resources.
         """
@@ -133,20 +157,29 @@ class _MetastoreDataAccessState:
 
     @property
     @pulumi.getter(name="awsIamRole")
-    def aws_iam_role(self) -> Optional[pulumi.Input['MetastoreDataAccessAwsIamRoleArgs']]:
+    def aws_iam_role(
+        self,
+    ) -> Optional[pulumi.Input["MetastoreDataAccessAwsIamRoleArgs"]]:
         return pulumi.get(self, "aws_iam_role")
 
     @aws_iam_role.setter
-    def aws_iam_role(self, value: Optional[pulumi.Input['MetastoreDataAccessAwsIamRoleArgs']]):
+    def aws_iam_role(
+        self, value: Optional[pulumi.Input["MetastoreDataAccessAwsIamRoleArgs"]]
+    ):
         pulumi.set(self, "aws_iam_role", value)
 
     @property
     @pulumi.getter(name="azureServicePrincipal")
-    def azure_service_principal(self) -> Optional[pulumi.Input['MetastoreDataAccessAzureServicePrincipalArgs']]:
+    def azure_service_principal(
+        self,
+    ) -> Optional[pulumi.Input["MetastoreDataAccessAzureServicePrincipalArgs"]]:
         return pulumi.get(self, "azure_service_principal")
 
     @azure_service_principal.setter
-    def azure_service_principal(self, value: Optional[pulumi.Input['MetastoreDataAccessAzureServicePrincipalArgs']]):
+    def azure_service_principal(
+        self,
+        value: Optional[pulumi.Input["MetastoreDataAccessAzureServicePrincipalArgs"]],
+    ):
         pulumi.set(self, "azure_service_principal", value)
 
     @property
@@ -197,28 +230,39 @@ class _MetastoreDataAccessState:
 
 class MetastoreDataAccess(pulumi.CustomResource):
     @overload
-    def __init__(__self__,
-                 resource_name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_iam_role: Optional[pulumi.Input[pulumi.InputType['MetastoreDataAccessAwsIamRoleArgs']]] = None,
-                 azure_service_principal: Optional[pulumi.Input[pulumi.InputType['MetastoreDataAccessAzureServicePrincipalArgs']]] = None,
-                 configuration_type: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
-                 is_default: Optional[pulumi.Input[bool]] = None,
-                 metastore_id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 __props__=None):
+    def __init__(
+        __self__,
+        resource_name: str,
+        opts: Optional[pulumi.ResourceOptions] = None,
+        aws_iam_role: Optional[
+            pulumi.Input[pulumi.InputType["MetastoreDataAccessAwsIamRoleArgs"]]
+        ] = None,
+        azure_service_principal: Optional[
+            pulumi.Input[
+                pulumi.InputType["MetastoreDataAccessAzureServicePrincipalArgs"]
+            ]
+        ] = None,
+        configuration_type: Optional[pulumi.Input[str]] = None,
+        id: Optional[pulumi.Input[str]] = None,
+        is_default: Optional[pulumi.Input[bool]] = None,
+        metastore_id: Optional[pulumi.Input[str]] = None,
+        name: Optional[pulumi.Input[str]] = None,
+        __props__=None,
+    ):
         """
         Create a MetastoreDataAccess resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
+
     @overload
-    def __init__(__self__,
-                 resource_name: str,
-                 args: MetastoreDataAccessArgs,
-                 opts: Optional[pulumi.ResourceOptions] = None):
+    def __init__(
+        __self__,
+        resource_name: str,
+        args: MetastoreDataAccessArgs,
+        opts: Optional[pulumi.ResourceOptions] = None,
+    ):
         """
         Create a MetastoreDataAccess resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -226,33 +270,48 @@ class MetastoreDataAccess(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
+
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(MetastoreDataAccessArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(
+            MetastoreDataAccessArgs, pulumi.ResourceOptions, *args, **kwargs
+        )
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
             __self__._internal_init(resource_name, *args, **kwargs)
 
-    def _internal_init(__self__,
-                 resource_name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_iam_role: Optional[pulumi.Input[pulumi.InputType['MetastoreDataAccessAwsIamRoleArgs']]] = None,
-                 azure_service_principal: Optional[pulumi.Input[pulumi.InputType['MetastoreDataAccessAzureServicePrincipalArgs']]] = None,
-                 configuration_type: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
-                 is_default: Optional[pulumi.Input[bool]] = None,
-                 metastore_id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 __props__=None):
+    def _internal_init(
+        __self__,
+        resource_name: str,
+        opts: Optional[pulumi.ResourceOptions] = None,
+        aws_iam_role: Optional[
+            pulumi.Input[pulumi.InputType["MetastoreDataAccessAwsIamRoleArgs"]]
+        ] = None,
+        azure_service_principal: Optional[
+            pulumi.Input[
+                pulumi.InputType["MetastoreDataAccessAzureServicePrincipalArgs"]
+            ]
+        ] = None,
+        configuration_type: Optional[pulumi.Input[str]] = None,
+        id: Optional[pulumi.Input[str]] = None,
+        is_default: Optional[pulumi.Input[bool]] = None,
+        metastore_id: Optional[pulumi.Input[str]] = None,
+        name: Optional[pulumi.Input[str]] = None,
+        __props__=None,
+    ):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
-            raise TypeError('Expected resource options to be a ResourceOptions instance')
+            raise TypeError(
+                "Expected resource options to be a ResourceOptions instance"
+            )
         if opts.version is None:
             opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
-                raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
+                raise TypeError(
+                    "__props__ is only valid when passed in combination with a valid opts.id to get an existing resource"
+                )
             __props__ = MetastoreDataAccessArgs.__new__(MetastoreDataAccessArgs)
 
             __props__.__dict__["aws_iam_role"] = aws_iam_role
@@ -265,22 +324,30 @@ class MetastoreDataAccess(pulumi.CustomResource):
             __props__.__dict__["metastore_id"] = metastore_id
             __props__.__dict__["name"] = name
         super(MetastoreDataAccess, __self__).__init__(
-            'databricks:databricks/metastoreDataAccess:MetastoreDataAccess',
+            "databricks:databricks/metastoreDataAccess:MetastoreDataAccess",
             resource_name,
             __props__,
-            opts)
+            opts,
+        )
 
     @staticmethod
-    def get(resource_name: str,
-            id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None,
-            aws_iam_role: Optional[pulumi.Input[pulumi.InputType['MetastoreDataAccessAwsIamRoleArgs']]] = None,
-            azure_service_principal: Optional[pulumi.Input[pulumi.InputType['MetastoreDataAccessAzureServicePrincipalArgs']]] = None,
-            configuration_type: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
-            is_default: Optional[pulumi.Input[bool]] = None,
-            metastore_id: Optional[pulumi.Input[str]] = None,
-            name: Optional[pulumi.Input[str]] = None) -> 'MetastoreDataAccess':
+    def get(
+        resource_name: str,
+        id: pulumi.Input[str],
+        opts: Optional[pulumi.ResourceOptions] = None,
+        aws_iam_role: Optional[
+            pulumi.Input[pulumi.InputType["MetastoreDataAccessAwsIamRoleArgs"]]
+        ] = None,
+        azure_service_principal: Optional[
+            pulumi.Input[
+                pulumi.InputType["MetastoreDataAccessAzureServicePrincipalArgs"]
+            ]
+        ] = None,
+        configuration_type: Optional[pulumi.Input[str]] = None,
+        is_default: Optional[pulumi.Input[bool]] = None,
+        metastore_id: Optional[pulumi.Input[str]] = None,
+        name: Optional[pulumi.Input[str]] = None,
+    ) -> "MetastoreDataAccess":
         """
         Get an existing MetastoreDataAccess resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -304,12 +371,16 @@ class MetastoreDataAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="awsIamRole")
-    def aws_iam_role(self) -> pulumi.Output[Optional['outputs.MetastoreDataAccessAwsIamRole']]:
+    def aws_iam_role(
+        self,
+    ) -> pulumi.Output[Optional["outputs.MetastoreDataAccessAwsIamRole"]]:
         return pulumi.get(self, "aws_iam_role")
 
     @property
     @pulumi.getter(name="azureServicePrincipal")
-    def azure_service_principal(self) -> pulumi.Output[Optional['outputs.MetastoreDataAccessAzureServicePrincipal']]:
+    def azure_service_principal(
+        self,
+    ) -> pulumi.Output[Optional["outputs.MetastoreDataAccessAzureServicePrincipal"]]:
         return pulumi.get(self, "azure_service_principal")
 
     @property
@@ -336,4 +407,3 @@ class MetastoreDataAccess(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
-
