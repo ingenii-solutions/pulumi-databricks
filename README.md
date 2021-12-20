@@ -8,15 +8,16 @@ This release matches version 0.4.0 of the Terraform Databricks provider.
 
 ## Notes
 
-* Install Pulumi CLI
-* Install PulumiCTL
+* Install [Pulumi CLI](https://www.pulumi.com/docs/get-started/install/)
+* Install [PulumiCTL](https://github.com/pulumi/pulumictl)
 * Install Go 1.16
 * Install Python 3.x
 
 Run the following commands:
 
+`cd provider && go mod tidy`
 `make tfgen`  
-`make provider`  
+`make build_provider`  
 `make build_sdks`  
 
 If additional mapping is required, open the `/provider/resources.go` file and perform the mapping by using the [provider.go](https://github.com/databrickslabs/terraform-provider-databricks/blob/master/provider/provider.go) file as reference.
@@ -31,8 +32,8 @@ Also, we need to create another release of this repository and upload all provid
 
 We have only generated the Python SDKs.
 
-* Previous working version: `0.0.2` (mapped to Terraform Databricks provider version `0.3.6`)  
-* Latest working version: `0.0.6` (mapped to Terraform Databricks provider version `0.4.0`)
+* Previous working version: `0.0.6` (mapped to Terraform Databricks provider version `0.4.0`)  
+* Latest working version: `0.0.7` (mapped to Terraform Databricks provider version `0.4.1`)
 
 ## Usage
 
