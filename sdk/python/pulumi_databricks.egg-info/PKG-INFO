@@ -1,3 +1,14 @@
+Metadata-Version: 2.1
+Name: pulumi-databricks
+Version: 0.0.7
+Summary: A Pulumi package for creating and managing Databricks cloud resources.
+Home-page: https://ingenii.dev
+License: Apache-2.0
+Project-URL: Repository, https://github.com/ingenii-solutions/pulumi-databricks
+Keywords: pulumi dataricks
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
 # IMPORTANT
 
 This is a pre-release. Please do not use it in production.
@@ -42,3 +53,4 @@ We have only generated the Python SDKs.
 ```shell
 pip install pulumi-databricks
 ```
+
