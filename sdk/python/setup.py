@@ -19,55 +19,55 @@ class InstallPluginCommand(install):
                     "install",
                     "resource",
                     "databricks",
-                    "0.0.8",
+                    "0.1.0",
                     "--server",
-                    "https://github.com/ingenii-solutions/pulumi-databricks/releases/download/v0.0.8",
+                    "https://github.com/ingenii-solutions/pulumi-databricks/releases/download/v0.1.0",
                 ]
             )
         except OSError as error:
             if error.errno == errno.ENOENT:
-                print(
-                    """
+                print("""
                 There was an error installing the databricks resource provider plugin.
                 It looks like `pulumi` is not installed on your system.
                 Please visit https://pulumi.com/ to install the Pulumi CLI.
                 You may try manually installing the plugin by running
-                `pulumi plugin install resource databricks 0.0.8`
-                """
-                )
+                `pulumi plugin install resource databricks 0.1.0 --server https://github.com/ingenii-solutions/pulumi-databricks/releases/download/v0.1.0`
+                """)
             else:
                 raise
 
 
 def readme():
     try:
-        with open("README.md", encoding="utf-8") as f:
+        with open('README.md', encoding='utf-8') as f:
             return f.read()
     except FileNotFoundError:
         return "databricks Pulumi Package - Development Version"
 
 
-setup(
-    name="pulumi_databricks",
-    version="0.0.8",
-    description="A Pulumi package for creating and managing Databricks cloud resources.",
-    long_description=readme(),
-    long_description_content_type="text/markdown",
-    cmdclass={
-        "install": InstallPluginCommand,
-    },
-    keywords="pulumi dataricks",
-    url="https://ingenii.dev",
-    project_urls={
-        "Repository": "https://github.com/ingenii-solutions/pulumi-databricks"
-    },
-    license="Apache-2.0",
-    packages=find_packages(),
-    package_data={
-        "pulumi_databricks": [
-            "py.typed",
-        ]
-    },
-    install_requires=["parver>=0.2.1", "pulumi>=3.0.0,<4.0.0", "semver>=2.8.1"],
-    zip_safe=False,
-)
+setup(name='pulumi_databricks',
+      version='0.1.0',
+      description="A Pulumi package for creating and managing Databricks cloud resources.",
+      long_description=readme(),
+      long_description_content_type='text/markdown',
+      cmdclass={
+          'install': InstallPluginCommand,
+      },
+      keywords='pulumi dataricks',
+      url='https://ingenii.dev',
+      project_urls={
+          'Repository': 'https://github.com/ingenii-solutions/pulumi-databricks'
+      },
+      license='Apache-2.0',
+      packages=find_packages(),
+      package_data={
+          'pulumi_databricks': [
+              'py.typed',
+          ]
+      },
+      install_requires=[
+          'parver>=0.2.1',
+          'pulumi>=3.0.0,<4.0.0',
+          'semver>=2.8.1'
+      ],
+      zip_safe=False)

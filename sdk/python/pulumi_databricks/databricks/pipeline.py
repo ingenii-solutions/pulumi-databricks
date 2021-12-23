@@ -10,29 +10,21 @@ from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ["PipelineArgs", "Pipeline"]
-
+__all__ = ['PipelineArgs', 'Pipeline']
 
 @pulumi.input_type
 class PipelineArgs:
-    def __init__(
-        __self__,
-        *,
-        filters: pulumi.Input["PipelineFiltersArgs"],
-        allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
-        clusters: Optional[
-            pulumi.Input[Sequence[pulumi.Input["PipelineClusterArgs"]]]
-        ] = None,
-        configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-        continuous: Optional[pulumi.Input[bool]] = None,
-        id: Optional[pulumi.Input[str]] = None,
-        libraries: Optional[
-            pulumi.Input[Sequence[pulumi.Input["PipelineLibraryArgs"]]]
-        ] = None,
-        name: Optional[pulumi.Input[str]] = None,
-        storage: Optional[pulumi.Input[str]] = None,
-        target: Optional[pulumi.Input[str]] = None
-    ):
+    def __init__(__self__, *,
+                 filters: pulumi.Input['PipelineFiltersArgs'],
+                 allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
+                 clusters: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineClusterArgs']]]] = None,
+                 configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 continuous: Optional[pulumi.Input[bool]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 libraries: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLibraryArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
+                 target: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Pipeline resource.
         """
@@ -58,11 +50,11 @@ class PipelineArgs:
 
     @property
     @pulumi.getter
-    def filters(self) -> pulumi.Input["PipelineFiltersArgs"]:
+    def filters(self) -> pulumi.Input['PipelineFiltersArgs']:
         return pulumi.get(self, "filters")
 
     @filters.setter
-    def filters(self, value: pulumi.Input["PipelineFiltersArgs"]):
+    def filters(self, value: pulumi.Input['PipelineFiltersArgs']):
         pulumi.set(self, "filters", value)
 
     @property
@@ -76,16 +68,11 @@ class PipelineArgs:
 
     @property
     @pulumi.getter
-    def clusters(
-        self,
-    ) -> Optional[pulumi.Input[Sequence[pulumi.Input["PipelineClusterArgs"]]]]:
+    def clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PipelineClusterArgs']]]]:
         return pulumi.get(self, "clusters")
 
     @clusters.setter
-    def clusters(
-        self,
-        value: Optional[pulumi.Input[Sequence[pulumi.Input["PipelineClusterArgs"]]]],
-    ):
+    def clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineClusterArgs']]]]):
         pulumi.set(self, "clusters", value)
 
     @property
@@ -117,16 +104,11 @@ class PipelineArgs:
 
     @property
     @pulumi.getter
-    def libraries(
-        self,
-    ) -> Optional[pulumi.Input[Sequence[pulumi.Input["PipelineLibraryArgs"]]]]:
+    def libraries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLibraryArgs']]]]:
         return pulumi.get(self, "libraries")
 
     @libraries.setter
-    def libraries(
-        self,
-        value: Optional[pulumi.Input[Sequence[pulumi.Input["PipelineLibraryArgs"]]]],
-    ):
+    def libraries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLibraryArgs']]]]):
         pulumi.set(self, "libraries", value)
 
     @property
@@ -159,25 +141,18 @@ class PipelineArgs:
 
 @pulumi.input_type
 class _PipelineState:
-    def __init__(
-        __self__,
-        *,
-        allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
-        clusters: Optional[
-            pulumi.Input[Sequence[pulumi.Input["PipelineClusterArgs"]]]
-        ] = None,
-        configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-        continuous: Optional[pulumi.Input[bool]] = None,
-        filters: Optional[pulumi.Input["PipelineFiltersArgs"]] = None,
-        id: Optional[pulumi.Input[str]] = None,
-        libraries: Optional[
-            pulumi.Input[Sequence[pulumi.Input["PipelineLibraryArgs"]]]
-        ] = None,
-        name: Optional[pulumi.Input[str]] = None,
-        storage: Optional[pulumi.Input[str]] = None,
-        target: Optional[pulumi.Input[str]] = None,
-        url: Optional[pulumi.Input[str]] = None
-    ):
+    def __init__(__self__, *,
+                 allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
+                 clusters: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineClusterArgs']]]] = None,
+                 configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 continuous: Optional[pulumi.Input[bool]] = None,
+                 filters: Optional[pulumi.Input['PipelineFiltersArgs']] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 libraries: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLibraryArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
+                 target: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Pipeline resources.
         """
@@ -215,16 +190,11 @@ class _PipelineState:
 
     @property
     @pulumi.getter
-    def clusters(
-        self,
-    ) -> Optional[pulumi.Input[Sequence[pulumi.Input["PipelineClusterArgs"]]]]:
+    def clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PipelineClusterArgs']]]]:
         return pulumi.get(self, "clusters")
 
     @clusters.setter
-    def clusters(
-        self,
-        value: Optional[pulumi.Input[Sequence[pulumi.Input["PipelineClusterArgs"]]]],
-    ):
+    def clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineClusterArgs']]]]):
         pulumi.set(self, "clusters", value)
 
     @property
@@ -247,11 +217,11 @@ class _PipelineState:
 
     @property
     @pulumi.getter
-    def filters(self) -> Optional[pulumi.Input["PipelineFiltersArgs"]]:
+    def filters(self) -> Optional[pulumi.Input['PipelineFiltersArgs']]:
         return pulumi.get(self, "filters")
 
     @filters.setter
-    def filters(self, value: Optional[pulumi.Input["PipelineFiltersArgs"]]):
+    def filters(self, value: Optional[pulumi.Input['PipelineFiltersArgs']]):
         pulumi.set(self, "filters", value)
 
     @property
@@ -265,16 +235,11 @@ class _PipelineState:
 
     @property
     @pulumi.getter
-    def libraries(
-        self,
-    ) -> Optional[pulumi.Input[Sequence[pulumi.Input["PipelineLibraryArgs"]]]]:
+    def libraries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLibraryArgs']]]]:
         return pulumi.get(self, "libraries")
 
     @libraries.setter
-    def libraries(
-        self,
-        value: Optional[pulumi.Input[Sequence[pulumi.Input["PipelineLibraryArgs"]]]],
-    ):
+    def libraries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLibraryArgs']]]]):
         pulumi.set(self, "libraries", value)
 
     @property
@@ -316,44 +281,31 @@ class _PipelineState:
 
 class Pipeline(pulumi.CustomResource):
     @overload
-    def __init__(
-        __self__,
-        resource_name: str,
-        opts: Optional[pulumi.ResourceOptions] = None,
-        allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
-        clusters: Optional[
-            pulumi.Input[
-                Sequence[pulumi.Input[pulumi.InputType["PipelineClusterArgs"]]]
-            ]
-        ] = None,
-        configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-        continuous: Optional[pulumi.Input[bool]] = None,
-        filters: Optional[pulumi.Input[pulumi.InputType["PipelineFiltersArgs"]]] = None,
-        id: Optional[pulumi.Input[str]] = None,
-        libraries: Optional[
-            pulumi.Input[
-                Sequence[pulumi.Input[pulumi.InputType["PipelineLibraryArgs"]]]
-            ]
-        ] = None,
-        name: Optional[pulumi.Input[str]] = None,
-        storage: Optional[pulumi.Input[str]] = None,
-        target: Optional[pulumi.Input[str]] = None,
-        __props__=None,
-    ):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
+                 clusters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineClusterArgs']]]]] = None,
+                 configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 continuous: Optional[pulumi.Input[bool]] = None,
+                 filters: Optional[pulumi.Input[pulumi.InputType['PipelineFiltersArgs']]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLibraryArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
+                 target: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         """
         Create a Pipeline resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-
     @overload
-    def __init__(
-        __self__,
-        resource_name: str,
-        args: PipelineArgs,
-        opts: Optional[pulumi.ResourceOptions] = None,
-    ):
+    def __init__(__self__,
+                 resource_name: str,
+                 args: PipelineArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Pipeline resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -361,53 +313,36 @@ class Pipeline(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(
-            PipelineArgs, pulumi.ResourceOptions, *args, **kwargs
-        )
+        resource_args, opts = _utilities.get_resource_args_opts(PipelineArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
             __self__._internal_init(resource_name, *args, **kwargs)
 
-    def _internal_init(
-        __self__,
-        resource_name: str,
-        opts: Optional[pulumi.ResourceOptions] = None,
-        allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
-        clusters: Optional[
-            pulumi.Input[
-                Sequence[pulumi.Input[pulumi.InputType["PipelineClusterArgs"]]]
-            ]
-        ] = None,
-        configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-        continuous: Optional[pulumi.Input[bool]] = None,
-        filters: Optional[pulumi.Input[pulumi.InputType["PipelineFiltersArgs"]]] = None,
-        id: Optional[pulumi.Input[str]] = None,
-        libraries: Optional[
-            pulumi.Input[
-                Sequence[pulumi.Input[pulumi.InputType["PipelineLibraryArgs"]]]
-            ]
-        ] = None,
-        name: Optional[pulumi.Input[str]] = None,
-        storage: Optional[pulumi.Input[str]] = None,
-        target: Optional[pulumi.Input[str]] = None,
-        __props__=None,
-    ):
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
+                 clusters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineClusterArgs']]]]] = None,
+                 configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 continuous: Optional[pulumi.Input[bool]] = None,
+                 filters: Optional[pulumi.Input[pulumi.InputType['PipelineFiltersArgs']]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLibraryArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
+                 target: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
-            raise TypeError(
-                "Expected resource options to be a ResourceOptions instance"
-            )
+            raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
-                raise TypeError(
-                    "__props__ is only valid when passed in combination with a valid opts.id to get an existing resource"
-                )
+                raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = PipelineArgs.__new__(PipelineArgs)
 
             __props__.__dict__["allow_duplicate_names"] = allow_duplicate_names
@@ -424,33 +359,25 @@ class Pipeline(pulumi.CustomResource):
             __props__.__dict__["target"] = target
             __props__.__dict__["url"] = None
         super(Pipeline, __self__).__init__(
-            "databricks:databricks/pipeline:Pipeline", resource_name, __props__, opts
-        )
+            'databricks:databricks/pipeline:Pipeline',
+            resource_name,
+            __props__,
+            opts)
 
     @staticmethod
-    def get(
-        resource_name: str,
-        id: pulumi.Input[str],
-        opts: Optional[pulumi.ResourceOptions] = None,
-        allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
-        clusters: Optional[
-            pulumi.Input[
-                Sequence[pulumi.Input[pulumi.InputType["PipelineClusterArgs"]]]
-            ]
-        ] = None,
-        configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-        continuous: Optional[pulumi.Input[bool]] = None,
-        filters: Optional[pulumi.Input[pulumi.InputType["PipelineFiltersArgs"]]] = None,
-        libraries: Optional[
-            pulumi.Input[
-                Sequence[pulumi.Input[pulumi.InputType["PipelineLibraryArgs"]]]
-            ]
-        ] = None,
-        name: Optional[pulumi.Input[str]] = None,
-        storage: Optional[pulumi.Input[str]] = None,
-        target: Optional[pulumi.Input[str]] = None,
-        url: Optional[pulumi.Input[str]] = None,
-    ) -> "Pipeline":
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allow_duplicate_names: Optional[pulumi.Input[bool]] = None,
+            clusters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineClusterArgs']]]]] = None,
+            configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            continuous: Optional[pulumi.Input[bool]] = None,
+            filters: Optional[pulumi.Input[pulumi.InputType['PipelineFiltersArgs']]] = None,
+            libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLibraryArgs']]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            storage: Optional[pulumi.Input[str]] = None,
+            target: Optional[pulumi.Input[str]] = None,
+            url: Optional[pulumi.Input[str]] = None) -> 'Pipeline':
         """
         Get an existing Pipeline resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -483,7 +410,7 @@ class Pipeline(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def clusters(self) -> pulumi.Output[Optional[Sequence["outputs.PipelineCluster"]]]:
+    def clusters(self) -> pulumi.Output[Optional[Sequence['outputs.PipelineCluster']]]:
         return pulumi.get(self, "clusters")
 
     @property
@@ -498,7 +425,7 @@ class Pipeline(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def filters(self) -> pulumi.Output["outputs.PipelineFilters"]:
+    def filters(self) -> pulumi.Output['outputs.PipelineFilters']:
         return pulumi.get(self, "filters")
 
     @property
@@ -508,7 +435,7 @@ class Pipeline(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def libraries(self) -> pulumi.Output[Optional[Sequence["outputs.PipelineLibrary"]]]:
+    def libraries(self) -> pulumi.Output[Optional[Sequence['outputs.PipelineLibrary']]]:
         return pulumi.get(self, "libraries")
 
     @property
@@ -530,3 +457,4 @@ class Pipeline(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
         return pulumi.get(self, "url")
+

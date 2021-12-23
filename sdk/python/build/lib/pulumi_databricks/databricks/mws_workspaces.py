@@ -10,43 +10,35 @@ from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ["MwsWorkspacesArgs", "MwsWorkspaces"]
-
+__all__ = ['MwsWorkspacesArgs', 'MwsWorkspaces']
 
 @pulumi.input_type
 class MwsWorkspacesArgs:
-    def __init__(
-        __self__,
-        *,
-        account_id: pulumi.Input[str],
-        workspace_name: pulumi.Input[str],
-        aws_region: Optional[pulumi.Input[str]] = None,
-        cloud: Optional[pulumi.Input[str]] = None,
-        cloud_resource_bucket: Optional[
-            pulumi.Input["MwsWorkspacesCloudResourceBucketArgs"]
-        ] = None,
-        creation_time: Optional[pulumi.Input[int]] = None,
-        credentials_id: Optional[pulumi.Input[str]] = None,
-        customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        deployment_name: Optional[pulumi.Input[str]] = None,
-        external_customer_info: Optional[
-            pulumi.Input["MwsWorkspacesExternalCustomerInfoArgs"]
-        ] = None,
-        is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
-        location: Optional[pulumi.Input[str]] = None,
-        managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        network: Optional[pulumi.Input["MwsWorkspacesNetworkArgs"]] = None,
-        network_id: Optional[pulumi.Input[str]] = None,
-        pricing_tier: Optional[pulumi.Input[str]] = None,
-        private_access_settings_id: Optional[pulumi.Input[str]] = None,
-        storage_configuration_id: Optional[pulumi.Input[str]] = None,
-        storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        token: Optional[pulumi.Input["MwsWorkspacesTokenArgs"]] = None,
-        workspace_id: Optional[pulumi.Input[int]] = None,
-        workspace_status: Optional[pulumi.Input[str]] = None,
-        workspace_status_message: Optional[pulumi.Input[str]] = None,
-        workspace_url: Optional[pulumi.Input[str]] = None
-    ):
+    def __init__(__self__, *,
+                 account_id: pulumi.Input[str],
+                 workspace_name: pulumi.Input[str],
+                 aws_region: Optional[pulumi.Input[str]] = None,
+                 cloud: Optional[pulumi.Input[str]] = None,
+                 cloud_resource_bucket: Optional[pulumi.Input['MwsWorkspacesCloudResourceBucketArgs']] = None,
+                 creation_time: Optional[pulumi.Input[int]] = None,
+                 credentials_id: Optional[pulumi.Input[str]] = None,
+                 customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 deployment_name: Optional[pulumi.Input[str]] = None,
+                 external_customer_info: Optional[pulumi.Input['MwsWorkspacesExternalCustomerInfoArgs']] = None,
+                 is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input['MwsWorkspacesNetworkArgs']] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 pricing_tier: Optional[pulumi.Input[str]] = None,
+                 private_access_settings_id: Optional[pulumi.Input[str]] = None,
+                 storage_configuration_id: Optional[pulumi.Input[str]] = None,
+                 storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input['MwsWorkspacesTokenArgs']] = None,
+                 workspace_id: Optional[pulumi.Input[int]] = None,
+                 workspace_status: Optional[pulumi.Input[str]] = None,
+                 workspace_status_message: Optional[pulumi.Input[str]] = None,
+                 workspace_url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MwsWorkspaces resource.
         """
@@ -63,13 +55,8 @@ class MwsWorkspacesArgs:
         if credentials_id is not None:
             pulumi.set(__self__, "credentials_id", credentials_id)
         if customer_managed_key_id is not None:
-            warnings.warn(
-                """Use managed_services_customer_managed_key_id instead""",
-                DeprecationWarning,
-            )
-            pulumi.log.warn(
-                """customer_managed_key_id is deprecated: Use managed_services_customer_managed_key_id instead"""
-            )
+            warnings.warn("""Use managed_services_customer_managed_key_id instead""", DeprecationWarning)
+            pulumi.log.warn("""customer_managed_key_id is deprecated: Use managed_services_customer_managed_key_id instead""")
         if customer_managed_key_id is not None:
             pulumi.set(__self__, "customer_managed_key_id", customer_managed_key_id)
         if deployment_name is not None:
@@ -81,11 +68,7 @@ class MwsWorkspacesArgs:
         if location is not None:
             pulumi.set(__self__, "location", location)
         if managed_services_customer_managed_key_id is not None:
-            pulumi.set(
-                __self__,
-                "managed_services_customer_managed_key_id",
-                managed_services_customer_managed_key_id,
-            )
+            pulumi.set(__self__, "managed_services_customer_managed_key_id", managed_services_customer_managed_key_id)
         if network is not None:
             pulumi.set(__self__, "network", network)
         if network_id is not None:
@@ -93,17 +76,11 @@ class MwsWorkspacesArgs:
         if pricing_tier is not None:
             pulumi.set(__self__, "pricing_tier", pricing_tier)
         if private_access_settings_id is not None:
-            pulumi.set(
-                __self__, "private_access_settings_id", private_access_settings_id
-            )
+            pulumi.set(__self__, "private_access_settings_id", private_access_settings_id)
         if storage_configuration_id is not None:
             pulumi.set(__self__, "storage_configuration_id", storage_configuration_id)
         if storage_customer_managed_key_id is not None:
-            pulumi.set(
-                __self__,
-                "storage_customer_managed_key_id",
-                storage_customer_managed_key_id,
-            )
+            pulumi.set(__self__, "storage_customer_managed_key_id", storage_customer_managed_key_id)
         if token is not None:
             pulumi.set(__self__, "token", token)
         if workspace_id is not None:
@@ -153,15 +130,11 @@ class MwsWorkspacesArgs:
 
     @property
     @pulumi.getter(name="cloudResourceBucket")
-    def cloud_resource_bucket(
-        self,
-    ) -> Optional[pulumi.Input["MwsWorkspacesCloudResourceBucketArgs"]]:
+    def cloud_resource_bucket(self) -> Optional[pulumi.Input['MwsWorkspacesCloudResourceBucketArgs']]:
         return pulumi.get(self, "cloud_resource_bucket")
 
     @cloud_resource_bucket.setter
-    def cloud_resource_bucket(
-        self, value: Optional[pulumi.Input["MwsWorkspacesCloudResourceBucketArgs"]]
-    ):
+    def cloud_resource_bucket(self, value: Optional[pulumi.Input['MwsWorkspacesCloudResourceBucketArgs']]):
         pulumi.set(self, "cloud_resource_bucket", value)
 
     @property
@@ -202,15 +175,11 @@ class MwsWorkspacesArgs:
 
     @property
     @pulumi.getter(name="externalCustomerInfo")
-    def external_customer_info(
-        self,
-    ) -> Optional[pulumi.Input["MwsWorkspacesExternalCustomerInfoArgs"]]:
+    def external_customer_info(self) -> Optional[pulumi.Input['MwsWorkspacesExternalCustomerInfoArgs']]:
         return pulumi.get(self, "external_customer_info")
 
     @external_customer_info.setter
-    def external_customer_info(
-        self, value: Optional[pulumi.Input["MwsWorkspacesExternalCustomerInfoArgs"]]
-    ):
+    def external_customer_info(self, value: Optional[pulumi.Input['MwsWorkspacesExternalCustomerInfoArgs']]):
         pulumi.set(self, "external_customer_info", value)
 
     @property
@@ -237,18 +206,16 @@ class MwsWorkspacesArgs:
         return pulumi.get(self, "managed_services_customer_managed_key_id")
 
     @managed_services_customer_managed_key_id.setter
-    def managed_services_customer_managed_key_id(
-        self, value: Optional[pulumi.Input[str]]
-    ):
+    def managed_services_customer_managed_key_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "managed_services_customer_managed_key_id", value)
 
     @property
     @pulumi.getter
-    def network(self) -> Optional[pulumi.Input["MwsWorkspacesNetworkArgs"]]:
+    def network(self) -> Optional[pulumi.Input['MwsWorkspacesNetworkArgs']]:
         return pulumi.get(self, "network")
 
     @network.setter
-    def network(self, value: Optional[pulumi.Input["MwsWorkspacesNetworkArgs"]]):
+    def network(self, value: Optional[pulumi.Input['MwsWorkspacesNetworkArgs']]):
         pulumi.set(self, "network", value)
 
     @property
@@ -298,11 +265,11 @@ class MwsWorkspacesArgs:
 
     @property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input["MwsWorkspacesTokenArgs"]]:
+    def token(self) -> Optional[pulumi.Input['MwsWorkspacesTokenArgs']]:
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input["MwsWorkspacesTokenArgs"]]):
+    def token(self, value: Optional[pulumi.Input['MwsWorkspacesTokenArgs']]):
         pulumi.set(self, "token", value)
 
     @property
@@ -344,38 +311,31 @@ class MwsWorkspacesArgs:
 
 @pulumi.input_type
 class _MwsWorkspacesState:
-    def __init__(
-        __self__,
-        *,
-        account_id: Optional[pulumi.Input[str]] = None,
-        aws_region: Optional[pulumi.Input[str]] = None,
-        cloud: Optional[pulumi.Input[str]] = None,
-        cloud_resource_bucket: Optional[
-            pulumi.Input["MwsWorkspacesCloudResourceBucketArgs"]
-        ] = None,
-        creation_time: Optional[pulumi.Input[int]] = None,
-        credentials_id: Optional[pulumi.Input[str]] = None,
-        customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        deployment_name: Optional[pulumi.Input[str]] = None,
-        external_customer_info: Optional[
-            pulumi.Input["MwsWorkspacesExternalCustomerInfoArgs"]
-        ] = None,
-        is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
-        location: Optional[pulumi.Input[str]] = None,
-        managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        network: Optional[pulumi.Input["MwsWorkspacesNetworkArgs"]] = None,
-        network_id: Optional[pulumi.Input[str]] = None,
-        pricing_tier: Optional[pulumi.Input[str]] = None,
-        private_access_settings_id: Optional[pulumi.Input[str]] = None,
-        storage_configuration_id: Optional[pulumi.Input[str]] = None,
-        storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        token: Optional[pulumi.Input["MwsWorkspacesTokenArgs"]] = None,
-        workspace_id: Optional[pulumi.Input[int]] = None,
-        workspace_name: Optional[pulumi.Input[str]] = None,
-        workspace_status: Optional[pulumi.Input[str]] = None,
-        workspace_status_message: Optional[pulumi.Input[str]] = None,
-        workspace_url: Optional[pulumi.Input[str]] = None
-    ):
+    def __init__(__self__, *,
+                 account_id: Optional[pulumi.Input[str]] = None,
+                 aws_region: Optional[pulumi.Input[str]] = None,
+                 cloud: Optional[pulumi.Input[str]] = None,
+                 cloud_resource_bucket: Optional[pulumi.Input['MwsWorkspacesCloudResourceBucketArgs']] = None,
+                 creation_time: Optional[pulumi.Input[int]] = None,
+                 credentials_id: Optional[pulumi.Input[str]] = None,
+                 customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 deployment_name: Optional[pulumi.Input[str]] = None,
+                 external_customer_info: Optional[pulumi.Input['MwsWorkspacesExternalCustomerInfoArgs']] = None,
+                 is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input['MwsWorkspacesNetworkArgs']] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 pricing_tier: Optional[pulumi.Input[str]] = None,
+                 private_access_settings_id: Optional[pulumi.Input[str]] = None,
+                 storage_configuration_id: Optional[pulumi.Input[str]] = None,
+                 storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input['MwsWorkspacesTokenArgs']] = None,
+                 workspace_id: Optional[pulumi.Input[int]] = None,
+                 workspace_name: Optional[pulumi.Input[str]] = None,
+                 workspace_status: Optional[pulumi.Input[str]] = None,
+                 workspace_status_message: Optional[pulumi.Input[str]] = None,
+                 workspace_url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MwsWorkspaces resources.
         """
@@ -392,13 +352,8 @@ class _MwsWorkspacesState:
         if credentials_id is not None:
             pulumi.set(__self__, "credentials_id", credentials_id)
         if customer_managed_key_id is not None:
-            warnings.warn(
-                """Use managed_services_customer_managed_key_id instead""",
-                DeprecationWarning,
-            )
-            pulumi.log.warn(
-                """customer_managed_key_id is deprecated: Use managed_services_customer_managed_key_id instead"""
-            )
+            warnings.warn("""Use managed_services_customer_managed_key_id instead""", DeprecationWarning)
+            pulumi.log.warn("""customer_managed_key_id is deprecated: Use managed_services_customer_managed_key_id instead""")
         if customer_managed_key_id is not None:
             pulumi.set(__self__, "customer_managed_key_id", customer_managed_key_id)
         if deployment_name is not None:
@@ -410,11 +365,7 @@ class _MwsWorkspacesState:
         if location is not None:
             pulumi.set(__self__, "location", location)
         if managed_services_customer_managed_key_id is not None:
-            pulumi.set(
-                __self__,
-                "managed_services_customer_managed_key_id",
-                managed_services_customer_managed_key_id,
-            )
+            pulumi.set(__self__, "managed_services_customer_managed_key_id", managed_services_customer_managed_key_id)
         if network is not None:
             pulumi.set(__self__, "network", network)
         if network_id is not None:
@@ -422,17 +373,11 @@ class _MwsWorkspacesState:
         if pricing_tier is not None:
             pulumi.set(__self__, "pricing_tier", pricing_tier)
         if private_access_settings_id is not None:
-            pulumi.set(
-                __self__, "private_access_settings_id", private_access_settings_id
-            )
+            pulumi.set(__self__, "private_access_settings_id", private_access_settings_id)
         if storage_configuration_id is not None:
             pulumi.set(__self__, "storage_configuration_id", storage_configuration_id)
         if storage_customer_managed_key_id is not None:
-            pulumi.set(
-                __self__,
-                "storage_customer_managed_key_id",
-                storage_customer_managed_key_id,
-            )
+            pulumi.set(__self__, "storage_customer_managed_key_id", storage_customer_managed_key_id)
         if token is not None:
             pulumi.set(__self__, "token", token)
         if workspace_id is not None:
@@ -475,15 +420,11 @@ class _MwsWorkspacesState:
 
     @property
     @pulumi.getter(name="cloudResourceBucket")
-    def cloud_resource_bucket(
-        self,
-    ) -> Optional[pulumi.Input["MwsWorkspacesCloudResourceBucketArgs"]]:
+    def cloud_resource_bucket(self) -> Optional[pulumi.Input['MwsWorkspacesCloudResourceBucketArgs']]:
         return pulumi.get(self, "cloud_resource_bucket")
 
     @cloud_resource_bucket.setter
-    def cloud_resource_bucket(
-        self, value: Optional[pulumi.Input["MwsWorkspacesCloudResourceBucketArgs"]]
-    ):
+    def cloud_resource_bucket(self, value: Optional[pulumi.Input['MwsWorkspacesCloudResourceBucketArgs']]):
         pulumi.set(self, "cloud_resource_bucket", value)
 
     @property
@@ -524,15 +465,11 @@ class _MwsWorkspacesState:
 
     @property
     @pulumi.getter(name="externalCustomerInfo")
-    def external_customer_info(
-        self,
-    ) -> Optional[pulumi.Input["MwsWorkspacesExternalCustomerInfoArgs"]]:
+    def external_customer_info(self) -> Optional[pulumi.Input['MwsWorkspacesExternalCustomerInfoArgs']]:
         return pulumi.get(self, "external_customer_info")
 
     @external_customer_info.setter
-    def external_customer_info(
-        self, value: Optional[pulumi.Input["MwsWorkspacesExternalCustomerInfoArgs"]]
-    ):
+    def external_customer_info(self, value: Optional[pulumi.Input['MwsWorkspacesExternalCustomerInfoArgs']]):
         pulumi.set(self, "external_customer_info", value)
 
     @property
@@ -559,18 +496,16 @@ class _MwsWorkspacesState:
         return pulumi.get(self, "managed_services_customer_managed_key_id")
 
     @managed_services_customer_managed_key_id.setter
-    def managed_services_customer_managed_key_id(
-        self, value: Optional[pulumi.Input[str]]
-    ):
+    def managed_services_customer_managed_key_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "managed_services_customer_managed_key_id", value)
 
     @property
     @pulumi.getter
-    def network(self) -> Optional[pulumi.Input["MwsWorkspacesNetworkArgs"]]:
+    def network(self) -> Optional[pulumi.Input['MwsWorkspacesNetworkArgs']]:
         return pulumi.get(self, "network")
 
     @network.setter
-    def network(self, value: Optional[pulumi.Input["MwsWorkspacesNetworkArgs"]]):
+    def network(self, value: Optional[pulumi.Input['MwsWorkspacesNetworkArgs']]):
         pulumi.set(self, "network", value)
 
     @property
@@ -620,11 +555,11 @@ class _MwsWorkspacesState:
 
     @property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input["MwsWorkspacesTokenArgs"]]:
+    def token(self) -> Optional[pulumi.Input['MwsWorkspacesTokenArgs']]:
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input["MwsWorkspacesTokenArgs"]]):
+    def token(self, value: Optional[pulumi.Input['MwsWorkspacesTokenArgs']]):
         pulumi.set(self, "token", value)
 
     @property
@@ -675,58 +610,45 @@ class _MwsWorkspacesState:
 
 class MwsWorkspaces(pulumi.CustomResource):
     @overload
-    def __init__(
-        __self__,
-        resource_name: str,
-        opts: Optional[pulumi.ResourceOptions] = None,
-        account_id: Optional[pulumi.Input[str]] = None,
-        aws_region: Optional[pulumi.Input[str]] = None,
-        cloud: Optional[pulumi.Input[str]] = None,
-        cloud_resource_bucket: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesCloudResourceBucketArgs"]]
-        ] = None,
-        creation_time: Optional[pulumi.Input[int]] = None,
-        credentials_id: Optional[pulumi.Input[str]] = None,
-        customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        deployment_name: Optional[pulumi.Input[str]] = None,
-        external_customer_info: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesExternalCustomerInfoArgs"]]
-        ] = None,
-        is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
-        location: Optional[pulumi.Input[str]] = None,
-        managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        network: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesNetworkArgs"]]
-        ] = None,
-        network_id: Optional[pulumi.Input[str]] = None,
-        pricing_tier: Optional[pulumi.Input[str]] = None,
-        private_access_settings_id: Optional[pulumi.Input[str]] = None,
-        storage_configuration_id: Optional[pulumi.Input[str]] = None,
-        storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        token: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesTokenArgs"]]
-        ] = None,
-        workspace_id: Optional[pulumi.Input[int]] = None,
-        workspace_name: Optional[pulumi.Input[str]] = None,
-        workspace_status: Optional[pulumi.Input[str]] = None,
-        workspace_status_message: Optional[pulumi.Input[str]] = None,
-        workspace_url: Optional[pulumi.Input[str]] = None,
-        __props__=None,
-    ):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 account_id: Optional[pulumi.Input[str]] = None,
+                 aws_region: Optional[pulumi.Input[str]] = None,
+                 cloud: Optional[pulumi.Input[str]] = None,
+                 cloud_resource_bucket: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesCloudResourceBucketArgs']]] = None,
+                 creation_time: Optional[pulumi.Input[int]] = None,
+                 credentials_id: Optional[pulumi.Input[str]] = None,
+                 customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 deployment_name: Optional[pulumi.Input[str]] = None,
+                 external_customer_info: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesExternalCustomerInfoArgs']]] = None,
+                 is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesNetworkArgs']]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 pricing_tier: Optional[pulumi.Input[str]] = None,
+                 private_access_settings_id: Optional[pulumi.Input[str]] = None,
+                 storage_configuration_id: Optional[pulumi.Input[str]] = None,
+                 storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesTokenArgs']]] = None,
+                 workspace_id: Optional[pulumi.Input[int]] = None,
+                 workspace_name: Optional[pulumi.Input[str]] = None,
+                 workspace_status: Optional[pulumi.Input[str]] = None,
+                 workspace_status_message: Optional[pulumi.Input[str]] = None,
+                 workspace_url: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         """
         Create a MwsWorkspaces resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-
     @overload
-    def __init__(
-        __self__,
-        resource_name: str,
-        args: MwsWorkspacesArgs,
-        opts: Optional[pulumi.ResourceOptions] = None,
-    ):
+    def __init__(__self__,
+                 resource_name: str,
+                 args: MwsWorkspacesArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a MwsWorkspaces resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -734,67 +656,50 @@ class MwsWorkspaces(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(
-            MwsWorkspacesArgs, pulumi.ResourceOptions, *args, **kwargs
-        )
+        resource_args, opts = _utilities.get_resource_args_opts(MwsWorkspacesArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
             __self__._internal_init(resource_name, *args, **kwargs)
 
-    def _internal_init(
-        __self__,
-        resource_name: str,
-        opts: Optional[pulumi.ResourceOptions] = None,
-        account_id: Optional[pulumi.Input[str]] = None,
-        aws_region: Optional[pulumi.Input[str]] = None,
-        cloud: Optional[pulumi.Input[str]] = None,
-        cloud_resource_bucket: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesCloudResourceBucketArgs"]]
-        ] = None,
-        creation_time: Optional[pulumi.Input[int]] = None,
-        credentials_id: Optional[pulumi.Input[str]] = None,
-        customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        deployment_name: Optional[pulumi.Input[str]] = None,
-        external_customer_info: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesExternalCustomerInfoArgs"]]
-        ] = None,
-        is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
-        location: Optional[pulumi.Input[str]] = None,
-        managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        network: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesNetworkArgs"]]
-        ] = None,
-        network_id: Optional[pulumi.Input[str]] = None,
-        pricing_tier: Optional[pulumi.Input[str]] = None,
-        private_access_settings_id: Optional[pulumi.Input[str]] = None,
-        storage_configuration_id: Optional[pulumi.Input[str]] = None,
-        storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        token: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesTokenArgs"]]
-        ] = None,
-        workspace_id: Optional[pulumi.Input[int]] = None,
-        workspace_name: Optional[pulumi.Input[str]] = None,
-        workspace_status: Optional[pulumi.Input[str]] = None,
-        workspace_status_message: Optional[pulumi.Input[str]] = None,
-        workspace_url: Optional[pulumi.Input[str]] = None,
-        __props__=None,
-    ):
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 account_id: Optional[pulumi.Input[str]] = None,
+                 aws_region: Optional[pulumi.Input[str]] = None,
+                 cloud: Optional[pulumi.Input[str]] = None,
+                 cloud_resource_bucket: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesCloudResourceBucketArgs']]] = None,
+                 creation_time: Optional[pulumi.Input[int]] = None,
+                 credentials_id: Optional[pulumi.Input[str]] = None,
+                 customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 deployment_name: Optional[pulumi.Input[str]] = None,
+                 external_customer_info: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesExternalCustomerInfoArgs']]] = None,
+                 is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesNetworkArgs']]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 pricing_tier: Optional[pulumi.Input[str]] = None,
+                 private_access_settings_id: Optional[pulumi.Input[str]] = None,
+                 storage_configuration_id: Optional[pulumi.Input[str]] = None,
+                 storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesTokenArgs']]] = None,
+                 workspace_id: Optional[pulumi.Input[int]] = None,
+                 workspace_name: Optional[pulumi.Input[str]] = None,
+                 workspace_status: Optional[pulumi.Input[str]] = None,
+                 workspace_status_message: Optional[pulumi.Input[str]] = None,
+                 workspace_url: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
-            raise TypeError(
-                "Expected resource options to be a ResourceOptions instance"
-            )
+            raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
-                raise TypeError(
-                    "__props__ is only valid when passed in combination with a valid opts.id to get an existing resource"
-                )
+                raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = MwsWorkspacesArgs.__new__(MwsWorkspacesArgs)
 
             if account_id is None and not opts.urn:
@@ -806,31 +711,20 @@ class MwsWorkspaces(pulumi.CustomResource):
             __props__.__dict__["creation_time"] = creation_time
             __props__.__dict__["credentials_id"] = credentials_id
             if customer_managed_key_id is not None and not opts.urn:
-                warnings.warn(
-                    """Use managed_services_customer_managed_key_id instead""",
-                    DeprecationWarning,
-                )
-                pulumi.log.warn(
-                    """customer_managed_key_id is deprecated: Use managed_services_customer_managed_key_id instead"""
-                )
+                warnings.warn("""Use managed_services_customer_managed_key_id instead""", DeprecationWarning)
+                pulumi.log.warn("""customer_managed_key_id is deprecated: Use managed_services_customer_managed_key_id instead""")
             __props__.__dict__["customer_managed_key_id"] = customer_managed_key_id
             __props__.__dict__["deployment_name"] = deployment_name
             __props__.__dict__["external_customer_info"] = external_customer_info
             __props__.__dict__["is_no_public_ip_enabled"] = is_no_public_ip_enabled
             __props__.__dict__["location"] = location
-            __props__.__dict__[
-                "managed_services_customer_managed_key_id"
-            ] = managed_services_customer_managed_key_id
+            __props__.__dict__["managed_services_customer_managed_key_id"] = managed_services_customer_managed_key_id
             __props__.__dict__["network"] = network
             __props__.__dict__["network_id"] = network_id
             __props__.__dict__["pricing_tier"] = pricing_tier
-            __props__.__dict__[
-                "private_access_settings_id"
-            ] = private_access_settings_id
+            __props__.__dict__["private_access_settings_id"] = private_access_settings_id
             __props__.__dict__["storage_configuration_id"] = storage_configuration_id
-            __props__.__dict__[
-                "storage_customer_managed_key_id"
-            ] = storage_customer_managed_key_id
+            __props__.__dict__["storage_customer_managed_key_id"] = storage_customer_managed_key_id
             __props__.__dict__["token"] = token
             __props__.__dict__["workspace_id"] = workspace_id
             if workspace_name is None and not opts.urn:
@@ -840,50 +734,39 @@ class MwsWorkspaces(pulumi.CustomResource):
             __props__.__dict__["workspace_status_message"] = workspace_status_message
             __props__.__dict__["workspace_url"] = workspace_url
         super(MwsWorkspaces, __self__).__init__(
-            "databricks:databricks/mwsWorkspaces:MwsWorkspaces",
+            'databricks:databricks/mwsWorkspaces:MwsWorkspaces',
             resource_name,
             __props__,
-            opts,
-        )
+            opts)
 
     @staticmethod
-    def get(
-        resource_name: str,
-        id: pulumi.Input[str],
-        opts: Optional[pulumi.ResourceOptions] = None,
-        account_id: Optional[pulumi.Input[str]] = None,
-        aws_region: Optional[pulumi.Input[str]] = None,
-        cloud: Optional[pulumi.Input[str]] = None,
-        cloud_resource_bucket: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesCloudResourceBucketArgs"]]
-        ] = None,
-        creation_time: Optional[pulumi.Input[int]] = None,
-        credentials_id: Optional[pulumi.Input[str]] = None,
-        customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        deployment_name: Optional[pulumi.Input[str]] = None,
-        external_customer_info: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesExternalCustomerInfoArgs"]]
-        ] = None,
-        is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
-        location: Optional[pulumi.Input[str]] = None,
-        managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        network: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesNetworkArgs"]]
-        ] = None,
-        network_id: Optional[pulumi.Input[str]] = None,
-        pricing_tier: Optional[pulumi.Input[str]] = None,
-        private_access_settings_id: Optional[pulumi.Input[str]] = None,
-        storage_configuration_id: Optional[pulumi.Input[str]] = None,
-        storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
-        token: Optional[
-            pulumi.Input[pulumi.InputType["MwsWorkspacesTokenArgs"]]
-        ] = None,
-        workspace_id: Optional[pulumi.Input[int]] = None,
-        workspace_name: Optional[pulumi.Input[str]] = None,
-        workspace_status: Optional[pulumi.Input[str]] = None,
-        workspace_status_message: Optional[pulumi.Input[str]] = None,
-        workspace_url: Optional[pulumi.Input[str]] = None,
-    ) -> "MwsWorkspaces":
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account_id: Optional[pulumi.Input[str]] = None,
+            aws_region: Optional[pulumi.Input[str]] = None,
+            cloud: Optional[pulumi.Input[str]] = None,
+            cloud_resource_bucket: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesCloudResourceBucketArgs']]] = None,
+            creation_time: Optional[pulumi.Input[int]] = None,
+            credentials_id: Optional[pulumi.Input[str]] = None,
+            customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+            deployment_name: Optional[pulumi.Input[str]] = None,
+            external_customer_info: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesExternalCustomerInfoArgs']]] = None,
+            is_no_public_ip_enabled: Optional[pulumi.Input[bool]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            managed_services_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesNetworkArgs']]] = None,
+            network_id: Optional[pulumi.Input[str]] = None,
+            pricing_tier: Optional[pulumi.Input[str]] = None,
+            private_access_settings_id: Optional[pulumi.Input[str]] = None,
+            storage_configuration_id: Optional[pulumi.Input[str]] = None,
+            storage_customer_managed_key_id: Optional[pulumi.Input[str]] = None,
+            token: Optional[pulumi.Input[pulumi.InputType['MwsWorkspacesTokenArgs']]] = None,
+            workspace_id: Optional[pulumi.Input[int]] = None,
+            workspace_name: Optional[pulumi.Input[str]] = None,
+            workspace_status: Optional[pulumi.Input[str]] = None,
+            workspace_status_message: Optional[pulumi.Input[str]] = None,
+            workspace_url: Optional[pulumi.Input[str]] = None) -> 'MwsWorkspaces':
         """
         Get an existing MwsWorkspaces resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -907,17 +790,13 @@ class MwsWorkspaces(pulumi.CustomResource):
         __props__.__dict__["external_customer_info"] = external_customer_info
         __props__.__dict__["is_no_public_ip_enabled"] = is_no_public_ip_enabled
         __props__.__dict__["location"] = location
-        __props__.__dict__[
-            "managed_services_customer_managed_key_id"
-        ] = managed_services_customer_managed_key_id
+        __props__.__dict__["managed_services_customer_managed_key_id"] = managed_services_customer_managed_key_id
         __props__.__dict__["network"] = network
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["pricing_tier"] = pricing_tier
         __props__.__dict__["private_access_settings_id"] = private_access_settings_id
         __props__.__dict__["storage_configuration_id"] = storage_configuration_id
-        __props__.__dict__[
-            "storage_customer_managed_key_id"
-        ] = storage_customer_managed_key_id
+        __props__.__dict__["storage_customer_managed_key_id"] = storage_customer_managed_key_id
         __props__.__dict__["token"] = token
         __props__.__dict__["workspace_id"] = workspace_id
         __props__.__dict__["workspace_name"] = workspace_name
@@ -943,9 +822,7 @@ class MwsWorkspaces(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cloudResourceBucket")
-    def cloud_resource_bucket(
-        self,
-    ) -> pulumi.Output[Optional["outputs.MwsWorkspacesCloudResourceBucket"]]:
+    def cloud_resource_bucket(self) -> pulumi.Output[Optional['outputs.MwsWorkspacesCloudResourceBucket']]:
         return pulumi.get(self, "cloud_resource_bucket")
 
     @property
@@ -970,9 +847,7 @@ class MwsWorkspaces(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="externalCustomerInfo")
-    def external_customer_info(
-        self,
-    ) -> pulumi.Output[Optional["outputs.MwsWorkspacesExternalCustomerInfo"]]:
+    def external_customer_info(self) -> pulumi.Output[Optional['outputs.MwsWorkspacesExternalCustomerInfo']]:
         return pulumi.get(self, "external_customer_info")
 
     @property
@@ -992,7 +867,7 @@ class MwsWorkspaces(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def network(self) -> pulumi.Output[Optional["outputs.MwsWorkspacesNetwork"]]:
+    def network(self) -> pulumi.Output[Optional['outputs.MwsWorkspacesNetwork']]:
         return pulumi.get(self, "network")
 
     @property
@@ -1022,7 +897,7 @@ class MwsWorkspaces(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def token(self) -> pulumi.Output[Optional["outputs.MwsWorkspacesToken"]]:
+    def token(self) -> pulumi.Output[Optional['outputs.MwsWorkspacesToken']]:
         return pulumi.get(self, "token")
 
     @property
@@ -1049,3 +924,4 @@ class MwsWorkspaces(pulumi.CustomResource):
     @pulumi.getter(name="workspaceUrl")
     def workspace_url(self) -> pulumi.Output[str]:
         return pulumi.get(self, "workspace_url")
+
