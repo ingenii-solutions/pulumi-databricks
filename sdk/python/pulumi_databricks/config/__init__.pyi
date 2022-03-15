@@ -10,6 +10,8 @@ from .. import _utilities
 
 accountId: Optional[str]
 
+authType: Optional[str]
+
 azureClientId: Optional[str]
 
 azureClientSecret: Optional[str]

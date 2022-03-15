@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pulumi-databricks
-Version: 0.0.7
+Version: 0.2.0
 Summary: A Pulumi package for creating and managing Databricks cloud resources.
 Home-page: https://ingenii.dev
 License: Apache-2.0
@@ -15,21 +15,21 @@ This is a pre-release. Please do not use it in production.
 
 We have requested permission from the Pulumi team to start working on porting (or bridging) the Terraform Databricks provider to Pulumi.
 
-This release matches version 0.4.0 of the Terraform Databricks provider.
+This release matches version 0.4.1 of the Terraform Databricks provider.
 
 ## Notes
 
-* Install [Pulumi CLI](https://www.pulumi.com/docs/get-started/install/)
-* Install [PulumiCTL](https://github.com/pulumi/pulumictl)
-* Install Go 1.16
-* Install Python 3.x
+* ~~Install [Pulumi CLI](https://www.pulumi.com/docs/get-started/install/)~~ - Covered by Devcontainers setup
+* ~~Install [PulumiCTL](https://github.com/pulumi/pulumictl)~~ - Covered by Devcontainers setup
+* ~~Install Go 1.16~~ - Covered by Devcontainers setup
+* ~~Install Python 3.x~~ - Covered by Devcontainers setup
 
 Run the following commands:
 
-`cd provider && go mod tidy`
-`make tfgen`  
-`make build_provider`  
-`make build_sdks`  
+`cd provider && go mod tidy`  
+`make tfgen VERSION=<provider version>`  
+`make build_provider VERSION=<provider version>`  
+`make build_sdks VERSION=<provider version>`  
 
 If additional mapping is required, open the `/provider/resources.go` file and perform the mapping by using the [provider.go](https://github.com/databrickslabs/terraform-provider-databricks/blob/master/provider/provider.go) file as reference.
 
@@ -44,7 +44,7 @@ Also, we need to create another release of this repository and upload all provid
 We have only generated the Python SDKs.
 
 * Previous working version: `0.0.6` (mapped to Terraform Databricks provider version `0.4.0`)  
-* Latest working version: `0.0.7` (mapped to Terraform Databricks provider version `0.4.1`)
+* Latest working version: `0.1.0` (mapped to Terraform Databricks provider version `0.4.1`)
 
 ## Usage
 
@@ -53,4 +53,5 @@ We have only generated the Python SDKs.
 ```shell
 pip install pulumi-databricks
 ```
+
 

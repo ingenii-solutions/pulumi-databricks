@@ -20,6 +20,7 @@ class UserArgs:
                  databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a User resource.
@@ -37,6 +38,8 @@ class UserArgs:
             pulumi.set(__self__, "display_name", display_name)
         if external_id is not None:
             pulumi.set(__self__, "external_id", external_id)
+        if force is not None:
+            pulumi.set(__self__, "force", force)
         if workspace_access is not None:
             pulumi.set(__self__, "workspace_access", workspace_access)
 
@@ -104,6 +107,15 @@ class UserArgs:
         pulumi.set(self, "external_id", value)
 
     @property
+    @pulumi.getter
+    def force(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "force")
+
+    @force.setter
+    def force(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force", value)
+
+    @property
     @pulumi.getter(name="workspaceAccess")
     def workspace_access(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "workspace_access")
@@ -122,6 +134,7 @@ class _UserState:
                  databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None):
         """
@@ -139,6 +152,8 @@ class _UserState:
             pulumi.set(__self__, "display_name", display_name)
         if external_id is not None:
             pulumi.set(__self__, "external_id", external_id)
+        if force is not None:
+            pulumi.set(__self__, "force", force)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
         if workspace_access is not None:
@@ -199,6 +214,15 @@ class _UserState:
         pulumi.set(self, "external_id", value)
 
     @property
+    @pulumi.getter
+    def force(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "force")
+
+    @force.setter
+    def force(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force", value)
+
+    @property
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "user_name")
@@ -228,6 +252,7 @@ class User(pulumi.CustomResource):
                  databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -265,6 +290,7 @@ class User(pulumi.CustomResource):
                  databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -285,6 +311,7 @@ class User(pulumi.CustomResource):
             __props__.__dict__["databricks_sql_access"] = databricks_sql_access
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["external_id"] = external_id
+            __props__.__dict__["force"] = force
             if user_name is None and not opts.urn:
                 raise TypeError("Missing required property 'user_name'")
             __props__.__dict__["user_name"] = user_name
@@ -305,6 +332,7 @@ class User(pulumi.CustomResource):
             databricks_sql_access: Optional[pulumi.Input[bool]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             external_id: Optional[pulumi.Input[str]] = None,
+            force: Optional[pulumi.Input[bool]] = None,
             user_name: Optional[pulumi.Input[str]] = None,
             workspace_access: Optional[pulumi.Input[bool]] = None) -> 'User':
         """
@@ -325,6 +353,7 @@ class User(pulumi.CustomResource):
         __props__.__dict__["databricks_sql_access"] = databricks_sql_access
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["external_id"] = external_id
+        __props__.__dict__["force"] = force
         __props__.__dict__["user_name"] = user_name
         __props__.__dict__["workspace_access"] = workspace_access
         return User(resource_name, opts=opts, __props__=__props__)
@@ -358,6 +387,11 @@ class User(pulumi.CustomResource):
     @pulumi.getter(name="externalId")
     def external_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "external_id")
+
+    @property
+    @pulumi.getter
+    def force(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "force")
 
     @property
     @pulumi.getter(name="userName")

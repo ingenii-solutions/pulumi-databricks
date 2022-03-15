@@ -15,6 +15,7 @@ class NotebookArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  content_base64: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
                  language: Optional[pulumi.Input[str]] = None,
                  md5: Optional[pulumi.Input[str]] = None,
                  object_id: Optional[pulumi.Input[int]] = None,
@@ -26,12 +27,20 @@ class NotebookArgs:
         pulumi.set(__self__, "path", path)
         if content_base64 is not None:
             pulumi.set(__self__, "content_base64", content_base64)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
         if language is not None:
             pulumi.set(__self__, "language", language)
         if md5 is not None:
             pulumi.set(__self__, "md5", md5)
         if object_id is not None:
+            warnings.warn("""Use id argument to retrieve object id""", DeprecationWarning)
+            pulumi.log.warn("""object_id is deprecated: Use id argument to retrieve object id""")
+        if object_id is not None:
             pulumi.set(__self__, "object_id", object_id)
+        if object_type is not None:
+            warnings.warn("""Always is a notebook""", DeprecationWarning)
+            pulumi.log.warn("""object_type is deprecated: Always is a notebook""")
         if object_type is not None:
             pulumi.set(__self__, "object_type", object_type)
         if source is not None:
@@ -54,6 +63,15 @@ class NotebookArgs:
     @content_base64.setter
     def content_base64(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "content_base64", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
 
     @property
     @pulumi.getter
@@ -105,6 +123,7 @@ class NotebookArgs:
 class _NotebookState:
     def __init__(__self__, *,
                  content_base64: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
                  language: Optional[pulumi.Input[str]] = None,
                  md5: Optional[pulumi.Input[str]] = None,
                  object_id: Optional[pulumi.Input[int]] = None,
@@ -117,12 +136,20 @@ class _NotebookState:
         """
         if content_base64 is not None:
             pulumi.set(__self__, "content_base64", content_base64)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
         if language is not None:
             pulumi.set(__self__, "language", language)
         if md5 is not None:
             pulumi.set(__self__, "md5", md5)
         if object_id is not None:
+            warnings.warn("""Use id argument to retrieve object id""", DeprecationWarning)
+            pulumi.log.warn("""object_id is deprecated: Use id argument to retrieve object id""")
+        if object_id is not None:
             pulumi.set(__self__, "object_id", object_id)
+        if object_type is not None:
+            warnings.warn("""Always is a notebook""", DeprecationWarning)
+            pulumi.log.warn("""object_type is deprecated: Always is a notebook""")
         if object_type is not None:
             pulumi.set(__self__, "object_type", object_type)
         if path is not None:
@@ -140,6 +167,15 @@ class _NotebookState:
     @content_base64.setter
     def content_base64(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "content_base64", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
 
     @property
     @pulumi.getter
@@ -211,6 +247,7 @@ class Notebook(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content_base64: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
                  language: Optional[pulumi.Input[str]] = None,
                  md5: Optional[pulumi.Input[str]] = None,
                  object_id: Optional[pulumi.Input[int]] = None,
@@ -247,6 +284,7 @@ class Notebook(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content_base64: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
                  language: Optional[pulumi.Input[str]] = None,
                  md5: Optional[pulumi.Input[str]] = None,
                  object_id: Optional[pulumi.Input[int]] = None,
@@ -266,9 +304,16 @@ class Notebook(pulumi.CustomResource):
             __props__ = NotebookArgs.__new__(NotebookArgs)
 
             __props__.__dict__["content_base64"] = content_base64
+            __props__.__dict__["format"] = format
             __props__.__dict__["language"] = language
             __props__.__dict__["md5"] = md5
+            if object_id is not None and not opts.urn:
+                warnings.warn("""Use id argument to retrieve object id""", DeprecationWarning)
+                pulumi.log.warn("""object_id is deprecated: Use id argument to retrieve object id""")
             __props__.__dict__["object_id"] = object_id
+            if object_type is not None and not opts.urn:
+                warnings.warn("""Always is a notebook""", DeprecationWarning)
+                pulumi.log.warn("""object_type is deprecated: Always is a notebook""")
             __props__.__dict__["object_type"] = object_type
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
@@ -286,6 +331,7 @@ class Notebook(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             content_base64: Optional[pulumi.Input[str]] = None,
+            format: Optional[pulumi.Input[str]] = None,
             language: Optional[pulumi.Input[str]] = None,
             md5: Optional[pulumi.Input[str]] = None,
             object_id: Optional[pulumi.Input[int]] = None,
@@ -306,6 +352,7 @@ class Notebook(pulumi.CustomResource):
         __props__ = _NotebookState.__new__(_NotebookState)
 
         __props__.__dict__["content_base64"] = content_base64
+        __props__.__dict__["format"] = format
         __props__.__dict__["language"] = language
         __props__.__dict__["md5"] = md5
         __props__.__dict__["object_id"] = object_id
@@ -319,6 +366,11 @@ class Notebook(pulumi.CustomResource):
     @pulumi.getter(name="contentBase64")
     def content_base64(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "content_base64")
+
+    @property
+    @pulumi.getter
+    def format(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "format")
 
     @property
     @pulumi.getter

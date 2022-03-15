@@ -19,6 +19,8 @@ class JobArgs:
                  email_notifications: Optional[pulumi.Input['JobEmailNotificationsArgs']] = None,
                  existing_cluster_id: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 git_source: Optional[pulumi.Input['JobGitSourceArgs']] = None,
+                 job_clusters: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobClusterArgs']]]] = None,
                  libraries: Optional[pulumi.Input[Sequence[pulumi.Input['JobLibraryArgs']]]] = None,
                  max_concurrent_runs: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -46,6 +48,10 @@ class JobArgs:
             pulumi.set(__self__, "existing_cluster_id", existing_cluster_id)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if git_source is not None:
+            pulumi.set(__self__, "git_source", git_source)
+        if job_clusters is not None:
+            pulumi.set(__self__, "job_clusters", job_clusters)
         if libraries is not None:
             pulumi.set(__self__, "libraries", libraries)
         if max_concurrent_runs is not None:
@@ -114,6 +120,24 @@ class JobArgs:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="gitSource")
+    def git_source(self) -> Optional[pulumi.Input['JobGitSourceArgs']]:
+        return pulumi.get(self, "git_source")
+
+    @git_source.setter
+    def git_source(self, value: Optional[pulumi.Input['JobGitSourceArgs']]):
+        pulumi.set(self, "git_source", value)
+
+    @property
+    @pulumi.getter(name="jobClusters")
+    def job_clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobJobClusterArgs']]]]:
+        return pulumi.get(self, "job_clusters")
+
+    @job_clusters.setter
+    def job_clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobClusterArgs']]]]):
+        pulumi.set(self, "job_clusters", value)
 
     @property
     @pulumi.getter
@@ -267,6 +291,8 @@ class _JobState:
                  email_notifications: Optional[pulumi.Input['JobEmailNotificationsArgs']] = None,
                  existing_cluster_id: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 git_source: Optional[pulumi.Input['JobGitSourceArgs']] = None,
+                 job_clusters: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobClusterArgs']]]] = None,
                  libraries: Optional[pulumi.Input[Sequence[pulumi.Input['JobLibraryArgs']]]] = None,
                  max_concurrent_runs: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -295,6 +321,10 @@ class _JobState:
             pulumi.set(__self__, "existing_cluster_id", existing_cluster_id)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if git_source is not None:
+            pulumi.set(__self__, "git_source", git_source)
+        if job_clusters is not None:
+            pulumi.set(__self__, "job_clusters", job_clusters)
         if libraries is not None:
             pulumi.set(__self__, "libraries", libraries)
         if max_concurrent_runs is not None:
@@ -365,6 +395,24 @@ class _JobState:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="gitSource")
+    def git_source(self) -> Optional[pulumi.Input['JobGitSourceArgs']]:
+        return pulumi.get(self, "git_source")
+
+    @git_source.setter
+    def git_source(self, value: Optional[pulumi.Input['JobGitSourceArgs']]):
+        pulumi.set(self, "git_source", value)
+
+    @property
+    @pulumi.getter(name="jobClusters")
+    def job_clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobJobClusterArgs']]]]:
+        return pulumi.get(self, "job_clusters")
+
+    @job_clusters.setter
+    def job_clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobClusterArgs']]]]):
+        pulumi.set(self, "job_clusters", value)
 
     @property
     @pulumi.getter
@@ -529,6 +577,8 @@ class Job(pulumi.CustomResource):
                  email_notifications: Optional[pulumi.Input[pulumi.InputType['JobEmailNotificationsArgs']]] = None,
                  existing_cluster_id: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 git_source: Optional[pulumi.Input[pulumi.InputType['JobGitSourceArgs']]] = None,
+                 job_clusters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobJobClusterArgs']]]]] = None,
                  libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobLibraryArgs']]]]] = None,
                  max_concurrent_runs: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -578,6 +628,8 @@ class Job(pulumi.CustomResource):
                  email_notifications: Optional[pulumi.Input[pulumi.InputType['JobEmailNotificationsArgs']]] = None,
                  existing_cluster_id: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 git_source: Optional[pulumi.Input[pulumi.InputType['JobGitSourceArgs']]] = None,
+                 job_clusters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobJobClusterArgs']]]]] = None,
                  libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobLibraryArgs']]]]] = None,
                  max_concurrent_runs: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -610,6 +662,8 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["email_notifications"] = email_notifications
             __props__.__dict__["existing_cluster_id"] = existing_cluster_id
             __props__.__dict__["format"] = format
+            __props__.__dict__["git_source"] = git_source
+            __props__.__dict__["job_clusters"] = job_clusters
             __props__.__dict__["libraries"] = libraries
             __props__.__dict__["max_concurrent_runs"] = max_concurrent_runs
             __props__.__dict__["max_retries"] = max_retries
@@ -641,6 +695,8 @@ class Job(pulumi.CustomResource):
             email_notifications: Optional[pulumi.Input[pulumi.InputType['JobEmailNotificationsArgs']]] = None,
             existing_cluster_id: Optional[pulumi.Input[str]] = None,
             format: Optional[pulumi.Input[str]] = None,
+            git_source: Optional[pulumi.Input[pulumi.InputType['JobGitSourceArgs']]] = None,
+            job_clusters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobJobClusterArgs']]]]] = None,
             libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobLibraryArgs']]]]] = None,
             max_concurrent_runs: Optional[pulumi.Input[int]] = None,
             max_retries: Optional[pulumi.Input[int]] = None,
@@ -674,6 +730,8 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["email_notifications"] = email_notifications
         __props__.__dict__["existing_cluster_id"] = existing_cluster_id
         __props__.__dict__["format"] = format
+        __props__.__dict__["git_source"] = git_source
+        __props__.__dict__["job_clusters"] = job_clusters
         __props__.__dict__["libraries"] = libraries
         __props__.__dict__["max_concurrent_runs"] = max_concurrent_runs
         __props__.__dict__["max_retries"] = max_retries
@@ -712,6 +770,16 @@ class Job(pulumi.CustomResource):
     @pulumi.getter
     def format(self) -> pulumi.Output[str]:
         return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="gitSource")
+    def git_source(self) -> pulumi.Output[Optional['outputs.JobGitSource']]:
+        return pulumi.get(self, "git_source")
+
+    @property
+    @pulumi.getter(name="jobClusters")
+    def job_clusters(self) -> pulumi.Output[Optional[Sequence['outputs.JobJobCluster']]]:
+        return pulumi.get(self, "job_clusters")
 
     @property
     @pulumi.getter

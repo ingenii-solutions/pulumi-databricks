@@ -8,14 +8,14 @@ This release matches version 0.4.1 of the Terraform Databricks provider.
 
 ## Notes
 
-* Install [Pulumi CLI](https://www.pulumi.com/docs/get-started/install/)
-* Install [PulumiCTL](https://github.com/pulumi/pulumictl)
-* Install Go 1.16
-* Install Python 3.x
+* ~~Install [Pulumi CLI](https://www.pulumi.com/docs/get-started/install/)~~ - Covered by Devcontainers setup
+* ~~Install [PulumiCTL](https://github.com/pulumi/pulumictl)~~ - Covered by Devcontainers setup
+* ~~Install Go 1.16~~ - Covered by Devcontainers setup
+* ~~Install Python 3.x~~ - Covered by Devcontainers setup
 
 Run the following commands:
 
-`cd provider && go mod tidy`
+`cd provider && go mod tidy`  
 `make tfgen VERSION=<provider version>`  
 `make build_provider VERSION=<provider version>`  
 `make build_sdks VERSION=<provider version>`  

@@ -21,11 +21,13 @@ class PermissionsArgs:
                  cluster_policy_id: Optional[pulumi.Input[str]] = None,
                  directory_id: Optional[pulumi.Input[str]] = None,
                  directory_path: Optional[pulumi.Input[str]] = None,
+                 experiment_id: Optional[pulumi.Input[str]] = None,
                  instance_pool_id: Optional[pulumi.Input[str]] = None,
                  job_id: Optional[pulumi.Input[str]] = None,
                  notebook_id: Optional[pulumi.Input[str]] = None,
                  notebook_path: Optional[pulumi.Input[str]] = None,
                  object_type: Optional[pulumi.Input[str]] = None,
+                 registered_model_id: Optional[pulumi.Input[str]] = None,
                  repo_id: Optional[pulumi.Input[str]] = None,
                  repo_path: Optional[pulumi.Input[str]] = None,
                  sql_alert_id: Optional[pulumi.Input[str]] = None,
@@ -46,6 +48,8 @@ class PermissionsArgs:
             pulumi.set(__self__, "directory_id", directory_id)
         if directory_path is not None:
             pulumi.set(__self__, "directory_path", directory_path)
+        if experiment_id is not None:
+            pulumi.set(__self__, "experiment_id", experiment_id)
         if instance_pool_id is not None:
             pulumi.set(__self__, "instance_pool_id", instance_pool_id)
         if job_id is not None:
@@ -56,6 +60,8 @@ class PermissionsArgs:
             pulumi.set(__self__, "notebook_path", notebook_path)
         if object_type is not None:
             pulumi.set(__self__, "object_type", object_type)
+        if registered_model_id is not None:
+            pulumi.set(__self__, "registered_model_id", registered_model_id)
         if repo_id is not None:
             pulumi.set(__self__, "repo_id", repo_id)
         if repo_path is not None:
@@ -124,6 +130,15 @@ class PermissionsArgs:
         pulumi.set(self, "directory_path", value)
 
     @property
+    @pulumi.getter(name="experimentId")
+    def experiment_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "experiment_id")
+
+    @experiment_id.setter
+    def experiment_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "experiment_id", value)
+
+    @property
     @pulumi.getter(name="instancePoolId")
     def instance_pool_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "instance_pool_id")
@@ -167,6 +182,15 @@ class PermissionsArgs:
     @object_type.setter
     def object_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "object_type", value)
+
+    @property
+    @pulumi.getter(name="registeredModelId")
+    def registered_model_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "registered_model_id")
+
+    @registered_model_id.setter
+    def registered_model_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "registered_model_id", value)
 
     @property
     @pulumi.getter(name="repoId")
@@ -232,11 +256,13 @@ class _PermissionsState:
                  cluster_policy_id: Optional[pulumi.Input[str]] = None,
                  directory_id: Optional[pulumi.Input[str]] = None,
                  directory_path: Optional[pulumi.Input[str]] = None,
+                 experiment_id: Optional[pulumi.Input[str]] = None,
                  instance_pool_id: Optional[pulumi.Input[str]] = None,
                  job_id: Optional[pulumi.Input[str]] = None,
                  notebook_id: Optional[pulumi.Input[str]] = None,
                  notebook_path: Optional[pulumi.Input[str]] = None,
                  object_type: Optional[pulumi.Input[str]] = None,
+                 registered_model_id: Optional[pulumi.Input[str]] = None,
                  repo_id: Optional[pulumi.Input[str]] = None,
                  repo_path: Optional[pulumi.Input[str]] = None,
                  sql_alert_id: Optional[pulumi.Input[str]] = None,
@@ -258,6 +284,8 @@ class _PermissionsState:
             pulumi.set(__self__, "directory_id", directory_id)
         if directory_path is not None:
             pulumi.set(__self__, "directory_path", directory_path)
+        if experiment_id is not None:
+            pulumi.set(__self__, "experiment_id", experiment_id)
         if instance_pool_id is not None:
             pulumi.set(__self__, "instance_pool_id", instance_pool_id)
         if job_id is not None:
@@ -268,6 +296,8 @@ class _PermissionsState:
             pulumi.set(__self__, "notebook_path", notebook_path)
         if object_type is not None:
             pulumi.set(__self__, "object_type", object_type)
+        if registered_model_id is not None:
+            pulumi.set(__self__, "registered_model_id", registered_model_id)
         if repo_id is not None:
             pulumi.set(__self__, "repo_id", repo_id)
         if repo_path is not None:
@@ -336,6 +366,15 @@ class _PermissionsState:
         pulumi.set(self, "directory_path", value)
 
     @property
+    @pulumi.getter(name="experimentId")
+    def experiment_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "experiment_id")
+
+    @experiment_id.setter
+    def experiment_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "experiment_id", value)
+
+    @property
     @pulumi.getter(name="instancePoolId")
     def instance_pool_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "instance_pool_id")
@@ -379,6 +418,15 @@ class _PermissionsState:
     @object_type.setter
     def object_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "object_type", value)
+
+    @property
+    @pulumi.getter(name="registeredModelId")
+    def registered_model_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "registered_model_id")
+
+    @registered_model_id.setter
+    def registered_model_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "registered_model_id", value)
 
     @property
     @pulumi.getter(name="repoId")
@@ -446,11 +494,13 @@ class Permissions(pulumi.CustomResource):
                  cluster_policy_id: Optional[pulumi.Input[str]] = None,
                  directory_id: Optional[pulumi.Input[str]] = None,
                  directory_path: Optional[pulumi.Input[str]] = None,
+                 experiment_id: Optional[pulumi.Input[str]] = None,
                  instance_pool_id: Optional[pulumi.Input[str]] = None,
                  job_id: Optional[pulumi.Input[str]] = None,
                  notebook_id: Optional[pulumi.Input[str]] = None,
                  notebook_path: Optional[pulumi.Input[str]] = None,
                  object_type: Optional[pulumi.Input[str]] = None,
+                 registered_model_id: Optional[pulumi.Input[str]] = None,
                  repo_id: Optional[pulumi.Input[str]] = None,
                  repo_path: Optional[pulumi.Input[str]] = None,
                  sql_alert_id: Optional[pulumi.Input[str]] = None,
@@ -492,11 +542,13 @@ class Permissions(pulumi.CustomResource):
                  cluster_policy_id: Optional[pulumi.Input[str]] = None,
                  directory_id: Optional[pulumi.Input[str]] = None,
                  directory_path: Optional[pulumi.Input[str]] = None,
+                 experiment_id: Optional[pulumi.Input[str]] = None,
                  instance_pool_id: Optional[pulumi.Input[str]] = None,
                  job_id: Optional[pulumi.Input[str]] = None,
                  notebook_id: Optional[pulumi.Input[str]] = None,
                  notebook_path: Optional[pulumi.Input[str]] = None,
                  object_type: Optional[pulumi.Input[str]] = None,
+                 registered_model_id: Optional[pulumi.Input[str]] = None,
                  repo_id: Optional[pulumi.Input[str]] = None,
                  repo_path: Optional[pulumi.Input[str]] = None,
                  sql_alert_id: Optional[pulumi.Input[str]] = None,
@@ -523,11 +575,13 @@ class Permissions(pulumi.CustomResource):
             __props__.__dict__["cluster_policy_id"] = cluster_policy_id
             __props__.__dict__["directory_id"] = directory_id
             __props__.__dict__["directory_path"] = directory_path
+            __props__.__dict__["experiment_id"] = experiment_id
             __props__.__dict__["instance_pool_id"] = instance_pool_id
             __props__.__dict__["job_id"] = job_id
             __props__.__dict__["notebook_id"] = notebook_id
             __props__.__dict__["notebook_path"] = notebook_path
             __props__.__dict__["object_type"] = object_type
+            __props__.__dict__["registered_model_id"] = registered_model_id
             __props__.__dict__["repo_id"] = repo_id
             __props__.__dict__["repo_path"] = repo_path
             __props__.__dict__["sql_alert_id"] = sql_alert_id
@@ -550,11 +604,13 @@ class Permissions(pulumi.CustomResource):
             cluster_policy_id: Optional[pulumi.Input[str]] = None,
             directory_id: Optional[pulumi.Input[str]] = None,
             directory_path: Optional[pulumi.Input[str]] = None,
+            experiment_id: Optional[pulumi.Input[str]] = None,
             instance_pool_id: Optional[pulumi.Input[str]] = None,
             job_id: Optional[pulumi.Input[str]] = None,
             notebook_id: Optional[pulumi.Input[str]] = None,
             notebook_path: Optional[pulumi.Input[str]] = None,
             object_type: Optional[pulumi.Input[str]] = None,
+            registered_model_id: Optional[pulumi.Input[str]] = None,
             repo_id: Optional[pulumi.Input[str]] = None,
             repo_path: Optional[pulumi.Input[str]] = None,
             sql_alert_id: Optional[pulumi.Input[str]] = None,
@@ -579,11 +635,13 @@ class Permissions(pulumi.CustomResource):
         __props__.__dict__["cluster_policy_id"] = cluster_policy_id
         __props__.__dict__["directory_id"] = directory_id
         __props__.__dict__["directory_path"] = directory_path
+        __props__.__dict__["experiment_id"] = experiment_id
         __props__.__dict__["instance_pool_id"] = instance_pool_id
         __props__.__dict__["job_id"] = job_id
         __props__.__dict__["notebook_id"] = notebook_id
         __props__.__dict__["notebook_path"] = notebook_path
         __props__.__dict__["object_type"] = object_type
+        __props__.__dict__["registered_model_id"] = registered_model_id
         __props__.__dict__["repo_id"] = repo_id
         __props__.__dict__["repo_path"] = repo_path
         __props__.__dict__["sql_alert_id"] = sql_alert_id
@@ -623,6 +681,11 @@ class Permissions(pulumi.CustomResource):
         return pulumi.get(self, "directory_path")
 
     @property
+    @pulumi.getter(name="experimentId")
+    def experiment_id(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "experiment_id")
+
+    @property
     @pulumi.getter(name="instancePoolId")
     def instance_pool_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "instance_pool_id")
@@ -646,6 +709,11 @@ class Permissions(pulumi.CustomResource):
     @pulumi.getter(name="objectType")
     def object_type(self) -> pulumi.Output[str]:
         return pulumi.get(self, "object_type")
+
+    @property
+    @pulumi.getter(name="registeredModelId")
+    def registered_model_id(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "registered_model_id")
 
     @property
     @pulumi.getter(name="repoId")

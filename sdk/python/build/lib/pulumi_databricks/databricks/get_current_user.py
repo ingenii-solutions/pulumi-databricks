@@ -19,7 +19,7 @@ class GetCurrentUserResult:
     """
     A collection of values returned by getCurrentUser.
     """
-    def __init__(__self__, alphanumeric=None, external_id=None, home=None, id=None, repos=None, user_name=None):
+    def __init__(__self__, alphanumeric=None, external_id=None, home=None, id=None, repos=None, user_name=None, workspace_url=None):
         if alphanumeric and not isinstance(alphanumeric, str):
             raise TypeError("Expected argument 'alphanumeric' to be a str")
         pulumi.set(__self__, "alphanumeric", alphanumeric)
@@ -38,6 +38,9 @@ class GetCurrentUserResult:
         if user_name and not isinstance(user_name, str):
             raise TypeError("Expected argument 'user_name' to be a str")
         pulumi.set(__self__, "user_name", user_name)
+        if workspace_url and not isinstance(workspace_url, str):
+            raise TypeError("Expected argument 'workspace_url' to be a str")
+        pulumi.set(__self__, "workspace_url", workspace_url)
 
     @property
     @pulumi.getter
@@ -72,6 +75,11 @@ class GetCurrentUserResult:
     def user_name(self) -> str:
         return pulumi.get(self, "user_name")
 
+    @property
+    @pulumi.getter(name="workspaceUrl")
+    def workspace_url(self) -> str:
+        return pulumi.get(self, "workspace_url")
+
 
 class AwaitableGetCurrentUserResult(GetCurrentUserResult):
     # pylint: disable=using-constant-test
@@ -84,7 +92,8 @@ class AwaitableGetCurrentUserResult(GetCurrentUserResult):
             home=self.home,
             id=self.id,
             repos=self.repos,
-            user_name=self.user_name)
+            user_name=self.user_name,
+            workspace_url=self.workspace_url)
 
 
 def get_current_user(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCurrentUserResult:
@@ -104,4 +113,5 @@ def get_current_user(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
         home=__ret__.home,
         id=__ret__.id,
         repos=__ret__.repos,
-        user_name=__ret__.user_name)
+        user_name=__ret__.user_name,
+        workspace_url=__ret__.workspace_url)

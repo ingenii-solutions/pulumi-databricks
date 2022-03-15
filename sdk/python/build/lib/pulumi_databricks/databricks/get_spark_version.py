@@ -19,7 +19,7 @@ class GetSparkVersionResult:
     """
     A collection of values returned by getSparkVersion.
     """
-    def __init__(__self__, beta=None, genomics=None, gpu=None, id=None, latest=None, long_term_support=None, ml=None, photon=None, scala=None, spark_version=None):
+    def __init__(__self__, beta=None, genomics=None, gpu=None, graviton=None, id=None, latest=None, long_term_support=None, ml=None, photon=None, scala=None, spark_version=None):
         if beta and not isinstance(beta, bool):
             raise TypeError("Expected argument 'beta' to be a bool")
         pulumi.set(__self__, "beta", beta)
@@ -29,6 +29,9 @@ class GetSparkVersionResult:
         if gpu and not isinstance(gpu, bool):
             raise TypeError("Expected argument 'gpu' to be a bool")
         pulumi.set(__self__, "gpu", gpu)
+        if graviton and not isinstance(graviton, bool):
+            raise TypeError("Expected argument 'graviton' to be a bool")
+        pulumi.set(__self__, "graviton", graviton)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -65,6 +68,11 @@ class GetSparkVersionResult:
     @pulumi.getter
     def gpu(self) -> Optional[bool]:
         return pulumi.get(self, "gpu")
+
+    @property
+    @pulumi.getter
+    def graviton(self) -> Optional[bool]:
+        return pulumi.get(self, "graviton")
 
     @property
     @pulumi.getter
@@ -114,6 +122,7 @@ class AwaitableGetSparkVersionResult(GetSparkVersionResult):
             beta=self.beta,
             genomics=self.genomics,
             gpu=self.gpu,
+            graviton=self.graviton,
             id=self.id,
             latest=self.latest,
             long_term_support=self.long_term_support,
@@ -126,6 +135,7 @@ class AwaitableGetSparkVersionResult(GetSparkVersionResult):
 def get_spark_version(beta: Optional[bool] = None,
                       genomics: Optional[bool] = None,
                       gpu: Optional[bool] = None,
+                      graviton: Optional[bool] = None,
                       latest: Optional[bool] = None,
                       long_term_support: Optional[bool] = None,
                       ml: Optional[bool] = None,
@@ -140,6 +150,7 @@ def get_spark_version(beta: Optional[bool] = None,
     __args__['beta'] = beta
     __args__['genomics'] = genomics
     __args__['gpu'] = gpu
+    __args__['graviton'] = graviton
     __args__['latest'] = latest
     __args__['longTermSupport'] = long_term_support
     __args__['ml'] = ml
@@ -156,6 +167,7 @@ def get_spark_version(beta: Optional[bool] = None,
         beta=__ret__.beta,
         genomics=__ret__.genomics,
         gpu=__ret__.gpu,
+        graviton=__ret__.graviton,
         id=__ret__.id,
         latest=__ret__.latest,
         long_term_support=__ret__.long_term_support,

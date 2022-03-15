@@ -19,6 +19,10 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('accountId')
 
     @property
+    def auth_type(self) -> Optional[str]:
+        return __config__.get('authType')
+
+    @property
     def azure_client_id(self) -> Optional[str]:
         return __config__.get('azureClientId')
 

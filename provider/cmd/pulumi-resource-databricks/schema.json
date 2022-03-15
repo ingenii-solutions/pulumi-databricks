@@ -17,6 +17,9 @@
             "accountId": {
                 "type": "string"
             },
+            "authType": {
+                "type": "string"
+            },
             "azureClientId": {
                 "type": "string"
             },
@@ -345,6 +348,22 @@
         },
         "databricks:databricks/ClusterGcpAttributes:ClusterGcpAttributes": {
             "properties": {
+                "availability": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bootDiskSize": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "googleServiceAccount": {
                     "type": "string",
                     "language": {
@@ -355,6 +374,14 @@
                 },
                 "usePreemptibleExecutors": {
                     "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneId": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1039,6 +1066,19 @@
             },
             "type": "object"
         },
+        "databricks:databricks/InstancePoolGcpAttributes:InstancePoolGcpAttributes": {
+            "properties": {
+                "availability": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "databricks:databricks/InstancePoolPreloadedDockerImage:InstancePoolPreloadedDockerImage": {
             "properties": {
                 "basicAuth": {
@@ -1133,6 +1173,756 @@
                 }
             },
             "type": "object"
+        },
+        "databricks:databricks/JobGitSource:JobGitSource": {
+            "properties": {
+                "branch": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "commit": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "provider": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tag": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "url"
+            ]
+        },
+        "databricks:databricks/JobJobCluster:JobJobCluster": {
+            "properties": {
+                "jobClusterKey": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "newCluster": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewCluster:JobJobClusterNewCluster",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "databricks:databricks/JobJobClusterNewCluster:JobJobClusterNewCluster": {
+            "properties": {
+                "autoscale": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterAutoscale:JobJobClusterNewClusterAutoscale",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "autoterminationMinutes": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "awsAttributes": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterAwsAttributes:JobJobClusterNewClusterAwsAttributes",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "azureAttributes": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterAzureAttributes:JobJobClusterNewClusterAzureAttributes",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "clusterId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "clusterLogConf": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterClusterLogConf:JobJobClusterNewClusterClusterLogConf",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "clusterName": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "customTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dataSecurityMode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dockerImage": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterDockerImage:JobJobClusterNewClusterDockerImage",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "driverInstancePoolId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "driverNodeTypeId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "enableElasticDisk": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "enableLocalDiskEncryption": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gcpAttributes": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterGcpAttributes:JobJobClusterNewClusterGcpAttributes",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "idempotencyToken": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "initScripts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterInitScript:JobJobClusterNewClusterInitScript"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "instancePoolId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodeTypeId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "numWorkers": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policyId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "singleUserName": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sparkConf": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sparkEnvVars": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sparkVersion": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sshPublicKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "numWorkers",
+                "sparkVersion"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "driverInstancePoolId",
+                        "driverNodeTypeId",
+                        "enableElasticDisk",
+                        "enableLocalDiskEncryption",
+                        "nodeTypeId",
+                        "numWorkers",
+                        "sparkVersion"
+                    ]
+                }
+            }
+        },
+        "databricks:databricks/JobJobClusterNewClusterAutoscale:JobJobClusterNewClusterAutoscale": {
+            "properties": {
+                "maxWorkers": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minWorkers": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "databricks:databricks/JobJobClusterNewClusterAwsAttributes:JobJobClusterNewClusterAwsAttributes": {
+            "properties": {
+                "availability": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ebsVolumeCount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ebsVolumeSize": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ebsVolumeType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "firstOnDemand": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "instanceProfileArn": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "spotBidPricePercent": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "databricks:databricks/JobJobClusterNewClusterAzureAttributes:JobJobClusterNewClusterAzureAttributes": {
+            "properties": {
+                "availability": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "firstOnDemand": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "spotBidMaxPrice": {
+                    "type": "number",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "databricks:databricks/JobJobClusterNewClusterClusterLogConf:JobJobClusterNewClusterClusterLogConf": {
+            "properties": {
+                "dbfs": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterClusterLogConfDbfs:JobJobClusterNewClusterClusterLogConfDbfs",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "s3": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterClusterLogConfS3:JobJobClusterNewClusterClusterLogConfS3",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "databricks:databricks/JobJobClusterNewClusterClusterLogConfDbfs:JobJobClusterNewClusterClusterLogConfDbfs": {
+            "properties": {
+                "destination": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination"
+            ]
+        },
+        "databricks:databricks/JobJobClusterNewClusterClusterLogConfS3:JobJobClusterNewClusterClusterLogConfS3": {
+            "properties": {
+                "cannedAcl": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "destination": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "enableEncryption": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "encryptionType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "endpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "kmsKey": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination"
+            ]
+        },
+        "databricks:databricks/JobJobClusterNewClusterDockerImage:JobJobClusterNewClusterDockerImage": {
+            "properties": {
+                "basicAuth": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterDockerImageBasicAuth:JobJobClusterNewClusterDockerImageBasicAuth",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "url"
+            ]
+        },
+        "databricks:databricks/JobJobClusterNewClusterDockerImageBasicAuth:JobJobClusterNewClusterDockerImageBasicAuth": {
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ]
+        },
+        "databricks:databricks/JobJobClusterNewClusterGcpAttributes:JobJobClusterNewClusterGcpAttributes": {
+            "properties": {
+                "availability": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bootDiskSize": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "googleServiceAccount": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "usePreemptibleExecutors": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "databricks:databricks/JobJobClusterNewClusterInitScript:JobJobClusterNewClusterInitScript": {
+            "properties": {
+                "dbfs": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterInitScriptDbfs:JobJobClusterNewClusterInitScriptDbfs",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "file": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterInitScriptFile:JobJobClusterNewClusterInitScriptFile",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "s3": {
+                    "$ref": "#/types/databricks:databricks/JobJobClusterNewClusterInitScriptS3:JobJobClusterNewClusterInitScriptS3",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "databricks:databricks/JobJobClusterNewClusterInitScriptDbfs:JobJobClusterNewClusterInitScriptDbfs": {
+            "properties": {
+                "destination": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination"
+            ]
+        },
+        "databricks:databricks/JobJobClusterNewClusterInitScriptFile:JobJobClusterNewClusterInitScriptFile": {
+            "properties": {
+                "destination": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "databricks:databricks/JobJobClusterNewClusterInitScriptS3:JobJobClusterNewClusterInitScriptS3": {
+            "properties": {
+                "cannedAcl": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "destination": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "enableEncryption": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "encryptionType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "endpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "kmsKey": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination"
+            ]
         },
         "databricks:databricks/JobLibrary:JobLibrary": {
             "properties": {
@@ -1784,6 +2574,22 @@
         },
         "databricks:databricks/JobNewClusterGcpAttributes:JobNewClusterGcpAttributes": {
             "properties": {
+                "availability": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bootDiskSize": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "googleServiceAccount": {
                     "type": "string",
                     "language": {
@@ -1794,6 +2600,14 @@
                 },
                 "usePreemptibleExecutors": {
                     "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneId": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2158,6 +2972,14 @@
                     }
                 },
                 "existingClusterId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "jobClusterKey": {
                     "type": "string",
                     "language": {
                         "python": {
@@ -2991,6 +3813,22 @@
         },
         "databricks:databricks/JobTaskNewClusterGcpAttributes:JobTaskNewClusterGcpAttributes": {
             "properties": {
+                "availability": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bootDiskSize": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "googleServiceAccount": {
                     "type": "string",
                     "language": {
@@ -3001,6 +3839,14 @@
                 },
                 "usePreemptibleExecutors": {
                     "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "zoneId": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3399,6 +4245,79 @@
             "required": [
                 "key",
                 "value"
+            ]
+        },
+        "databricks:databricks/MLFlowWebhookHttpUrlSpec:MLFlowWebhookHttpUrlSpec": {
+            "properties": {
+                "authorization": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "enableSslVerification": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "string": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "url"
+            ]
+        },
+        "databricks:databricks/MLFlowWebhookJobSpec:MLFlowWebhookJobSpec": {
+            "properties": {
+                "accessToken": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "jobId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "workspaceUrl": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessToken",
+                "jobId"
             ]
         },
         "databricks:databricks/MetastoreDataAccessAwsIamRole:MetastoreDataAccessAwsIamRole": {
@@ -4317,6 +5236,19 @@
                 "resourceId"
             ]
         },
+        "databricks:databricks/SqlEndpointChannel:SqlEndpointChannel": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "databricks:databricks/SqlEndpointOdbcParams:SqlEndpointOdbcParams": {
             "properties": {
                 "host": {
@@ -5067,6 +5999,155 @@
                 "sizeY"
             ]
         },
+        "databricks:databricks/StorageCredentialAwsIamRole:StorageCredentialAwsIamRole": {
+            "properties": {
+                "roleArn": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "roleArn"
+            ]
+        },
+        "databricks:databricks/StorageCredentialAzureServicePrincipal:StorageCredentialAzureServicePrincipal": {
+            "properties": {
+                "applicationId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "directoryId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "applicationId",
+                "clientSecret",
+                "directoryId"
+            ]
+        },
+        "databricks:databricks/TableColumn:TableColumn": {
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nullable": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "partitionIndex": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "position": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "typeIntervalType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "typeJson": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "typeName": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "typePrecision": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "typeScale": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "typeText": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "position",
+                "typeName",
+                "typeText"
+            ]
+        },
         "databricks:databricks/getDbfsFilePathsPathList:getDbfsFilePathsPathList": {
             "properties": {
                 "fileSize": {
@@ -5114,6 +6195,9 @@
         "description": "The provider type for the databricks package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "properties": {
             "accountId": {
+                "type": "string"
+            },
+            "authType": {
                 "type": "string"
             },
             "azureClientId": {
@@ -5173,6 +6257,9 @@
         },
         "inputProperties": {
             "accountId": {
+                "type": "string"
+            },
+            "authType": {
                 "type": "string"
             },
             "azureClientId": {
@@ -6369,6 +7456,141 @@
                 "type": "object"
             }
         },
+        "databricks:databricks/externalLocation:ExternalLocation": {
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "credentialName": {
+                    "type": "string"
+                },
+                "metastoreId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "credentialName",
+                "metastoreId",
+                "name",
+                "owner",
+                "url"
+            ],
+            "inputProperties": {
+                "comment": {
+                    "type": "string"
+                },
+                "credentialName": {
+                    "type": "string"
+                },
+                "metastoreId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "credentialName",
+                "url"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ExternalLocation resources.\n",
+                "properties": {
+                    "comment": {
+                        "type": "string"
+                    },
+                    "credentialName": {
+                        "type": "string"
+                    },
+                    "metastoreId": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "owner": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "databricks:databricks/gitCredential:GitCredential": {
+            "properties": {
+                "force": {
+                    "type": "boolean"
+                },
+                "gitProvider": {
+                    "type": "string"
+                },
+                "gitUsername": {
+                    "type": "string"
+                },
+                "personalAccessToken": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "gitProvider",
+                "gitUsername",
+                "personalAccessToken"
+            ],
+            "inputProperties": {
+                "force": {
+                    "type": "boolean"
+                },
+                "gitProvider": {
+                    "type": "string"
+                },
+                "gitUsername": {
+                    "type": "string"
+                },
+                "personalAccessToken": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "gitProvider",
+                "gitUsername",
+                "personalAccessToken"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering GitCredential resources.\n",
+                "properties": {
+                    "force": {
+                        "type": "boolean"
+                    },
+                    "gitProvider": {
+                        "type": "string"
+                    },
+                    "gitUsername": {
+                        "type": "string"
+                    },
+                    "personalAccessToken": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "databricks:databricks/globalInitScript:GlobalInitScript": {
             "properties": {
                 "contentBase64": {
@@ -6444,6 +7666,9 @@
                 "catalog": {
                     "type": "string"
                 },
+                "externalLocation": {
+                    "type": "string"
+                },
                 "grants": {
                     "type": "array",
                     "items": {
@@ -6451,6 +7676,9 @@
                     }
                 },
                 "schema": {
+                    "type": "string"
+                },
+                "storageCredential": {
                     "type": "string"
                 },
                 "table": {
@@ -6467,6 +7695,9 @@
                 "catalog": {
                     "type": "string"
                 },
+                "externalLocation": {
+                    "type": "string"
+                },
                 "grants": {
                     "type": "array",
                     "items": {
@@ -6474,6 +7705,9 @@
                     }
                 },
                 "schema": {
+                    "type": "string"
+                },
+                "storageCredential": {
                     "type": "string"
                 },
                 "table": {
@@ -6492,6 +7726,9 @@
                     "catalog": {
                         "type": "string"
                     },
+                    "externalLocation": {
+                        "type": "string"
+                    },
                     "grants": {
                         "type": "array",
                         "items": {
@@ -6499,6 +7736,9 @@
                         }
                     },
                     "schema": {
+                        "type": "string"
+                    },
+                    "storageCredential": {
                         "type": "string"
                     },
                     "table": {
@@ -6528,6 +7768,9 @@
                 "externalId": {
                     "type": "string"
                 },
+                "force": {
+                    "type": "boolean"
+                },
                 "url": {
                     "type": "string"
                 },
@@ -6555,6 +7798,12 @@
                 "externalId": {
                     "type": "string"
                 },
+                "force": {
+                    "type": "boolean"
+                },
+                "url": {
+                    "type": "string"
+                },
                 "workspaceAccess": {
                     "type": "boolean"
                 }
@@ -6579,6 +7828,9 @@
                     },
                     "externalId": {
                         "type": "string"
+                    },
+                    "force": {
+                        "type": "boolean"
                     },
                     "url": {
                         "type": "string"
@@ -6753,6 +8005,9 @@
                 "enableElasticDisk": {
                     "type": "boolean"
                 },
+                "gcpAttributes": {
+                    "$ref": "#/types/databricks:databricks/InstancePoolGcpAttributes:InstancePoolGcpAttributes"
+                },
                 "idleInstanceAutoterminationMinutes": {
                     "type": "integer"
                 },
@@ -6808,6 +8063,9 @@
                 },
                 "enableElasticDisk": {
                     "type": "boolean"
+                },
+                "gcpAttributes": {
+                    "$ref": "#/types/databricks:databricks/InstancePoolGcpAttributes:InstancePoolGcpAttributes"
                 },
                 "idleInstanceAutoterminationMinutes": {
                     "type": "integer"
@@ -6865,6 +8123,9 @@
                     },
                     "enableElasticDisk": {
                         "type": "boolean"
+                    },
+                    "gcpAttributes": {
+                        "$ref": "#/types/databricks:databricks/InstancePoolGcpAttributes:InstancePoolGcpAttributes"
                     },
                     "idleInstanceAutoterminationMinutes": {
                         "type": "integer"
@@ -6956,6 +8217,15 @@
                 "format": {
                     "type": "string"
                 },
+                "gitSource": {
+                    "$ref": "#/types/databricks:databricks/JobGitSource:JobGitSource"
+                },
+                "jobClusters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/databricks:databricks/JobJobCluster:JobJobCluster"
+                    }
+                },
                 "libraries": {
                     "type": "array",
                     "items": {
@@ -7032,6 +8302,15 @@
                 "format": {
                     "type": "string"
                 },
+                "gitSource": {
+                    "$ref": "#/types/databricks:databricks/JobGitSource:JobGitSource"
+                },
+                "jobClusters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/databricks:databricks/JobJobCluster:JobJobCluster"
+                    }
+                },
                 "libraries": {
                     "type": "array",
                     "items": {
@@ -7101,6 +8380,15 @@
                     },
                     "format": {
                         "type": "string"
+                    },
+                    "gitSource": {
+                        "$ref": "#/types/databricks:databricks/JobGitSource:JobGitSource"
+                    },
+                    "jobClusters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/databricks:databricks/JobJobCluster:JobJobCluster"
+                        }
                     },
                     "libraries": {
                         "type": "array",
@@ -7340,6 +8628,9 @@
                 "name": {
                     "type": "string"
                 },
+                "registeredModelId": {
+                    "type": "string"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -7354,6 +8645,7 @@
                 "creationTimestamp",
                 "lastUpdatedTimestamp",
                 "name",
+                "registeredModelId",
                 "userId"
             ],
             "inputProperties": {
@@ -7367,6 +8659,9 @@
                     "type": "integer"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "registeredModelId": {
                     "type": "string"
                 },
                 "tags": {
@@ -7394,6 +8689,9 @@
                     "name": {
                         "type": "string"
                     },
+                    "registeredModelId": {
+                        "type": "string"
+                    },
                     "tags": {
                         "type": "array",
                         "items": {
@@ -7401,6 +8699,87 @@
                         }
                     },
                     "userId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "databricks:databricks/mLFlowWebhook:MLFlowWebhook": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "events": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "httpUrlSpec": {
+                    "$ref": "#/types/databricks:databricks/MLFlowWebhookHttpUrlSpec:MLFlowWebhookHttpUrlSpec"
+                },
+                "jobSpec": {
+                    "$ref": "#/types/databricks:databricks/MLFlowWebhookJobSpec:MLFlowWebhookJobSpec"
+                },
+                "modelName": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "events"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string"
+                },
+                "events": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "httpUrlSpec": {
+                    "$ref": "#/types/databricks:databricks/MLFlowWebhookHttpUrlSpec:MLFlowWebhookHttpUrlSpec"
+                },
+                "jobSpec": {
+                    "$ref": "#/types/databricks:databricks/MLFlowWebhookJobSpec:MLFlowWebhookJobSpec"
+                },
+                "modelName": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "events"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering MLFlowWebhook resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "events": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "httpUrlSpec": {
+                        "$ref": "#/types/databricks:databricks/MLFlowWebhookHttpUrlSpec:MLFlowWebhookHttpUrlSpec"
+                    },
+                    "jobSpec": {
+                        "$ref": "#/types/databricks:databricks/MLFlowWebhookJobSpec:MLFlowWebhookJobSpec"
+                    },
+                    "modelName": {
+                        "type": "string"
+                    },
+                    "status": {
                         "type": "string"
                     }
                 },
@@ -8571,6 +9950,9 @@
                 "contentBase64": {
                     "type": "string"
                 },
+                "format": {
+                    "type": "string"
+                },
                 "language": {
                     "type": "string"
                 },
@@ -8578,10 +9960,12 @@
                     "type": "string"
                 },
                 "objectId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "deprecationMessage": "Use id argument to retrieve object id"
                 },
                 "objectType": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "Always is a notebook"
                 },
                 "path": {
                     "type": "string"
@@ -8603,6 +9987,9 @@
                 "contentBase64": {
                     "type": "string"
                 },
+                "format": {
+                    "type": "string"
+                },
                 "language": {
                     "type": "string"
                 },
@@ -8610,10 +9997,12 @@
                     "type": "string"
                 },
                 "objectId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "deprecationMessage": "Use id argument to retrieve object id"
                 },
                 "objectType": {
-                    "type": "string"
+                    "type": "string",
+                    "deprecationMessage": "Always is a notebook"
                 },
                 "path": {
                     "type": "string"
@@ -8631,6 +10020,9 @@
                     "contentBase64": {
                         "type": "string"
                     },
+                    "format": {
+                        "type": "string"
+                    },
                     "language": {
                         "type": "string"
                     },
@@ -8638,10 +10030,12 @@
                         "type": "string"
                     },
                     "objectId": {
-                        "type": "integer"
+                        "type": "integer",
+                        "deprecationMessage": "Use id argument to retrieve object id"
                     },
                     "objectType": {
-                        "type": "string"
+                        "type": "string",
+                        "deprecationMessage": "Always is a notebook"
                     },
                     "path": {
                         "type": "string"
@@ -8735,6 +10129,9 @@
                 "directoryPath": {
                     "type": "string"
                 },
+                "experimentId": {
+                    "type": "string"
+                },
                 "instancePoolId": {
                     "type": "string"
                 },
@@ -8748,6 +10145,9 @@
                     "type": "string"
                 },
                 "objectType": {
+                    "type": "string"
+                },
+                "registeredModelId": {
                     "type": "string"
                 },
                 "repoId": {
@@ -8795,6 +10195,9 @@
                 "directoryPath": {
                     "type": "string"
                 },
+                "experimentId": {
+                    "type": "string"
+                },
                 "instancePoolId": {
                     "type": "string"
                 },
@@ -8808,6 +10211,9 @@
                     "type": "string"
                 },
                 "objectType": {
+                    "type": "string"
+                },
+                "registeredModelId": {
                     "type": "string"
                 },
                 "repoId": {
@@ -8856,6 +10262,9 @@
                     "directoryPath": {
                         "type": "string"
                     },
+                    "experimentId": {
+                        "type": "string"
+                    },
                     "instancePoolId": {
                         "type": "string"
                     },
@@ -8869,6 +10278,9 @@
                         "type": "string"
                     },
                     "objectType": {
+                        "type": "string"
+                    },
+                    "registeredModelId": {
                         "type": "string"
                     },
                     "repoId": {
@@ -9480,6 +10892,9 @@
                 "autoStopMins": {
                     "type": "integer"
                 },
+                "channel": {
+                    "$ref": "#/types/databricks:databricks/SqlEndpointChannel:SqlEndpointChannel"
+                },
                 "clusterSize": {
                     "type": "string"
                 },
@@ -9539,6 +10954,9 @@
                 "autoStopMins": {
                     "type": "integer"
                 },
+                "channel": {
+                    "$ref": "#/types/databricks:databricks/SqlEndpointChannel:SqlEndpointChannel"
+                },
                 "clusterSize": {
                     "type": "string"
                 },
@@ -9593,6 +11011,9 @@
                 "properties": {
                     "autoStopMins": {
                         "type": "integer"
+                    },
+                    "channel": {
+                        "$ref": "#/types/databricks:databricks/SqlEndpointChannel:SqlEndpointChannel"
                     },
                     "clusterSize": {
                         "type": "string"
@@ -9659,6 +11080,12 @@
                 },
                 "securityPolicy": {
                     "type": "string"
+                },
+                "sqlConfigParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
                 }
             },
             "inputProperties": {
@@ -9676,6 +11103,12 @@
                 },
                 "securityPolicy": {
                     "type": "string"
+                },
+                "sqlConfigParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
                 }
             },
             "stateInputs": {
@@ -9695,6 +11128,12 @@
                     },
                     "securityPolicy": {
                         "type": "string"
+                    },
+                    "sqlConfigParams": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
                     }
                 },
                 "type": "object"
@@ -10085,6 +11524,221 @@
                 "type": "object"
             }
         },
+        "databricks:databricks/storageCredential:StorageCredential": {
+            "properties": {
+                "awsIamRole": {
+                    "$ref": "#/types/databricks:databricks/StorageCredentialAwsIamRole:StorageCredentialAwsIamRole"
+                },
+                "azureServicePrincipal": {
+                    "$ref": "#/types/databricks:databricks/StorageCredentialAzureServicePrincipal:StorageCredentialAzureServicePrincipal"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "metastoreId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "metastoreId",
+                "name"
+            ],
+            "inputProperties": {
+                "awsIamRole": {
+                    "$ref": "#/types/databricks:databricks/StorageCredentialAwsIamRole:StorageCredentialAwsIamRole"
+                },
+                "azureServicePrincipal": {
+                    "$ref": "#/types/databricks:databricks/StorageCredentialAzureServicePrincipal:StorageCredentialAzureServicePrincipal"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "metastoreId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering StorageCredential resources.\n",
+                "properties": {
+                    "awsIamRole": {
+                        "$ref": "#/types/databricks:databricks/StorageCredentialAwsIamRole:StorageCredentialAwsIamRole"
+                    },
+                    "azureServicePrincipal": {
+                        "$ref": "#/types/databricks:databricks/StorageCredentialAzureServicePrincipal:StorageCredentialAzureServicePrincipal"
+                    },
+                    "comment": {
+                        "type": "string"
+                    },
+                    "metastoreId": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "databricks:databricks/table:Table": {
+            "properties": {
+                "catalogName": {
+                    "type": "string"
+                },
+                "columns": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/databricks:databricks/TableColumn:TableColumn"
+                    }
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "dataSourceFormat": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "schemaName": {
+                    "type": "string"
+                },
+                "storageCredentialName": {
+                    "type": "string"
+                },
+                "storageLocation": {
+                    "type": "string"
+                },
+                "tableType": {
+                    "type": "string"
+                },
+                "viewDefinition": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "catalogName",
+                "columns",
+                "dataSourceFormat",
+                "name",
+                "owner",
+                "schemaName",
+                "tableType"
+            ],
+            "inputProperties": {
+                "catalogName": {
+                    "type": "string"
+                },
+                "columns": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/databricks:databricks/TableColumn:TableColumn"
+                    }
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "dataSourceFormat": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "schemaName": {
+                    "type": "string"
+                },
+                "storageCredentialName": {
+                    "type": "string"
+                },
+                "storageLocation": {
+                    "type": "string"
+                },
+                "tableType": {
+                    "type": "string"
+                },
+                "viewDefinition": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "catalogName",
+                "columns",
+                "dataSourceFormat",
+                "schemaName",
+                "tableType"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Table resources.\n",
+                "properties": {
+                    "catalogName": {
+                        "type": "string"
+                    },
+                    "columns": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/databricks:databricks/TableColumn:TableColumn"
+                        }
+                    },
+                    "comment": {
+                        "type": "string"
+                    },
+                    "dataSourceFormat": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "owner": {
+                        "type": "string"
+                    },
+                    "properties": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "schemaName": {
+                        "type": "string"
+                    },
+                    "storageCredentialName": {
+                        "type": "string"
+                    },
+                    "storageLocation": {
+                        "type": "string"
+                    },
+                    "tableType": {
+                        "type": "string"
+                    },
+                    "viewDefinition": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "databricks:databricks/token:Token": {
             "properties": {
                 "comment": {
@@ -10174,6 +11828,9 @@
                 "externalId": {
                     "type": "string"
                 },
+                "force": {
+                    "type": "boolean"
+                },
                 "userName": {
                     "type": "string"
                 },
@@ -10203,6 +11860,9 @@
                 },
                 "externalId": {
                     "type": "string"
+                },
+                "force": {
+                    "type": "boolean"
                 },
                 "userName": {
                     "type": "string"
@@ -10234,6 +11894,9 @@
                     },
                     "externalId": {
                         "type": "string"
+                    },
+                    "force": {
+                        "type": "boolean"
                     },
                     "userName": {
                         "type": "string"
@@ -10274,6 +11937,44 @@
                 "description": "Input properties used for looking up and filtering UserInstanceProfile resources.\n",
                 "properties": {
                     "instanceProfileId": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "databricks:databricks/userRole:UserRole": {
+            "properties": {
+                "role": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "role",
+                "userId"
+            ],
+            "inputProperties": {
+                "role": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "role",
+                "userId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering UserRole resources.\n",
+                "properties": {
+                    "role": {
                         "type": "string"
                     },
                     "userId": {
@@ -10446,6 +12147,40 @@
                 ]
             }
         },
+        "databricks:databricks/getCatalogs:getCatalogs": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getCatalogs.\n",
+                "properties": {
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getCatalogs.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "ids",
+                    "id"
+                ]
+            }
+        },
         "databricks:databricks/getClusters:getClusters": {
             "inputs": {
                 "description": "A collection of arguments for invoking getClusters.\n",
@@ -10502,6 +12237,9 @@
                     },
                     "userName": {
                         "type": "string"
+                    },
+                    "workspaceUrl": {
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -10511,6 +12249,7 @@
                     "home",
                     "repos",
                     "userName",
+                    "workspaceUrl",
                     "id"
                 ]
             }
@@ -10618,6 +12357,12 @@
                     "allowInstancePoolCreate": {
                         "type": "boolean"
                     },
+                    "childGroups": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "databricksSqlAccess": {
                         "type": "boolean"
                     },
@@ -10643,10 +12388,23 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "deprecationMessage": "Please use `users`, `service_principals`, and `child_groups` instead"
                     },
                     "recursive": {
                         "type": "boolean"
+                    },
+                    "servicePrincipals": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "workspaceAccess": {
                         "type": "boolean"
@@ -10665,6 +12423,12 @@
                     },
                     "allowInstancePoolCreate": {
                         "type": "boolean"
+                    },
+                    "childGroups": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "databricksSqlAccess": {
                         "type": "boolean"
@@ -10695,10 +12459,23 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "deprecationMessage": "Please use `users`, `service_principals`, and `child_groups` instead"
                     },
                     "recursive": {
                         "type": "boolean"
+                    },
+                    "servicePrincipals": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "workspaceAccess": {
                         "type": "boolean"
@@ -10706,11 +12483,48 @@
                 },
                 "type": "object",
                 "required": [
+                    "childGroups",
                     "displayName",
                     "externalId",
                     "groups",
                     "instanceProfiles",
                     "members",
+                    "servicePrincipals",
+                    "users",
+                    "id"
+                ]
+            }
+        },
+        "databricks:databricks/getJobs:getJobs": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getJobs.\n",
+                "properties": {
+                    "ids": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getJobs.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ids": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "ids",
                     "id"
                 ]
             }
@@ -10724,6 +12538,9 @@
                     },
                     "gbPerCore": {
                         "type": "integer"
+                    },
+                    "graviton": {
+                        "type": "boolean"
                     },
                     "isIoCacheEnabled": {
                         "type": "boolean"
@@ -10760,6 +12577,9 @@
                     },
                     "gbPerCore": {
                         "type": "integer"
+                    },
+                    "graviton": {
+                        "type": "boolean"
                     },
                     "id": {
                         "type": "string",
@@ -10906,6 +12726,50 @@
                 ]
             }
         },
+        "databricks:databricks/getSchemas:getSchemas": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getSchemas.\n",
+                "properties": {
+                    "catalogName": {
+                        "type": "string"
+                    },
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "catalogName"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSchemas.\n",
+                "properties": {
+                    "catalogName": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "catalogName",
+                    "ids",
+                    "id"
+                ]
+            }
+        },
         "databricks:databricks/getSparkVersion:getSparkVersion": {
             "inputs": {
                 "description": "A collection of arguments for invoking getSparkVersion.\n",
@@ -10917,6 +12781,9 @@
                         "type": "boolean"
                     },
                     "gpu": {
+                        "type": "boolean"
+                    },
+                    "graviton": {
                         "type": "boolean"
                     },
                     "latest": {
@@ -10952,6 +12819,9 @@
                     "gpu": {
                         "type": "boolean"
                     },
+                    "graviton": {
+                        "type": "boolean"
+                    },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
@@ -10977,6 +12847,58 @@
                 },
                 "type": "object",
                 "required": [
+                    "id"
+                ]
+            }
+        },
+        "databricks:databricks/getTables:getTables": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getTables.\n",
+                "properties": {
+                    "catalogName": {
+                        "type": "string"
+                    },
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "schemaName": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "catalogName",
+                    "schemaName"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getTables.\n",
+                "properties": {
+                    "catalogName": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "schemaName": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "catalogName",
+                    "ids",
+                    "schemaName",
                     "id"
                 ]
             }
