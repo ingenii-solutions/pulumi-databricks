@@ -550,7 +550,6 @@ class SqlEndpoint(pulumi.CustomResource):
             data_source_id: Optional[pulumi.Input[str]] = None,
             enable_photon: Optional[pulumi.Input[bool]] = None,
             enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             instance_profile_arn: Optional[pulumi.Input[str]] = None,
             jdbc_url: Optional[pulumi.Input[str]] = None,
             max_num_clusters: Optional[pulumi.Input[int]] = None,

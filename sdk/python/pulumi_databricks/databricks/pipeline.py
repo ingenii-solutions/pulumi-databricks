@@ -373,7 +373,6 @@ class Pipeline(pulumi.CustomResource):
             configuration: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             continuous: Optional[pulumi.Input[bool]] = None,
             filters: Optional[pulumi.Input[pulumi.InputType['PipelineFiltersArgs']]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             libraries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLibraryArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             storage: Optional[pulumi.Input[str]] = None,
