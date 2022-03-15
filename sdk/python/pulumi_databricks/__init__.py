@@ -100,6 +100,22 @@ _utilities.register(
  },
  {
   "pkg": "databricks",
+  "mod": "databricks/externalLocation",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/externalLocation:ExternalLocation": "ExternalLocation"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/gitCredential",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/gitCredential:GitCredential": "GitCredential"
+  }
+ },
+ {
+  "pkg": "databricks",
   "mod": "databricks/globalInitScript",
   "fqn": "pulumi_databricks.databricks",
   "classes": {
@@ -192,6 +208,14 @@ _utilities.register(
   "fqn": "pulumi_databricks.databricks",
   "classes": {
    "databricks:databricks/mLFlowModel:MLFlowModel": "MLFlowModel"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/mLFlowWebhook",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/mLFlowWebhook:MLFlowWebhook": "MLFlowWebhook"
   }
  },
  {
@@ -420,6 +444,22 @@ _utilities.register(
  },
  {
   "pkg": "databricks",
+  "mod": "databricks/storageCredential",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/storageCredential:StorageCredential": "StorageCredential"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/table",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/table:Table": "Table"
+  }
+ },
+ {
+  "pkg": "databricks",
   "mod": "databricks/token",
   "fqn": "pulumi_databricks.databricks",
   "classes": {
@@ -440,6 +480,14 @@ _utilities.register(
   "fqn": "pulumi_databricks.databricks",
   "classes": {
    "databricks:databricks/userInstanceProfile:UserInstanceProfile": "UserInstanceProfile"
+  }
+ },
+ {
+  "pkg": "databricks",
+  "mod": "databricks/userRole",
+  "fqn": "pulumi_databricks.databricks",
+  "classes": {
+   "databricks:databricks/userRole:UserRole": "UserRole"
   }
  },
  {

@@ -14,6 +14,7 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 auth_type: Optional[pulumi.Input[str]] = None,
                  azure_client_id: Optional[pulumi.Input[str]] = None,
                  azure_client_secret: Optional[pulumi.Input[str]] = None,
                  azure_environment: Optional[pulumi.Input[str]] = None,
@@ -37,6 +38,8 @@ class ProviderArgs:
         """
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if azure_client_id is not None:
             pulumi.set(__self__, "azure_client_id", azure_client_id)
         if azure_client_secret is not None:
@@ -82,6 +85,15 @@ class ProviderArgs:
     @account_id.setter
     def account_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_id", value)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_type", value)
 
     @property
     @pulumi.getter(name="azureClientId")
@@ -252,6 +264,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 auth_type: Optional[pulumi.Input[str]] = None,
                  azure_client_id: Optional[pulumi.Input[str]] = None,
                  azure_client_secret: Optional[pulumi.Input[str]] = None,
                  azure_environment: Optional[pulumi.Input[str]] = None,
@@ -308,6 +321,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 auth_type: Optional[pulumi.Input[str]] = None,
                  azure_client_id: Optional[pulumi.Input[str]] = None,
                  azure_client_secret: Optional[pulumi.Input[str]] = None,
                  azure_environment: Optional[pulumi.Input[str]] = None,
@@ -339,6 +353,7 @@ class Provider(pulumi.ProviderResource):
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
             __props__.__dict__["account_id"] = account_id
+            __props__.__dict__["auth_type"] = auth_type
             __props__.__dict__["azure_client_id"] = azure_client_id
             __props__.__dict__["azure_client_secret"] = azure_client_secret
             __props__.__dict__["azure_environment"] = azure_environment
@@ -367,6 +382,11 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="azureClientId")

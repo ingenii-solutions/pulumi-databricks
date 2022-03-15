@@ -23,6 +23,7 @@ class InstancePoolArgs:
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  disk_spec: Optional[pulumi.Input['InstancePoolDiskSpecArgs']] = None,
                  enable_elastic_disk: Optional[pulumi.Input[bool]] = None,
+                 gcp_attributes: Optional[pulumi.Input['InstancePoolGcpAttributesArgs']] = None,
                  instance_pool_id: Optional[pulumi.Input[str]] = None,
                  max_capacity: Optional[pulumi.Input[int]] = None,
                  min_idle_instances: Optional[pulumi.Input[int]] = None,
@@ -44,6 +45,8 @@ class InstancePoolArgs:
             pulumi.set(__self__, "disk_spec", disk_spec)
         if enable_elastic_disk is not None:
             pulumi.set(__self__, "enable_elastic_disk", enable_elastic_disk)
+        if gcp_attributes is not None:
+            pulumi.set(__self__, "gcp_attributes", gcp_attributes)
         if instance_pool_id is not None:
             pulumi.set(__self__, "instance_pool_id", instance_pool_id)
         if max_capacity is not None:
@@ -128,6 +131,15 @@ class InstancePoolArgs:
         pulumi.set(self, "enable_elastic_disk", value)
 
     @property
+    @pulumi.getter(name="gcpAttributes")
+    def gcp_attributes(self) -> Optional[pulumi.Input['InstancePoolGcpAttributesArgs']]:
+        return pulumi.get(self, "gcp_attributes")
+
+    @gcp_attributes.setter
+    def gcp_attributes(self, value: Optional[pulumi.Input['InstancePoolGcpAttributesArgs']]):
+        pulumi.set(self, "gcp_attributes", value)
+
+    @property
     @pulumi.getter(name="instancePoolId")
     def instance_pool_id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "instance_pool_id")
@@ -181,6 +193,7 @@ class _InstancePoolState:
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  disk_spec: Optional[pulumi.Input['InstancePoolDiskSpecArgs']] = None,
                  enable_elastic_disk: Optional[pulumi.Input[bool]] = None,
+                 gcp_attributes: Optional[pulumi.Input['InstancePoolGcpAttributesArgs']] = None,
                  idle_instance_autotermination_minutes: Optional[pulumi.Input[int]] = None,
                  instance_pool_id: Optional[pulumi.Input[str]] = None,
                  instance_pool_name: Optional[pulumi.Input[str]] = None,
@@ -202,6 +215,8 @@ class _InstancePoolState:
             pulumi.set(__self__, "disk_spec", disk_spec)
         if enable_elastic_disk is not None:
             pulumi.set(__self__, "enable_elastic_disk", enable_elastic_disk)
+        if gcp_attributes is not None:
+            pulumi.set(__self__, "gcp_attributes", gcp_attributes)
         if idle_instance_autotermination_minutes is not None:
             pulumi.set(__self__, "idle_instance_autotermination_minutes", idle_instance_autotermination_minutes)
         if instance_pool_id is not None:
@@ -263,6 +278,15 @@ class _InstancePoolState:
     @enable_elastic_disk.setter
     def enable_elastic_disk(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enable_elastic_disk", value)
+
+    @property
+    @pulumi.getter(name="gcpAttributes")
+    def gcp_attributes(self) -> Optional[pulumi.Input['InstancePoolGcpAttributesArgs']]:
+        return pulumi.get(self, "gcp_attributes")
+
+    @gcp_attributes.setter
+    def gcp_attributes(self, value: Optional[pulumi.Input['InstancePoolGcpAttributesArgs']]):
+        pulumi.set(self, "gcp_attributes", value)
 
     @property
     @pulumi.getter(name="idleInstanceAutoterminationMinutes")
@@ -347,6 +371,7 @@ class InstancePool(pulumi.CustomResource):
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  disk_spec: Optional[pulumi.Input[pulumi.InputType['InstancePoolDiskSpecArgs']]] = None,
                  enable_elastic_disk: Optional[pulumi.Input[bool]] = None,
+                 gcp_attributes: Optional[pulumi.Input[pulumi.InputType['InstancePoolGcpAttributesArgs']]] = None,
                  idle_instance_autotermination_minutes: Optional[pulumi.Input[int]] = None,
                  instance_pool_id: Optional[pulumi.Input[str]] = None,
                  instance_pool_name: Optional[pulumi.Input[str]] = None,
@@ -389,6 +414,7 @@ class InstancePool(pulumi.CustomResource):
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  disk_spec: Optional[pulumi.Input[pulumi.InputType['InstancePoolDiskSpecArgs']]] = None,
                  enable_elastic_disk: Optional[pulumi.Input[bool]] = None,
+                 gcp_attributes: Optional[pulumi.Input[pulumi.InputType['InstancePoolGcpAttributesArgs']]] = None,
                  idle_instance_autotermination_minutes: Optional[pulumi.Input[int]] = None,
                  instance_pool_id: Optional[pulumi.Input[str]] = None,
                  instance_pool_name: Optional[pulumi.Input[str]] = None,
@@ -414,6 +440,7 @@ class InstancePool(pulumi.CustomResource):
             __props__.__dict__["custom_tags"] = custom_tags
             __props__.__dict__["disk_spec"] = disk_spec
             __props__.__dict__["enable_elastic_disk"] = enable_elastic_disk
+            __props__.__dict__["gcp_attributes"] = gcp_attributes
             if idle_instance_autotermination_minutes is None and not opts.urn:
                 raise TypeError("Missing required property 'idle_instance_autotermination_minutes'")
             __props__.__dict__["idle_instance_autotermination_minutes"] = idle_instance_autotermination_minutes
@@ -443,6 +470,7 @@ class InstancePool(pulumi.CustomResource):
             custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             disk_spec: Optional[pulumi.Input[pulumi.InputType['InstancePoolDiskSpecArgs']]] = None,
             enable_elastic_disk: Optional[pulumi.Input[bool]] = None,
+            gcp_attributes: Optional[pulumi.Input[pulumi.InputType['InstancePoolGcpAttributesArgs']]] = None,
             idle_instance_autotermination_minutes: Optional[pulumi.Input[int]] = None,
             instance_pool_id: Optional[pulumi.Input[str]] = None,
             instance_pool_name: Optional[pulumi.Input[str]] = None,
@@ -468,6 +496,7 @@ class InstancePool(pulumi.CustomResource):
         __props__.__dict__["custom_tags"] = custom_tags
         __props__.__dict__["disk_spec"] = disk_spec
         __props__.__dict__["enable_elastic_disk"] = enable_elastic_disk
+        __props__.__dict__["gcp_attributes"] = gcp_attributes
         __props__.__dict__["idle_instance_autotermination_minutes"] = idle_instance_autotermination_minutes
         __props__.__dict__["instance_pool_id"] = instance_pool_id
         __props__.__dict__["instance_pool_name"] = instance_pool_name
@@ -502,6 +531,11 @@ class InstancePool(pulumi.CustomResource):
     @pulumi.getter(name="enableElasticDisk")
     def enable_elastic_disk(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "enable_elastic_disk")
+
+    @property
+    @pulumi.getter(name="gcpAttributes")
+    def gcp_attributes(self) -> pulumi.Output[Optional['outputs.InstancePoolGcpAttributes']]:
+        return pulumi.get(self, "gcp_attributes")
 
     @property
     @pulumi.getter(name="idleInstanceAutoterminationMinutes")

@@ -19,9 +19,9 @@ class InstallPluginCommand(install):
                     "install",
                     "resource",
                     "databricks",
-                    "0.1.0",
+                    "0.2.0",
                     "--server",
-                    "https://github.com/ingenii-solutions/pulumi-databricks/releases/download/v0.1.0",
+                    "https://github.com/ingenii-solutions/pulumi-databricks/releases/download/v0.2.0",
                 ]
             )
         except OSError as error:
@@ -31,7 +31,7 @@ class InstallPluginCommand(install):
                 It looks like `pulumi` is not installed on your system.
                 Please visit https://pulumi.com/ to install the Pulumi CLI.
                 You may try manually installing the plugin by running
-                `pulumi plugin install resource databricks 0.1.0 --server https://github.com/ingenii-solutions/pulumi-databricks/releases/download/v0.1.0`
+                `pulumi plugin install resource databricks 0.2.0 --server https://github.com/ingenii-solutions/pulumi-databricks/releases/download/v0.2.0`
                 """)
             else:
                 raise
@@ -46,7 +46,7 @@ def readme():
 
 
 setup(name='pulumi_databricks',
-      version='0.1.0',
+      version='0.2.0',
       description="A Pulumi package for creating and managing Databricks cloud resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',

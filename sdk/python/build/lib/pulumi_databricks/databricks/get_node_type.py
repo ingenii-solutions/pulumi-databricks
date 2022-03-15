@@ -19,13 +19,16 @@ class GetNodeTypeResult:
     """
     A collection of values returned by getNodeType.
     """
-    def __init__(__self__, category=None, gb_per_core=None, id=None, is_io_cache_enabled=None, local_disk=None, min_cores=None, min_gpus=None, min_memory_gb=None, photon_driver_capable=None, photon_worker_capable=None, support_port_forwarding=None):
+    def __init__(__self__, category=None, gb_per_core=None, graviton=None, id=None, is_io_cache_enabled=None, local_disk=None, min_cores=None, min_gpus=None, min_memory_gb=None, photon_driver_capable=None, photon_worker_capable=None, support_port_forwarding=None):
         if category and not isinstance(category, str):
             raise TypeError("Expected argument 'category' to be a str")
         pulumi.set(__self__, "category", category)
         if gb_per_core and not isinstance(gb_per_core, int):
             raise TypeError("Expected argument 'gb_per_core' to be a int")
         pulumi.set(__self__, "gb_per_core", gb_per_core)
+        if graviton and not isinstance(graviton, bool):
+            raise TypeError("Expected argument 'graviton' to be a bool")
+        pulumi.set(__self__, "graviton", graviton)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -63,6 +66,11 @@ class GetNodeTypeResult:
     @pulumi.getter(name="gbPerCore")
     def gb_per_core(self) -> Optional[int]:
         return pulumi.get(self, "gb_per_core")
+
+    @property
+    @pulumi.getter
+    def graviton(self) -> Optional[bool]:
+        return pulumi.get(self, "graviton")
 
     @property
     @pulumi.getter
@@ -121,6 +129,7 @@ class AwaitableGetNodeTypeResult(GetNodeTypeResult):
         return GetNodeTypeResult(
             category=self.category,
             gb_per_core=self.gb_per_core,
+            graviton=self.graviton,
             id=self.id,
             is_io_cache_enabled=self.is_io_cache_enabled,
             local_disk=self.local_disk,
@@ -134,6 +143,7 @@ class AwaitableGetNodeTypeResult(GetNodeTypeResult):
 
 def get_node_type(category: Optional[str] = None,
                   gb_per_core: Optional[int] = None,
+                  graviton: Optional[bool] = None,
                   is_io_cache_enabled: Optional[bool] = None,
                   local_disk: Optional[bool] = None,
                   min_cores: Optional[int] = None,
@@ -149,6 +159,7 @@ def get_node_type(category: Optional[str] = None,
     __args__ = dict()
     __args__['category'] = category
     __args__['gbPerCore'] = gb_per_core
+    __args__['graviton'] = graviton
     __args__['isIoCacheEnabled'] = is_io_cache_enabled
     __args__['localDisk'] = local_disk
     __args__['minCores'] = min_cores
@@ -166,6 +177,7 @@ def get_node_type(category: Optional[str] = None,
     return AwaitableGetNodeTypeResult(
         category=__ret__.category,
         gb_per_core=__ret__.gb_per_core,
+        graviton=__ret__.graviton,
         id=__ret__.id,
         is_io_cache_enabled=__ret__.is_io_cache_enabled,
         local_disk=__ret__.local_disk,

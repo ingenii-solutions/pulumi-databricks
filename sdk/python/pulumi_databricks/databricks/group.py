@@ -18,6 +18,8 @@ class GroupArgs:
                  allow_instance_pool_create: Optional[pulumi.Input[bool]] = None,
                  databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Group resource.
@@ -31,6 +33,10 @@ class GroupArgs:
             pulumi.set(__self__, "databricks_sql_access", databricks_sql_access)
         if external_id is not None:
             pulumi.set(__self__, "external_id", external_id)
+        if force is not None:
+            pulumi.set(__self__, "force", force)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
         if workspace_access is not None:
             pulumi.set(__self__, "workspace_access", workspace_access)
 
@@ -80,6 +86,24 @@ class GroupArgs:
         pulumi.set(self, "external_id", value)
 
     @property
+    @pulumi.getter
+    def force(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "force")
+
+    @force.setter
+    def force(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
+    @property
     @pulumi.getter(name="workspaceAccess")
     def workspace_access(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "workspace_access")
@@ -97,6 +121,7 @@ class _GroupState:
                  databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None):
         """
@@ -112,6 +137,8 @@ class _GroupState:
             pulumi.set(__self__, "display_name", display_name)
         if external_id is not None:
             pulumi.set(__self__, "external_id", external_id)
+        if force is not None:
+            pulumi.set(__self__, "force", force)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if workspace_access is not None:
@@ -164,6 +191,15 @@ class _GroupState:
 
     @property
     @pulumi.getter
+    def force(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "force")
+
+    @force.setter
+    def force(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force", value)
+
+    @property
+    @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "url")
 
@@ -191,6 +227,8 @@ class Group(pulumi.CustomResource):
                  databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -226,6 +264,8 @@ class Group(pulumi.CustomResource):
                  databricks_sql_access: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
                  workspace_access: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
@@ -246,8 +286,9 @@ class Group(pulumi.CustomResource):
                 raise TypeError("Missing required property 'display_name'")
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["external_id"] = external_id
+            __props__.__dict__["force"] = force
+            __props__.__dict__["url"] = url
             __props__.__dict__["workspace_access"] = workspace_access
-            __props__.__dict__["url"] = None
         super(Group, __self__).__init__(
             'databricks:databricks/group:Group',
             resource_name,
@@ -263,6 +304,7 @@ class Group(pulumi.CustomResource):
             databricks_sql_access: Optional[pulumi.Input[bool]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             external_id: Optional[pulumi.Input[str]] = None,
+            force: Optional[pulumi.Input[bool]] = None,
             url: Optional[pulumi.Input[str]] = None,
             workspace_access: Optional[pulumi.Input[bool]] = None) -> 'Group':
         """
@@ -282,6 +324,7 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["databricks_sql_access"] = databricks_sql_access
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["external_id"] = external_id
+        __props__.__dict__["force"] = force
         __props__.__dict__["url"] = url
         __props__.__dict__["workspace_access"] = workspace_access
         return Group(resource_name, opts=opts, __props__=__props__)
@@ -310,6 +353,11 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="externalId")
     def external_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "external_id")
+
+    @property
+    @pulumi.getter
+    def force(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "force")
 
     @property
     @pulumi.getter

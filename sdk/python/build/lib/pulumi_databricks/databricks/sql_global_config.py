@@ -16,7 +16,8 @@ class SqlGlobalConfigArgs:
                  data_access_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
-                 security_policy: Optional[pulumi.Input[str]] = None):
+                 security_policy: Optional[pulumi.Input[str]] = None,
+                 sql_config_params: Optional[pulumi.Input[Mapping[str, Any]]] = None):
         """
         The set of arguments for constructing a SqlGlobalConfig resource.
         """
@@ -28,6 +29,8 @@ class SqlGlobalConfigArgs:
             pulumi.set(__self__, "instance_profile_arn", instance_profile_arn)
         if security_policy is not None:
             pulumi.set(__self__, "security_policy", security_policy)
+        if sql_config_params is not None:
+            pulumi.set(__self__, "sql_config_params", sql_config_params)
 
     @property
     @pulumi.getter(name="dataAccessConfig")
@@ -65,6 +68,15 @@ class SqlGlobalConfigArgs:
     def security_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "security_policy", value)
 
+    @property
+    @pulumi.getter(name="sqlConfigParams")
+    def sql_config_params(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "sql_config_params")
+
+    @sql_config_params.setter
+    def sql_config_params(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "sql_config_params", value)
+
 
 @pulumi.input_type
 class _SqlGlobalConfigState:
@@ -72,7 +84,8 @@ class _SqlGlobalConfigState:
                  data_access_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
-                 security_policy: Optional[pulumi.Input[str]] = None):
+                 security_policy: Optional[pulumi.Input[str]] = None,
+                 sql_config_params: Optional[pulumi.Input[Mapping[str, Any]]] = None):
         """
         Input properties used for looking up and filtering SqlGlobalConfig resources.
         """
@@ -84,6 +97,8 @@ class _SqlGlobalConfigState:
             pulumi.set(__self__, "instance_profile_arn", instance_profile_arn)
         if security_policy is not None:
             pulumi.set(__self__, "security_policy", security_policy)
+        if sql_config_params is not None:
+            pulumi.set(__self__, "sql_config_params", sql_config_params)
 
     @property
     @pulumi.getter(name="dataAccessConfig")
@@ -121,6 +136,15 @@ class _SqlGlobalConfigState:
     def security_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "security_policy", value)
 
+    @property
+    @pulumi.getter(name="sqlConfigParams")
+    def sql_config_params(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "sql_config_params")
+
+    @sql_config_params.setter
+    def sql_config_params(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "sql_config_params", value)
+
 
 class SqlGlobalConfig(pulumi.CustomResource):
     @overload
@@ -131,6 +155,7 @@ class SqlGlobalConfig(pulumi.CustomResource):
                  enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
                  security_policy: Optional[pulumi.Input[str]] = None,
+                 sql_config_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  __props__=None):
         """
         Create a SqlGlobalConfig resource with the given unique name, props, and options.
@@ -164,6 +189,7 @@ class SqlGlobalConfig(pulumi.CustomResource):
                  enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
                  instance_profile_arn: Optional[pulumi.Input[str]] = None,
                  security_policy: Optional[pulumi.Input[str]] = None,
+                 sql_config_params: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -180,6 +206,7 @@ class SqlGlobalConfig(pulumi.CustomResource):
             __props__.__dict__["enable_serverless_compute"] = enable_serverless_compute
             __props__.__dict__["instance_profile_arn"] = instance_profile_arn
             __props__.__dict__["security_policy"] = security_policy
+            __props__.__dict__["sql_config_params"] = sql_config_params
         super(SqlGlobalConfig, __self__).__init__(
             'databricks:databricks/sqlGlobalConfig:SqlGlobalConfig',
             resource_name,
@@ -193,7 +220,8 @@ class SqlGlobalConfig(pulumi.CustomResource):
             data_access_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
             instance_profile_arn: Optional[pulumi.Input[str]] = None,
-            security_policy: Optional[pulumi.Input[str]] = None) -> 'SqlGlobalConfig':
+            security_policy: Optional[pulumi.Input[str]] = None,
+            sql_config_params: Optional[pulumi.Input[Mapping[str, Any]]] = None) -> 'SqlGlobalConfig':
         """
         Get an existing SqlGlobalConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -210,6 +238,7 @@ class SqlGlobalConfig(pulumi.CustomResource):
         __props__.__dict__["enable_serverless_compute"] = enable_serverless_compute
         __props__.__dict__["instance_profile_arn"] = instance_profile_arn
         __props__.__dict__["security_policy"] = security_policy
+        __props__.__dict__["sql_config_params"] = sql_config_params
         return SqlGlobalConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -231,4 +260,9 @@ class SqlGlobalConfig(pulumi.CustomResource):
     @pulumi.getter(name="securityPolicy")
     def security_policy(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "security_policy")
+
+    @property
+    @pulumi.getter(name="sqlConfigParams")
+    def sql_config_params(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        return pulumi.get(self, "sql_config_params")
 

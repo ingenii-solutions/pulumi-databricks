@@ -17,7 +17,9 @@ class GrantsArgs:
     def __init__(__self__, *,
                  grants: pulumi.Input[Sequence[pulumi.Input['GrantsGrantArgs']]],
                  catalog: Optional[pulumi.Input[str]] = None,
+                 external_location: Optional[pulumi.Input[str]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
+                 storage_credential: Optional[pulumi.Input[str]] = None,
                  table: Optional[pulumi.Input[str]] = None,
                  view: Optional[pulumi.Input[str]] = None):
         """
@@ -26,8 +28,12 @@ class GrantsArgs:
         pulumi.set(__self__, "grants", grants)
         if catalog is not None:
             pulumi.set(__self__, "catalog", catalog)
+        if external_location is not None:
+            pulumi.set(__self__, "external_location", external_location)
         if schema is not None:
             pulumi.set(__self__, "schema", schema)
+        if storage_credential is not None:
+            pulumi.set(__self__, "storage_credential", storage_credential)
         if table is not None:
             pulumi.set(__self__, "table", table)
         if view is not None:
@@ -52,6 +58,15 @@ class GrantsArgs:
         pulumi.set(self, "catalog", value)
 
     @property
+    @pulumi.getter(name="externalLocation")
+    def external_location(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "external_location")
+
+    @external_location.setter
+    def external_location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_location", value)
+
+    @property
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "schema")
@@ -59,6 +74,15 @@ class GrantsArgs:
     @schema.setter
     def schema(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "schema", value)
+
+    @property
+    @pulumi.getter(name="storageCredential")
+    def storage_credential(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage_credential")
+
+    @storage_credential.setter
+    def storage_credential(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage_credential", value)
 
     @property
     @pulumi.getter
@@ -83,8 +107,10 @@ class GrantsArgs:
 class _GrantsState:
     def __init__(__self__, *,
                  catalog: Optional[pulumi.Input[str]] = None,
+                 external_location: Optional[pulumi.Input[str]] = None,
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input['GrantsGrantArgs']]]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
+                 storage_credential: Optional[pulumi.Input[str]] = None,
                  table: Optional[pulumi.Input[str]] = None,
                  view: Optional[pulumi.Input[str]] = None):
         """
@@ -92,10 +118,14 @@ class _GrantsState:
         """
         if catalog is not None:
             pulumi.set(__self__, "catalog", catalog)
+        if external_location is not None:
+            pulumi.set(__self__, "external_location", external_location)
         if grants is not None:
             pulumi.set(__self__, "grants", grants)
         if schema is not None:
             pulumi.set(__self__, "schema", schema)
+        if storage_credential is not None:
+            pulumi.set(__self__, "storage_credential", storage_credential)
         if table is not None:
             pulumi.set(__self__, "table", table)
         if view is not None:
@@ -109,6 +139,15 @@ class _GrantsState:
     @catalog.setter
     def catalog(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "catalog", value)
+
+    @property
+    @pulumi.getter(name="externalLocation")
+    def external_location(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "external_location")
+
+    @external_location.setter
+    def external_location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_location", value)
 
     @property
     @pulumi.getter
@@ -127,6 +166,15 @@ class _GrantsState:
     @schema.setter
     def schema(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "schema", value)
+
+    @property
+    @pulumi.getter(name="storageCredential")
+    def storage_credential(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage_credential")
+
+    @storage_credential.setter
+    def storage_credential(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage_credential", value)
 
     @property
     @pulumi.getter
@@ -153,8 +201,10 @@ class Grants(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  catalog: Optional[pulumi.Input[str]] = None,
+                 external_location: Optional[pulumi.Input[str]] = None,
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GrantsGrantArgs']]]]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
+                 storage_credential: Optional[pulumi.Input[str]] = None,
                  table: Optional[pulumi.Input[str]] = None,
                  view: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -187,8 +237,10 @@ class Grants(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  catalog: Optional[pulumi.Input[str]] = None,
+                 external_location: Optional[pulumi.Input[str]] = None,
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GrantsGrantArgs']]]]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
+                 storage_credential: Optional[pulumi.Input[str]] = None,
                  table: Optional[pulumi.Input[str]] = None,
                  view: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -204,10 +256,12 @@ class Grants(pulumi.CustomResource):
             __props__ = GrantsArgs.__new__(GrantsArgs)
 
             __props__.__dict__["catalog"] = catalog
+            __props__.__dict__["external_location"] = external_location
             if grants is None and not opts.urn:
                 raise TypeError("Missing required property 'grants'")
             __props__.__dict__["grants"] = grants
             __props__.__dict__["schema"] = schema
+            __props__.__dict__["storage_credential"] = storage_credential
             __props__.__dict__["table"] = table
             __props__.__dict__["view"] = view
         super(Grants, __self__).__init__(
@@ -221,8 +275,10 @@ class Grants(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             catalog: Optional[pulumi.Input[str]] = None,
+            external_location: Optional[pulumi.Input[str]] = None,
             grants: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GrantsGrantArgs']]]]] = None,
             schema: Optional[pulumi.Input[str]] = None,
+            storage_credential: Optional[pulumi.Input[str]] = None,
             table: Optional[pulumi.Input[str]] = None,
             view: Optional[pulumi.Input[str]] = None) -> 'Grants':
         """
@@ -238,8 +294,10 @@ class Grants(pulumi.CustomResource):
         __props__ = _GrantsState.__new__(_GrantsState)
 
         __props__.__dict__["catalog"] = catalog
+        __props__.__dict__["external_location"] = external_location
         __props__.__dict__["grants"] = grants
         __props__.__dict__["schema"] = schema
+        __props__.__dict__["storage_credential"] = storage_credential
         __props__.__dict__["table"] = table
         __props__.__dict__["view"] = view
         return Grants(resource_name, opts=opts, __props__=__props__)
@@ -250,6 +308,11 @@ class Grants(pulumi.CustomResource):
         return pulumi.get(self, "catalog")
 
     @property
+    @pulumi.getter(name="externalLocation")
+    def external_location(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "external_location")
+
+    @property
     @pulumi.getter
     def grants(self) -> pulumi.Output[Sequence['outputs.GrantsGrant']]:
         return pulumi.get(self, "grants")
@@ -258,6 +321,11 @@ class Grants(pulumi.CustomResource):
     @pulumi.getter
     def schema(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "schema")
+
+    @property
+    @pulumi.getter(name="storageCredential")
+    def storage_credential(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "storage_credential")
 
     @property
     @pulumi.getter

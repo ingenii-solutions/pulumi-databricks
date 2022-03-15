@@ -17,6 +17,7 @@ class SqlEndpointArgs:
     def __init__(__self__, *,
                  cluster_size: pulumi.Input[str],
                  auto_stop_mins: Optional[pulumi.Input[int]] = None,
+                 channel: Optional[pulumi.Input['SqlEndpointChannelArgs']] = None,
                  data_source_id: Optional[pulumi.Input[str]] = None,
                  enable_photon: Optional[pulumi.Input[bool]] = None,
                  enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
@@ -37,6 +38,8 @@ class SqlEndpointArgs:
         pulumi.set(__self__, "cluster_size", cluster_size)
         if auto_stop_mins is not None:
             pulumi.set(__self__, "auto_stop_mins", auto_stop_mins)
+        if channel is not None:
+            pulumi.set(__self__, "channel", channel)
         if data_source_id is not None:
             pulumi.set(__self__, "data_source_id", data_source_id)
         if enable_photon is not None:
@@ -83,6 +86,15 @@ class SqlEndpointArgs:
     @auto_stop_mins.setter
     def auto_stop_mins(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "auto_stop_mins", value)
+
+    @property
+    @pulumi.getter
+    def channel(self) -> Optional[pulumi.Input['SqlEndpointChannelArgs']]:
+        return pulumi.get(self, "channel")
+
+    @channel.setter
+    def channel(self, value: Optional[pulumi.Input['SqlEndpointChannelArgs']]):
+        pulumi.set(self, "channel", value)
 
     @property
     @pulumi.getter(name="dataSourceId")
@@ -215,6 +227,7 @@ class SqlEndpointArgs:
 class _SqlEndpointState:
     def __init__(__self__, *,
                  auto_stop_mins: Optional[pulumi.Input[int]] = None,
+                 channel: Optional[pulumi.Input['SqlEndpointChannelArgs']] = None,
                  cluster_size: Optional[pulumi.Input[str]] = None,
                  data_source_id: Optional[pulumi.Input[str]] = None,
                  enable_photon: Optional[pulumi.Input[bool]] = None,
@@ -235,6 +248,8 @@ class _SqlEndpointState:
         """
         if auto_stop_mins is not None:
             pulumi.set(__self__, "auto_stop_mins", auto_stop_mins)
+        if channel is not None:
+            pulumi.set(__self__, "channel", channel)
         if cluster_size is not None:
             pulumi.set(__self__, "cluster_size", cluster_size)
         if data_source_id is not None:
@@ -274,6 +289,15 @@ class _SqlEndpointState:
     @auto_stop_mins.setter
     def auto_stop_mins(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "auto_stop_mins", value)
+
+    @property
+    @pulumi.getter
+    def channel(self) -> Optional[pulumi.Input['SqlEndpointChannelArgs']]:
+        return pulumi.get(self, "channel")
+
+    @channel.setter
+    def channel(self, value: Optional[pulumi.Input['SqlEndpointChannelArgs']]):
+        pulumi.set(self, "channel", value)
 
     @property
     @pulumi.getter(name="clusterSize")
@@ -417,6 +441,7 @@ class SqlEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_stop_mins: Optional[pulumi.Input[int]] = None,
+                 channel: Optional[pulumi.Input[pulumi.InputType['SqlEndpointChannelArgs']]] = None,
                  cluster_size: Optional[pulumi.Input[str]] = None,
                  data_source_id: Optional[pulumi.Input[str]] = None,
                  enable_photon: Optional[pulumi.Input[bool]] = None,
@@ -462,6 +487,7 @@ class SqlEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_stop_mins: Optional[pulumi.Input[int]] = None,
+                 channel: Optional[pulumi.Input[pulumi.InputType['SqlEndpointChannelArgs']]] = None,
                  cluster_size: Optional[pulumi.Input[str]] = None,
                  data_source_id: Optional[pulumi.Input[str]] = None,
                  enable_photon: Optional[pulumi.Input[bool]] = None,
@@ -490,6 +516,7 @@ class SqlEndpoint(pulumi.CustomResource):
             __props__ = SqlEndpointArgs.__new__(SqlEndpointArgs)
 
             __props__.__dict__["auto_stop_mins"] = auto_stop_mins
+            __props__.__dict__["channel"] = channel
             if cluster_size is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_size'")
             __props__.__dict__["cluster_size"] = cluster_size
@@ -518,10 +545,12 @@ class SqlEndpoint(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_stop_mins: Optional[pulumi.Input[int]] = None,
+            channel: Optional[pulumi.Input[pulumi.InputType['SqlEndpointChannelArgs']]] = None,
             cluster_size: Optional[pulumi.Input[str]] = None,
             data_source_id: Optional[pulumi.Input[str]] = None,
             enable_photon: Optional[pulumi.Input[bool]] = None,
             enable_serverless_compute: Optional[pulumi.Input[bool]] = None,
+            id: Optional[pulumi.Input[str]] = None,
             instance_profile_arn: Optional[pulumi.Input[str]] = None,
             jdbc_url: Optional[pulumi.Input[str]] = None,
             max_num_clusters: Optional[pulumi.Input[int]] = None,
@@ -545,6 +574,7 @@ class SqlEndpoint(pulumi.CustomResource):
         __props__ = _SqlEndpointState.__new__(_SqlEndpointState)
 
         __props__.__dict__["auto_stop_mins"] = auto_stop_mins
+        __props__.__dict__["channel"] = channel
         __props__.__dict__["cluster_size"] = cluster_size
         __props__.__dict__["data_source_id"] = data_source_id
         __props__.__dict__["enable_photon"] = enable_photon
@@ -566,6 +596,11 @@ class SqlEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="autoStopMins")
     def auto_stop_mins(self) -> pulumi.Output[Optional[int]]:
         return pulumi.get(self, "auto_stop_mins")
+
+    @property
+    @pulumi.getter
+    def channel(self) -> pulumi.Output[Optional['outputs.SqlEndpointChannel']]:
+        return pulumi.get(self, "channel")
 
     @property
     @pulumi.getter(name="clusterSize")
