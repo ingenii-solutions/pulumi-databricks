@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pulumi-databricks
-Version: 0.2.0
+Version: 0.2.1
 Summary: A Pulumi package for creating and managing Databricks cloud resources.
 Home-page: https://ingenii.dev
 License: Apache-2.0
